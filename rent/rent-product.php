@@ -28,14 +28,8 @@ $rowsImages  = $resultImages->fetch_all(MYSQLI_ASSOC);
 
     <!-- Bootstrap CSS v5.2.1 -->
     <?php include("../css-mahjong.php") ?>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: "Noto Sans TC", sans-serif;
-        }
 
+    <style>
         .img-box {
             width: 100px;
             height: 100px;

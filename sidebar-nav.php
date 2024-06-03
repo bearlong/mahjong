@@ -51,6 +51,23 @@ session_start();
             color: white;
         }
 
+        .sidebar ul .sub-label:hover {
+            background: #999;
+            transition: .3s;
+        }
+
+        .sub-label-ul {
+            max-height: 0px;
+            overflow: hidden;
+            transition: .5s;
+        }
+
+        .sub-label-ul-active {
+            max-height: 100px;
+            overflow: hidden;
+            transition: .5s;
+        }
+
         .list-unstyle {
             list-style: none;
         }
@@ -71,6 +88,7 @@ session_start();
         .hamburger {
             font-size: 24px;
             color: goldenrod;
+            cursor: pointer;
         }
 
         #switch {
@@ -126,25 +144,30 @@ session_start();
         <div class="d-flex flex-column justify-content-between">
             <ul class="list-unstyle">
                 <li>
-                    <a data-group="會員管理" href="sidebar-nav.php" class="d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "active" ?>"><i class="fa-solid fa-users me-2"></i>會員管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="會員管理" href="sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "active" ?>"><i class="fa-solid fa-users me-2"></i>會員管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="訂單管理" href="sidebar-nav.php" class="d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "active" ?>"><i class="fa-solid fa-file-lines me-2"></i>訂單管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="訂單管理" id="order-list" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "active" ?>"><i class="fa-solid fa-file-lines me-2"></i>訂單管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "d-inline" ?>">></span></a>
+                    <ul class="text-center text-black bg-dark bg-gradient sub-label-ul" id="sub-label-ul">
+                        <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">一般訂單</a></li>
+                        <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">線上課程訂單</a></li>
+                        <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">租借訂單</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a data-group="商品管理" href="sidebar-nav.php" class="d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "active" ?>"><i class="fa-solid fa-store me-2"></i>商品管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="商品管理" href="sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "active" ?>"><i class="fa-solid fa-store me-2"></i>商品管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="線上課程管理" href="sidebar-nav.php" class="d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "active" ?>"><i class="fa-solid fa-landmark me-2"></i>線上課程管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="線上課程管理" href="sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "active" ?>"><i class="fa-solid fa-landmark me-2"></i>線上課程管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="租借管理" href="./rent/rent-product-list.php" class="d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "租借管理") echo "active" ?>"><i class="fa-solid fa-retweet me-2"></i>租借管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "租借管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="租借管理" href="./rent/rent-product-list.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "租借管理") echo "active" ?>"><i class="fa-solid fa-retweet me-2"></i>租借管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "租借管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="優惠券管理" href="./coupon/coupon-list.php?page=1&order=1" class="d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "優惠券管理") echo "active" ?>"><i class="fa-solid fa-ticket me-2"></i>優惠券管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "優惠券管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="優惠券管理" href="./coupon/coupon-list.php?page=1&order=1" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "優惠券管理") echo "active" ?>"><i class="fa-solid fa-ticket me-2"></i>優惠券管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "優惠券管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="棋牌室管理" href="./mahjong_room/roomsOverview.php" class="d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "active" ?>"><i class="fa-solid fa-chess-board me-2"></i>棋牌室管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="棋牌室管理" href="./mahjong_room/roomsOverview.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "active" ?>"><i class="fa-solid fa-chess-board me-2"></i>棋牌室管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "d-inline" ?>">></span></a>
                 </li>
             </ul>
             <div class="d-flex justify-content-start mt-5">
@@ -155,11 +178,17 @@ session_start();
         </div>
     </aside>
     <!-- Bootstrap JavaScript Libraries -->
-    <?php include("./js-mahjong.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script>
-        const asideLink = document.querySelectorAll(".sidebar ul a");
+        const asideLink = document.querySelectorAll(".sidebar ul .main-sidebar ");
         const arrow = document.querySelectorAll(".arrow");
+        const orderList = document.querySelector("#order-list");
+        const subLabelUl = document.querySelector("#sub-label-ul");
 
         for (let i = 0; i < asideLink.length; i++) {
             asideLink[i].addEventListener("click", function() {
@@ -178,9 +207,23 @@ session_start();
                     }).fail(function(jqXHR, textStatus) {
                         console.log("Request failed: " + textStatus);
                     });
-                arrow.classlist.toggle("active")
+                arrow[i].classList.toggle("active");
             });
         }
+
+
+        orderList.addEventListener("click", function() {
+            for (let i = 0; i < asideLink.length; i++) {
+                arrow[i].classList.remove("d-inline");
+                asideLink[i].classList.remove("active");
+            }
+            let group = this.dataset.group;
+            console.log(group);
+            arrow[1].classList.add("d-inline");
+            orderList.classList.add("active");
+            subLabelUl.classList.toggle("sub-label-ul");
+            subLabelUl.classList.toggle("sub-label-ul-active");
+        });
     </script>
 </body>
 
