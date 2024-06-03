@@ -147,7 +147,7 @@ session_start();
                     <a data-group="會員管理" href="sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "active" ?>"><i class="fa-solid fa-users me-2"></i>會員管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="訂單管理" id="order-list" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "active" ?>"><i class="fa-solid fa-file-lines me-2"></i>訂單管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="訂單管理" id="order-list" class="main-sidebar d-block px-4 py-2 mt-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "active" ?>"><i class="fa-solid fa-file-lines me-2"></i>訂單管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "d-inline" ?>">></span></a>
                     <ul class="text-center text-black bg-dark bg-gradient sub-label-ul" id="sub-label-ul">
                         <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">一般訂單</a></li>
                         <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">線上課程訂單</a></li>
@@ -185,7 +185,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script>
-        const asideLink = document.querySelectorAll(".sidebar ul .main-sidebar ");
+        const asideLink = document.querySelectorAll(".sidebar ul .main-sidebar");
         const arrow = document.querySelectorAll(".arrow");
         const orderList = document.querySelector("#order-list");
         const subLabelUl = document.querySelector("#sub-label-ul");
