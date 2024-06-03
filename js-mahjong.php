@@ -5,8 +5,10 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
-    const asideLink = document.querySelectorAll(".sidebar ul a");
+    const asideLink = document.querySelectorAll(".sidebar ul .main-sidebar ");
     const arrow = document.querySelectorAll(".arrow");
+    const orderList = document.querySelector("#order-list");
+    const subLabelUl = document.querySelector("#sub-label-ul");
 
     for (let i = 0; i < asideLink.length; i++) {
         asideLink[i].addEventListener("click", function() {
@@ -25,7 +27,21 @@
                 }).fail(function(jqXHR, textStatus) {
                     console.log("Request failed: " + textStatus);
                 });
-            arrow.classlist.toggle("active")
+            arrow[i].classList.toggle("active");
         });
     }
+
+
+    orderList.addEventListener("click", function() {
+        for (let i = 0; i < asideLink.length; i++) {
+            arrow[i].classList.remove("d-inline");
+            asideLink[i].classList.remove("active");
+        }
+        let group = this.dataset.group;
+        console.log(group);
+        arrow[1].classList.add("d-inline");
+        orderList.classList.add("active");
+        subLabelUl.classList.toggle("sub-label-ul");
+        subLabelUl.classList.toggle("sub-label-ul-active");
+    });
 </script>

@@ -12,11 +12,6 @@
         --header-nav-height: 56px;
     }
 
-    body {
-        font-family: "Noto Sans TC", sans-serif;
-    }
-
-
     .navbar {
         padding-left: var(--aside-width);
     }
@@ -49,6 +44,23 @@
         color: white;
     }
 
+    .sidebar ul .sub-label:hover {
+        background: #999;
+        transition: .3s;
+    }
+
+    .sub-label-ul {
+        max-height: 0px;
+        overflow: hidden;
+        transition: .5s;
+    }
+
+    .sub-label-ul-active {
+        max-height: 100px;
+        overflow: hidden;
+        transition: .5s;
+    }
+
     .list-unstyle {
         list-style: none;
     }
@@ -64,12 +76,12 @@
 
     .main-content {
         margin: 0 0 0 var(--aside-width);
-        padding-top: var(--header-nav-height);
     }
 
     .hamburger {
         font-size: 24px;
         color: goldenrod;
+        cursor: pointer;
     }
 
     #switch {
@@ -86,9 +98,5 @@
         max-height: 0;
         overflow: hidden;
         transition: .5s;
-    }
-
-    .text-error {
-        font-size: 14px;
     }
 </style>
