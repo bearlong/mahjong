@@ -2,12 +2,54 @@
 require_once("../db_connect_mahjong.php");
 session_start();
 
+$sqlReturn  = "SELECT * FROM rent_record WHERE 1";
+$resultReturn  = $conn->query($sqlReturn);
+$rowsReturn = $resultReturn->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsReturn  as $return) {
+    if ($return["return_date"] !== null) {
+        $sqlStatus = "UPDATE rent_record SET status = 0 WHERE id = " . $return["id"];
+    } else {
+        $now = date('Y-m-d');
+        if ($now > $return["due_date"]) {
+            $sqlStatus = "UPDATE rent_record SET status = 2 WHERE id = " . $return["id"];
+        } else {
+            $sqlStatus = "UPDATE rent_record SET status = 1 WHERE id = " . $return["id"];
+        }
+    }
+
+    if ($conn->query($sqlStatus) === TRUE) {
+    } else {
+        echo "Error: " . $sqlStatus . "<br>" . $conn->error;
+    }
+}
+
+
 $order = "ORDER BY rent_record.order_date DESC";
 $filter = "";
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
     $filter .= "AND (users.name LIKE '%$search%' OR rent_product.name LIKE '%$search%')";
+}
+if (isset($_GET["start"]) && isset($_GET["end"])) {
+    $dateStart = $_GET["start"];
+    $dateEnd = $_GET["end"];
+    $filter .= "AND rent_record.order_date BETWEEN '$dateStart' AND '$dateEnd'";
+}
+
+if (isset($_GET["status"])) {
+    $status = $_GET["status"];
+    $filter .= "AND rent_record.status = '$status'";
+}
+
+if (isset($_GET["user"])) {
+    $user = $_GET["user"];
+    $filter .= "AND rent_record.user_id = '$user'";
+}
+
+if (isset($_GET["product"])) {
+    $product = $_GET["product"];
+    $filter .= "AND rent_record.product_id = '$product'";
 }
 
 $sql = "SELECT rent_record.*, 
@@ -16,7 +58,9 @@ rent_product.name AS rent_product_name,
 rent_product.price, 
 rent_product.rent_price_category_id, 
 rent_price_category.rent_price, 
-rent_price_category.rent_day 
+rent_price_category.rent_day , 
+users.id AS user_id,
+rent_product.id AS rent_product_id
 FROM rent_record JOIN users ON users.id = rent_record.user_id JOIN rent_product ON rent_record.product_id = rent_product.id JOIN rent_price_category ON rent_product.rent_price_category_id = rent_price_category.id WHERE 1 $filter $order";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -39,9 +83,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <?php include("../nav.php"); ?>
     <div class="container main-content px-5">
         <h1 class="py-2">租借紀錄表</h1>
-        <div class="d-flex g-3 justify-content-between py-3">
+        <div class="d-flex g-3 justify-content-between py-2">
             <div>
-                <?php if (isset($_GET["search"]) || isset($_GET["category"]) || isset($_GET["order"])) : ?>
+                <?php if (isset($_GET["search"]) || isset($_GET["start"]) || isset($_GET["end"]) || isset($_GET["status"]) || isset($_GET["user"]) || isset($_GET["product"])) : ?>
                     <a href="rent-record-list.php" class="btn btn-primary btn-sm my-2"><i class="fa-solid fa-left-long me-2"></i>租借紀錄列表</a>
                 <?php endif; ?>
             </div>
@@ -55,24 +99,40 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 </form>
             </div>
         </div>
-        <div class="py-2">
-            <form action="">
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        訂單時間
+        <div class="py-2 d-flex justify-content-between">
+            <div>
+                <form action="">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            訂單時間
+                        </div>
+                        <div class="col-auto">
+                            <input type="date" class="form-control" name="start" id="start_date">
+                        </div>
+                        <div class="col-auto">~</div>
+                        <div class="col-auto">
+                            <input type="date" class="form-control" name="end" id="end_date">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <input type="date" class="form-control" name="start">
-                    </div>
-                    <div class="col-auto">~</div>
-                    <div class="col-auto">
-                        <input type="date" class="form-control" name="end">
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
+                </form>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div>
+                    <select class="form-select" aria-label="Default select example" id="status">
+                        <option value="" <?php if (!isset($_GET["status"])) echo "selected" ?>>總覽</option>
+                        <!-- <option value="divider" disabled class="divider">--- 分隔線 ---</option> -->
+                        <option value="0" <?php if (isset($_GET["status"]) && $_GET["status"] == 0) echo "selected" ?>>已結案</option>
+                        <option value="1" <?php if (isset($_GET["status"]) && $_GET["status"] == 1) echo "selected" ?>>出借中</option>
+                        <option value="2" <?php if (isset($_GET["status"]) && $_GET["status"] == 2) echo "selected" ?>>已逾期</option>
+                    </select>
                 </div>
-            </form>
+                <div class="mx-3">
+                    <p class="text-secondary m-0">共 筆訂單</p>
+                </div>
+            </div>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -93,8 +153,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <tbody>
                     <tr>
                         <td><?= $rent_order["id"] ?></td>
-                        <td><?= $rent_order["user_name"] ?></td>
-                        <td><?= $rent_order["rent_product_name"] ?></td>
+                        <td><a class="text-decoration-none" href="?page=1&user=<?= $rent_order["user_id"] ?>"><?= $rent_order["user_name"] ?></a></td>
+                        <td><a class="text-decoration-none" href="?page=1&product=<?= $rent_order["rent_product_id"] ?>"><?= $rent_order["rent_product_name"] ?></a></td>
                         <td><?= $rent_order["order_date"] ?></td>
                         <td><?= $rent_order["rental_date"] ?></td>
                         <td><?= $rent_order["due_date"] ?></td>
@@ -144,11 +204,27 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <!-- Bootstrap JavaScript Libraries -->
     <?php include("../js-mahjong.php") ?>
     <script>
-        document.getElementById("start_date").addEventListener("change", function() {
-            document.getElementById("end_date").min = this.value;
+        const start_date = document.getElementById("start_date");
+        const end_date = document.getElementById("end_date");
+        const status = document.querySelector("#status");
+
+
+        start_date.addEventListener("change", function() {
+            end_date.min = this.value;
         });
-        document.getElementById("end_date").addEventListener("change", function() {
-            document.getElementById("start_date").max = this.value;
+        end_date.addEventListener("change", function() {
+            start_date.max = this.value;
+        });
+
+        status.addEventListener("change", (e) => {
+
+            if (e.target.value == "") {
+                location.href = `rent-record-list.php?page=1`;
+            } else {
+                location.href = `rent-record-list.php?page=1&status=${e.target.value}`;
+            }
+
+
         });
     </script>
 </body>
