@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-06-03 19:49:18
+-- 產生時間： 2024-06-04 16:40:14
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -192,6 +192,93 @@ INSERT INTO `marjong_table` (`table_id`, `room_id`, `name`, `status`, `table_typ
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `owner`
+--
+
+CREATE TABLE `owner` (
+  `id` int(11) NOT NULL,
+  `member_type` text NOT NULL DEFAULT '企業會員',
+  `account` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL DEFAULT '12345',
+  `company_name` varchar(100) NOT NULL,
+  `company_phone` varchar(20) NOT NULL,
+  `fax_phone` varchar(20) DEFAULT NULL,
+  `company_email` varchar(100) NOT NULL,
+  `company_address` varchar(255) NOT NULL,
+  `responsible_person` varchar(50) NOT NULL,
+  `tax_ID_number` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `valid` text NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `owner`
+--
+
+INSERT INTO `owner` (`id`, `member_type`, `account`, `password`, `company_name`, `company_phone`, `fax_phone`, `company_email`, `company_address`, `responsible_person`, `tax_ID_number`, `created_at`, `valid`) VALUES
+(1, '企業會員', 'woos', '12345', '東風', '02-88885555', '02-8888-8123', 'woo@test.com', '105台北市松山區興安街159號', '陳小王', '87654321', '2024-05-31 07:57:48', '1'),
+(2, '企業會員', 'sam', '12345', '帥帥', '02-88885555', '02-88885555', 'sam@test.com', '105台北市松山區興安街159號', '姍姍', '99999999', '2024-06-04 01:52:22', '1'),
+(3, '企業會員', 'sun', '12345', '西風', '02-88885555', '02-88885555', 'sun@test.com', '105台北市松山區興安街15號', '吳曉', '12345678', '2024-06-04 02:19:13', '1'),
+(4, '企業會員', 'sam', '12345', '帥帥', '02-88996555', NULL, 'boo@test.com', '105台北市松山區興安街9號', '陳小小', '87654321', '2024-06-04 03:22:50', '1'),
+(5, '企業會員', 'dltbEutRP', '12345', '麻將妙手', '', NULL, '', '112 臺北市北投區公舘路6號', '金琳秀', '', '2024-06-04 06:35:15', '1'),
+(6, '企業會員', 'fRJ7GV0KbNQ', '12345', '麻將之魂', '', NULL, '', '100 臺北市中正區師大路5號', '範亮毅', '', '2024-06-04 06:35:15', '1'),
+(7, '企業會員', 'bvmpTgxm4L', '12345', '麻將明珠', '', NULL, '', '106 臺北市大安區師大路27號', '彭琴婷', '', '2024-06-04 06:35:15', '1'),
+(8, '企業會員', 'AANwy', '12345', '麻將樂園', '', NULL, '', '116 臺北市文山區久康街29號', '許寧飛', '', '2024-06-04 06:35:15', '1'),
+(9, '企業會員', 'BPtqx', '12345', '麻將巧手', '', NULL, '', '112 臺北市北投區大興街28號', '柏琳紅', '', '2024-06-04 06:35:15', '1'),
+(10, '企業會員', 'CweZC', '12345', '麻將精靈', '', NULL, '', '115 臺北市南港區三重路18號', '蘇娜秀', '', '2024-06-04 06:35:15', '1'),
+(11, '企業會員', 'DEdhm', '12345', '麻將魔法', '', NULL, '', '114 臺北市內湖區永保街3號', '曹琳傑', '', '2024-06-04 06:35:15', '1'),
+(12, '企業會員', 'EdgXG', '12345', '麻將絕技', '', NULL, '', '110 臺北市信義區中坡南路23號', '施宇欣', '', '2024-06-04 06:35:15', '1'),
+(13, '企業會員', 'FbDhF', '12345', '麻將韻味', '', NULL, '', '106 臺北市大安區敦化南路28號', '週寧露', '', '2024-06-04 06:35:15', '1'),
+(14, '企業會員', 'GfREB', '12345', '麻將天地', '', NULL, '', '103 臺北市大同區西寧北路9號', '謝衛明', '', '2024-06-04 06:35:15', '1'),
+(15, '企業會員', 'Hctpw', '12345', '麻將之舞', '', NULL, '', '105 臺北市松山區寶清街14號', '陶莉飛', '', '2024-06-04 06:35:15', '1'),
+(16, '企業會員', 'IWzew', '12345', '麻將奇蹟', '', NULL, '', '108 臺北市萬華區洛陽街8號', '楊輝敏', '', '2024-06-04 06:35:15', '1'),
+(17, '企業會員', 'JIdfo', '12345', '麻將尋寶', '', NULL, '', '105 臺北市松山區塔悠路22號', '華強宇', '', '2024-06-04 06:35:15', '1'),
+(18, '企業會員', 'KnYXD', '12345', '麻將樂意', '', NULL, '', '111 臺北市士林區劍南路21號', '馮娜鵬', '', '2024-06-04 06:35:15', '1'),
+(19, '企業會員', 'LJMBK', '12345', '麻將巧思', '', NULL, '', '110 臺北市信義區瑞雲街23號', '範鵬華', '', '2024-06-04 06:35:15', '1'),
+(20, '企業會員', 'NAxZt', '12345', '麻將心法', '', NULL, '', '110 臺北市信義區瑞雲街23號', '鄒華霞', '', '2024-06-04 06:35:15', '1'),
+(21, '企業會員', 'ONgql', '12345', '麻將之音', '', NULL, '', '100 臺北市中正區潮州街7號', '趙婷秀', '', '2024-06-04 06:35:15', '1'),
+(22, '企業會員', 'PHmaF', '12345', '麻將格局', '', NULL, '', '104 臺北市中山區南京西路32號', '韋衛鵬', '', '2024-06-04 06:35:15', '1'),
+(23, '企業會員', 'Qoins', '12345', '麻將經典', '', NULL, '', '112 臺北市北投區幽雅路17號', '鄒新超', '', '2024-06-04 06:35:15', '1'),
+(24, '企業會員', 'RyqEw', '12345', '麻將風華', '', NULL, '', '105 臺北市松山區敦化北路6號', '章宇宇', '', '2024-06-04 06:35:15', '1'),
+(25, '企業會員', 'SDftP', '12345', '麻將靈感', '', NULL, '', '108 臺北市萬華區西藏路5號', '秦麗華', '', '2024-06-04 06:35:15', '1'),
+(26, '企業會員', 'TRBgW', '12345', '麻將奇趣', '', NULL, '', '106 臺北市大安區臨江街13號', '魯婷紅', '', '2024-06-04 06:35:15', '1'),
+(27, '企業會員', 'ULTFx', '12345', '麻將台灣', '', NULL, '', '116 臺北市文山區老泉街3號', '奚鵬剛', '', '2024-06-04 06:35:15', '1'),
+(28, '企業會員', 'EpNRDZM', '12345', '麻將點金', '', NULL, '', '104 臺北市中山區基湖路9號', '葛亮傑', '', '2024-06-04 06:35:15', '1'),
+(29, '企業會員', 'FWwuSBi', '12345', '麻將盛宴', '', NULL, '', '106 臺北市大安區信義路26號', '王飛華', '', '2024-06-04 06:35:15', '1'),
+(30, '企業會員', 'GWhiOcq', '12345', '王牌麻將', '', NULL, '', '108 臺北市萬華區開封街18號', '奚玲明', '', '2024-06-04 06:35:15', '1'),
+(31, '企業會員', 'HdKfYsT', '12345', '麻將樂園', '', NULL, '', '100 臺北市中正區師大路26號', '薑軍鵬', '', '2024-06-04 06:35:15', '1'),
+(32, '企業會員', 'IewYCZC', '12345', '精彩麻將', '', NULL, '', '112 臺北市北投區公舘路6號', '何明丹', '', '2024-06-04 06:35:15', '1'),
+(33, '企業會員', 'JnLQUpA', '12345', '麻將大亨', '', NULL, '', '100 臺北市中正區師大路5號', '魯浩寧', '', '2024-06-04 06:35:15', '1'),
+(34, '企業會員', 'KfaXSAe', '12345', '麻將之王', '', NULL, '', '106 臺北市大安區師大路27號', '王莉偉', '', '2024-06-04 06:35:15', '1'),
+(35, '企業會員', 'LiNbkKY', '12345', '麻將絕活', '', NULL, '', '116 臺北市文山區久康街29號', '魯凱鑫', '', '2024-06-04 06:35:15', '1'),
+(36, '企業會員', 'NvXBuSl', '12345', '享樂麻將', '', NULL, '', '112 臺北市北投區大興街28號', '雲勇毅', '', '2024-06-04 06:35:15', '1'),
+(37, '企業會員', 'OHORQqQ', '12345', '麻將狂熱', '', NULL, '', '115 臺北市南港區三重路18號', '陶凱婷', '', '2024-06-04 06:35:15', '1'),
+(38, '企業會員', 'Prycyun', '12345', '烏金麻將', '', NULL, '', '114 臺北市內湖區永保街3號', '朱俊新', '', '2024-06-04 06:35:15', '1'),
+(39, '企業會員', 'QHjeXnO', '12345', '麻將營業', '', NULL, '', '110 臺北市信義區中坡南路23號', '謝亮衛', '', '2024-06-04 06:35:15', '1'),
+(40, '企業會員', 'RUCVrIi', '12345', '麻將魔術', '', NULL, '', '106 臺北市大安區敦化南路28號', '張鵬博', '', '2024-06-04 06:35:15', '1'),
+(41, '企業會員', 'SuucEpg', '12345', '麻將勝利者', '', NULL, '', '103 臺北市大同區西寧北路9號', '錢剛霞', '', '2024-06-04 06:35:15', '1'),
+(42, '企業會員', 'TkEYMAX', '12345', '麻將狂歡', '', NULL, '', '105 臺北市松山區寶清街14號', '奚芳強', '', '2024-06-04 06:35:15', '1'),
+(43, '企業會員', 'UtDtdag', '12345', '麻將娛樂城', '', NULL, '', '108 臺北市萬華區洛陽街8號', '曹偉露', '', '2024-06-04 06:35:15', '1'),
+(44, '企業會員', 'VbCEoCw', '12345', '麻將高手', '', NULL, '', '105 臺北市松山區塔悠路22號', '週俊明', '', '2024-06-04 06:35:15', '1'),
+(45, '企業會員', 'WBGybFD', '12345', '麻將王者', '', NULL, '', '111 臺北市士林區劍南路21號', '彭麗露', '', '2024-06-04 06:35:15', '1'),
+(46, '企業會員', 'XfXEjnq', '12345', '麻將鑽石', '', NULL, '', '110 臺北市信義區瑞雲街23號', '褚琴麗', '', '2024-06-04 06:35:15', '1'),
+(47, '企業會員', 'YaYuWhZ', '12345', '麻將快樂時光', '', NULL, '', '110 臺北市信義區瑞雲街23號', '魯凱強', '', '2024-06-04 06:35:15', '1'),
+(48, '企業會員', 'ZmbgOkN', '12345', '金盞麻將', '', NULL, '', '100 臺北市中正區潮州街7號', '楊毅麗', '', '2024-06-04 06:35:15', '1'),
+(49, '企業會員', 'aMmozpv', '12345', '麻將風雲人物', '', NULL, '', '104 臺北市中山區南京西路32號', '華玲亮', '', '2024-06-04 06:35:15', '1'),
+(50, '企業會員', 'bYzFjcd', '12345', '王牌麻將家', '', NULL, '', '112 臺北市北投區幽雅路17號', '陶寧亮', '', '2024-06-04 06:35:15', '1'),
+(51, '企業會員', 'cBkJHCp', '12345', '麻將王', '', NULL, '', '105 臺北市松山區敦化北路6號', '金敏輝', '', '2024-06-04 06:35:15', '1'),
+(52, '企業會員', 'dqhuzyd', '12345', '雙雙麻將', '', NULL, '', '108 臺北市萬華區西藏路5號', '華新欣', '', '2024-06-04 06:35:15', '1'),
+(53, '企業會員', 'eBakBCj', '12345', '爽爽', '', NULL, '', '106 臺北市大安區臨江街13號', '孫娜鵬', '', '2024-06-04 06:35:15', '1'),
+(54, '企業會員', 'ftPOfEd', '12345', '北風', '', NULL, '', '116 臺北市文山區老泉街3號', '水博琳', '', '2024-06-04 06:35:15', '1'),
+(101, '企業會員', '', '12345', ' 麻將樂趣', '0226131726', NULL, 'george8860@gmail.com', '', '', ' 36732710', '2024-06-04 06:37:19', '1'),
+(102, '企業會員', '', '12345', ' 麻將幻想', '0240322680', NULL, 'keyser6162@icloud.com', '', '', ' 38563682', '2024-06-04 06:37:19', '1'),
+(103, '企業會員', '', '12345', ' 麻將王', '0258133927', NULL, 'walton7053@gmail.com', '', '', ' 40015328', '2024-06-04 06:37:19', '1'),
+(104, '企業會員', '', '12345', ' 雙雙麻將', '0205730753', NULL, 'scarlett2557@gmail.com', '', '', ' 42053182', '2024-06-04 06:37:19', '1'),
+(105, '企業會員', 'asdf123', 'asdf123', 'AAA', '0955555555', '', 'asdf@gmail.com', '新北市三峽區文化路59號', 'bob', '14524444', '2024-06-04 08:04:36', '1');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `rent_images`
 --
 
@@ -227,7 +314,9 @@ INSERT INTO `rent_images` (`id`, `rent_product_id`, `url`) VALUES
 (21, 16, 'D&D.jpg'),
 (22, 17, '矮人礦坑.jpg'),
 (31, 1, '38227864406_478df03b6c_z.jpg'),
-(35, 1, '2015-10-23-16-17-33.jpg');
+(35, 1, '2015-10-23-16-17-33.jpg'),
+(38, 19, '1497053996-1751116053_n.jpg'),
+(39, 18, '5ab8f249ff9c8b65f4cecd73_Camel_Up_Box_3D-p-800.jpeg');
 
 -- --------------------------------------------------------
 
@@ -279,7 +368,7 @@ CREATE TABLE `rent_product` (
 --
 
 INSERT INTO `rent_product` (`id`, `name`, `category_id`, `content`, `img`, `quantity`, `quantity_available`, `rent_price_category_id`, `price`, `create_at`, `update_at`, `valid`) VALUES
-(1, '拉密', 2, '拉密是一款數字組合遊戲，遊戲規則簡單易懂，只有兩種數字排列法，用自己的邏輯來重新規劃排列順序，創造出變幻多端的數字組合；歡迎對數字敏感的你，規則簡單，只需要明白數字排列，能夠分辨紅、橘、藍、黑四種顏色即可暢玩。', '4563.jpg', 3, 3, 3, 850, '2024-05-23', '2024-06-03', 1),
+(1, '拉密', 2, '拉密是一款數字組合遊戲，遊戲規則簡單易懂，只有兩種數字排列法，用自己的邏輯來重新規劃排列順序，創造出變幻多端的數字組合；歡迎對數字敏感的你，規則簡單，只需要明白數字排列，能夠分辨紅、橘、藍、黑四種顏色即可暢玩。', '2015-10-23-16-17-33.jpg', 3, 3, 3, 850, '2024-05-23', '2024-06-04', 1),
 (2, 'Go-stop', 2, '花牌是韓國的傳統遊戲，最早來自於日本，於朝鮮王朝後期傳到朝鮮半島。每副花牌中含有54張牌，其中48張牌分成12組花色，代表著12個月，各月份皆以當月的花草與動物為代表圖案。\r\n花牌常見的玩法為稱為GO&STOP 고스톱 ，由三位玩家進行，類似於台灣撲克牌「釣魚」與「撿紅點」，玩家需吃掉相同月份的牌以賺取分數，最後分數最高者勝利。遊戲玩法相當有趣，\r\n就算不會韓文也沒關係，非常適合在過節期間與家人、朋友一起同樂哦!', 'rent2.webp', 5, 0, 2, 200, '2024-05-23', '2024-05-23', 1),
 (3, '斜行高手三代 - 寶麗來實木餐桌-胡桃木', 1, '✦雙模式設定，保留傳統模式，並增加計圈模式，免用方向環 \r\n✦業界獨家四液晶螢幕設計，無論圈數、風位、連莊次數都可一目了然 \r\n✦獨家20度大斜口,升牌位置集中向前\r\n✦快速充電,充電效能快4倍\r\n✦雙層隔音罩落牌超靜音\r\n✦骰盤防水設計 \r\n✦紫外線殺菌 \r\n✦熱風烘乾除溼\r\n✦奶茶色桌布', 'rent3.webp', 5, 5, 1, 43000, '2024-05-23', '2024-05-31', 1),
 (4, '四旋翼二代-專折-MODO-X藍', 1, '✦大桌面小機身設計，遊戲空間大，又不佔居家空間\r\n✦USB快速充電(須手機本身配置快入充電功能)\r\n✦熱風烘乾除濕\r\n✦磁浮列車式出牌設計，升牌不卡物\r\n✦最新無聲機設計洗牌、上牌靜悄悄\r\n✦超薄機身設計腿部空間更舒適\r\n✦紫外線殺菌 \r\n✦雙層隔音罩', 'rent4.webp', 0, 0, 1, 27800, '2024-05-23', '2024-06-03', 0),
@@ -296,7 +385,8 @@ INSERT INTO `rent_product` (`id`, `name`, `category_id`, `content`, `img`, `quan
 (15, '黃金列車 V1折疊款麻將桌', 1, '講到電動麻將桌，許多人腦中第一個想到的可能就是長勝，其因為桌子款式多、品質不錯、加上有完善的售後服務，故一直是國人喜愛的品牌之一。這一款黃金列車 V1 標榜配有全封閉式軌道技術，不僅在操作上近乎無聲音，又加上過山車設計而不會卡牌尺，就使用性來說，兼具順暢、安靜及安全。\r\n\r\n而且機身內也配有熱風除濕，即便是久未使用，只要一鍵按下，不用多少時間就能讓麻將保持乾燥溫暖。同時還有 USB 插座能用於手機充電，就算是要在牌桌上坐上3、5個小時也不成問題。另外廠商加贈萬元麻將椅與各式麻將配件，無論商用、家用都值得參考。', '305f3d4b4052b06fb5e478f57d21d53c.png', 5, 5, 1, 39800, '2024-05-26', '2024-05-28', 1),
 (16, '龍與地下城：鴉閣城', 4, '在一個古老的年代，魔力充斥整片大陸，\r\n\r\n邪惡在暗影中猖獗，居住地的邊緣也逐漸被怪物入侵。\r\n\r\n在這邪龍展翅、地城遍布時代，世間等待著英雄的降臨。\r\n\r\n穿著不同的防具，手持長劍、長弓及法杖的英雄們探索著上古遺跡，\r\n\r\n進行大膽的任務，並挑戰令人畏懼的怪物。\r\n\r\n這些任務都將在陰暗且神祕的地城中進行，而這個地城通稱為拉文羅夫特堡。', 'D&D.jpg', 4, 4, 5, 3200, '2024-05-26', '0000-00-00', 1),
 (17, '矮人礦坑﻿', 3, '熱愛團體合作型遊戲的可以玩看看「矮人礦坑」！在遊戲中所有玩家會扮演成矮人族，而族內還會再分成掏金矮人跟搗蛋鬼，大家互不知道對方的身份，所以大家必須在隱藏身份的同時幫助到自己的夥伴，看究竟矮人們到底能不能成功掏金？還是會被搗蛋鬼阻饒呢？', '矮人礦坑.jpg', 8, 8, 3, 790, '2024-05-26', '0000-00-00', 1),
-(18, '駱駝大賽', 3, '快來見識有史以來最瘋狂的駱駝大賽！\r\n尤其是駱駝疊在一起而金字塔倒轉時，場面將會一片混亂、瀕臨失控狀態！\r\n身為埃及上流社會的一員，聚集在沙漠中的目的只有一個：下注在你看好的駱駝身上，以分段賽及整場比賽贏得最多的獎金。\r\n然而在比賽中不是只靠運氣就能壓倒其他玩家，抓住比賽的節奏和精準掌握下注時機也是贏得比賽不可或缺的能力。\r\n\r\n一款簡單、快速、極度有趣且最多可讓8名玩家同樂的家庭遊戲。', '5ab8f249ff9c8b65f4cecd73_Camel_Up_Box_3D-p-800.jpeg', 0, 0, 4, 1320, '2024-05-31', '0000-00-00', 0);
+(18, '駱駝大賽', 3, '快來見識有史以來最瘋狂的駱駝大賽！\r\n尤其是駱駝疊在一起而金字塔倒轉時，場面將會一片混亂、瀕臨失控狀態！\r\n身為埃及上流社會的一員，聚集在沙漠中的目的只有一個：下注在你看好的駱駝身上，以分段賽及整場比賽贏得最多的獎金。\r\n然而在比賽中不是只靠運氣就能壓倒其他玩家，抓住比賽的節奏和精準掌握下注時機也是贏得比賽不可或缺的能力。\r\n\r\n一款簡單、快速、極度有趣且最多可讓8名玩家同樂的家庭遊戲。', '5ab8f249ff9c8b65f4cecd73_Camel_Up_Box_3D-p-800.jpeg', 10, 10, 4, 1320, '2024-05-31', '2024-06-04', 1),
+(19, '台北大空襲(Raid on Taihoku)', 4, '1945年5月31日，日治時期的台北遭到盟軍美國第五航空隊超過一百架次的轟炸機空襲，造成許多人傷亡，上萬人流離失所，這是一段二戰期間確實存在，卻鮮為人知的灰暗故事。\r\n', '1497053996-1751116053_n.jpg', 5, 5, 4, 1360, '2024-06-04', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -329,7 +419,32 @@ INSERT INTO `rent_record` (`id`, `user_id`, `product_id`, `order_date`, `rental_
 (6, 9, 17, '2024-05-01 18:38:33', '2024-05-02', '2024-05-23', NULL, NULL, 2),
 (7, 9, 8, '2024-05-06 15:53:48', '2024-05-08', '2024-05-22', '2024-05-22', NULL, 0),
 (8, 8, 3, '2024-05-09 19:27:23', '2024-05-09', '2024-12-05', NULL, NULL, 1),
-(9, 14, 16, '2024-05-09 20:27:23', '2024-05-09', '2024-05-16', NULL, NULL, 2);
+(9, 14, 16, '2024-05-09 20:27:23', '2024-05-09', '2024-05-16', NULL, NULL, 2),
+(32, 11, 4, '2024-05-09 20:30:23', '2024-05-11', '2024-11-07', NULL, NULL, 1),
+(33, 2, 4, '2024-05-10 08:30:23', '2024-05-11', '2024-11-07', NULL, NULL, 1),
+(34, 3, 5, '2024-05-10 09:30:23', '2024-05-11', '2024-11-07', NULL, NULL, 1),
+(35, 5, 3, '2024-05-10 10:30:23', '2024-05-11', '2024-11-07', NULL, NULL, 1),
+(36, 5, 9, '2024-05-10 11:30:23', '2024-05-11', '2024-05-18', '2024-05-18', NULL, 0),
+(37, 4, 9, '2024-05-12 12:50:30', '2024-05-14', '2024-05-25', '2024-05-25', NULL, 0),
+(38, 4, 12, '2024-05-13 12:50:30', '2024-05-14', '2024-11-10', NULL, NULL, 1),
+(39, 6, 12, '2024-05-14 12:50:30', '2024-05-14', '2024-11-10', NULL, NULL, 1),
+(40, 14, 7, '2024-05-14 14:50:30', '2024-05-14', '2024-11-10', NULL, NULL, 1),
+(41, 18, 5, '2024-05-14 16:50:30', '2024-05-18', '2024-11-10', NULL, NULL, 1),
+(42, 9, 8, '2024-05-14 18:50:30', '2024-05-18', '2024-05-25', NULL, NULL, 2),
+(43, 9, 18, '2024-05-14 20:50:30', '2024-05-18', '2024-05-25', NULL, NULL, 2),
+(44, 7, 2, '2024-05-14 21:50:30', '2024-05-18', '2024-06-01', '2024-06-01', NULL, 0),
+(45, 8, 1, '2024-05-15 09:50:30', '2024-05-18', '2024-06-01', '2024-06-01', NULL, 0),
+(46, 6, 1, '2024-05-19 10:23:12', '2024-05-21', '2024-06-04', NULL, NULL, 1),
+(47, 13, 8, '2024-05-19 11:23:12', '2024-05-21', '2024-06-04', NULL, NULL, 1),
+(48, 2, 10, '2024-05-19 12:23:12', '2024-05-21', '2024-06-11', NULL, NULL, 1),
+(49, 10, 16, '2024-05-19 13:23:12', '2024-05-21', '2024-06-11', NULL, NULL, 1),
+(50, 7, 17, '2024-05-23 18:20:10', '2024-06-01', '2024-06-08', '2024-06-04', 0, 0),
+(51, 15, 2, '2024-05-25 18:20:10', '2024-06-01', '2024-06-15', NULL, NULL, 1),
+(52, 20, 2, '2024-05-25 19:20:10', '2024-06-01', '2024-06-08', NULL, NULL, 1),
+(53, 22, 6, '2024-05-25 20:20:10', '2024-06-01', '2024-06-29', NULL, NULL, 1),
+(54, 10, 2, '2024-05-28 20:20:10', '2024-06-01', '2024-06-08', NULL, NULL, 1),
+(55, 10, 6, '2024-05-28 20:20:10', '2024-06-02', '2024-06-09', NULL, NULL, 1),
+(56, 11, 12, '2024-05-28 20:20:10', '2024-06-02', '2024-11-29', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -338,43 +453,82 @@ INSERT INTO `rent_record` (`id`, `user_id`, `product_id`, `order_date`, `rental_
 --
 
 CREATE TABLE `users` (
-  `id` int(6) UNSIGNED NOT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `account` varchar(20) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `phone` varchar(30) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `create_at` datetime NOT NULL,
-  `valid` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(11) NOT NULL,
+  `valid` varchar(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `account` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  `phone` text DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
+  `birth` varchar(100) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `account`, `password`, `phone`, `email`, `create_at`, `valid`) VALUES
-(1, 'Bob', 'bob', '6572bdaff799084b973320f43f09b363', '0944666666', 'bob@gmail.com', '2024-05-16 11:44:52', 1),
-(2, 'Bear', 'bear', '6572bdaff799084b973320f43f09b363', '0954575554', 'bear@test.com', '2024-05-16 11:45:36', 1),
-(3, 'Sam', 'sam', '6572bdaff799084b973320f43f09b363', '0911111111', 'Sam@gmail.com', '2024-05-16 12:36:35', 1),
-(4, 'John', 'john', '6572bdaff799084b973320f43f09b363', '0955444333', 'john@gmail.com', '2024-05-16 12:36:35', 1),
-(5, 'Joy', 'joy', '', '0955555555', 'joy@gmail.com', '2024-05-16 12:36:35', 1),
-(6, 'Alex', 'alex', '12345', '0955444333', 'alex@test.com', '2024-05-17 10:40:20', 1),
-(7, 'Mary', 'mary', '6572bdaff799084b973320f43f09b363', '0988555777', 'mary@test.com', '2024-05-17 11:51:07', 1),
-(8, 'Frad', 'frad', '6572bdaff799084b973320f43f09b363', '', 'frad6969@test.com', '2024-05-17 15:19:21', 1),
-(9, 'Sara', 'sara', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-17 15:23:56', 1),
-(10, 'Mike', 'mike', '5a68e6cc0195b878aa5ff70df000cd5c', NULL, NULL, '2024-05-17 15:24:33', 1),
-(11, 'Jason', 'jason', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-20 10:35:51', 1),
-(12, 'Tommy', 'tommy', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-20 10:36:11', 1),
-(13, 'Terry', 'terry', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-20 10:36:27', 1),
-(14, 'Sophia', 'sophia', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-20 10:36:50', 1),
-(15, 'Cindy', 'cindy', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-20 10:37:47', 1),
-(16, 'Amber', 'amber', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-20 10:39:17', 1),
-(17, 'Jackson', 'jackson', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-27 09:48:35', 1),
-(18, 'Bryant', 'bryant', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-27 09:51:54', 1),
-(19, 'Lucy', 'lucy', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-27 10:35:25', 1),
-(20, 'Maki', 'maki', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-27 10:36:24', 1),
-(21, 'Ruby', 'ruby', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-27 10:50:19', 1),
-(22, 'Sunny', 'sunny', '6572bdaff799084b973320f43f09b363', NULL, NULL, '2024-05-27 10:58:19', 1);
+INSERT INTO `users` (`id`, `valid`, `username`, `account`, `password`, `city`, `Address`, `phone`, `email`, `birth`, `gender`, `update_at`, `created_at`) VALUES
+(1, '1', 'wong', 'wongming', '12345', 'taipei', '10491台北市中山區建國北路一段33巷47號二樓', '0911222333', 'wongming@test.com', '1988.06.06', 'female', '2024-05-30 08:13:56', '2024-05-23 06:41:10'),
+(2, '1', '姍姍', 'sam', '$2y$10$kzGp0pPEzgS0V3DKCe05eeGBAPAcaLbsab875Wwn8jzV7yZDKvvI2', '1', '105台北市松山區興安街3號', '0911222666', 'sam@test.com', '2024-05-01', 'female', '2024-05-31 05:57:39', '2024-05-31 05:57:39'),
+(3, '1', 'asdf123', 'asdf123', '$2y$10$oX45tdTSBJsxFpAL428jBuuCpxqvtQSbGSNmnUTMogX9bj80Th3H.', 'taipei', '105台北市松山區興安街3號', '0911222333', 'a888888@gmail.com', '2024-05-16', 'male', '2024-05-31 06:04:03', '2024-05-31 06:04:03'),
+(4, '1', '範靜秀', 'sam', '$2y$10$vVVxZYzqO0TfMjDRXjhhmuK11rzRdN5R1679wLQAZHN.GONZDeS.u', 'taipei', '台北市中正區辛亥路一段64巷16號', '0911234133', 'sam@test.com', '1990-06-05', 'female', '2024-05-31 08:17:03', '2024-05-31 08:17:03'),
+(5, '1', '魏傑衛\n', 'account1', '$2y$10$fQrNrsVozLO3PVCPssvhFeoLmsfuT0kDN669qbiIO07iknXxCFaSq', 'taipei', '114 臺北市內湖區行善路3號', '0912875648', 'user1@example.com', '1990-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(6, '1', '孔紅丹', 'account2', '$2y$10$Oa3uC3redYOHBD7fL3h9gOR8X8wCMI7AHp1KkjYpJE4TKzzenpOrq', 'taipei', '115 臺北市南港區南深路32號', '0912743727', 'user2@example.com', '1987-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(7, '1', '戚強超', 'account3', '$2y$10$Nr1h6z8.K2OBwW/Qv.73PuPTCVfDMxZE6AfD1oiK.oN9GGXpeA8tO', 'taipei', '115 臺北市南港區南深路3號', '0912651046', 'user3@example.com', '2006-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(8, '1', '魏凱傑', 'account4', '$2y$10$QjCBn3LgWFQQp/ysCfPkdOsB5mJj2.ij8Q4bCtJhGV3Unvwsm2LRe', 'taipei', '115 臺北市南港區南深路35號', '0912869024', 'user4@example.com', '2002-06-03', 'Female', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(9, '1', '陳浩鵬', 'account5', '$2y$10$VVKh2S5D3js5Y1JI.p.9RuLCm210lFlqQ7JWYEXZWKQ/K/EFe9U72', 'City7', '108 臺北市萬華區水源路27號', '0912480543', 'user5@example.com', '2003-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(10, '1', '秦剛剛', 'account6', '$2y$10$pLwUOcmOF7FuFAtsvf5tX.tx3LFfc99ufvINqYsKQDq4O8U8YyJX2', 'City7', '112 臺北市北投區陽明路31號', '0912504608', 'user6@example.com', '1993-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(11, '1', '馮霞莉', 'account7', '$2y$10$HDExQ8/Cn4v7ZyHCfmqCZuPwFA11coG.AAGCdOCuMf.W1i91HYoW.', 'taipei', '106 臺北市大安區雲和街1號', '0912915809', 'user7@example.com', '1987-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(12, '1', '竇超靜', 'account8', '$2y$10$I1z6VUA9ZA97jSATFVN7O.Vk2MFXND4bvijJj2DuZuRniYPjyn4K.', 'taipei', '112 臺北市北投區崇仰六路27號', '0912887980', 'user8@example.com', '1996-06-03', 'Female', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(13, '1', '施鵬鑫', 'account9', '$2y$10$2Kiej8FOHdk4ggQ6NjiYJeuJw0k8w3YZmrdA5/Jpx0j.peHf7Ft7y', 'taipei', '108 臺北市萬華區青年路23號', '0912989573', 'user9@example.com', '1987-06-03', 'Female', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(14, '1', '雲艷萍', 'account10', '$2y$10$IKP4ImAIKE8OxdDBPZmUi.54IkNpKH6svvBt4KFkBkVZ7IP46Gp.W', 'taipei', '116 臺北市文山區保儀路20號', '0912819826', 'user10@example.com', '2002-06-03', 'Female', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(15, '1', '錢強宇', 'account11', '$2y$10$O3g3GI85elKA82EgsrRPLOUVC91Eoo4D6inCGuHdDPfSEJEHaiZl.', 'City3', '100 臺北市中正區同安街31號', '0912988217', 'user11@example.com', '1993-06-03', 'Female', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(16, '1', '範丹莉', 'account12', '$2y$10$ow8ujCI1.OYYhhkjeH9EauVunvnG8AfmIiCQOsF1ojH7lLOh6Ve5m', 'City6', '100 臺北市中正區同安街35號', '0912720957', 'user12@example.com', '2005-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(17, '1', '雲敏燕', 'account13', '$2y$10$Sj2fPGUNS9zp6fjNhpRxBukEwWL6eLAdYk2FjaAr2FHLoTopkPm7u', 'City7', '116 臺北市文山區景華街7號', '0912351462', 'user13@example.com', '2006-06-03', 'Male', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(18, '1', '週傑玲', 'account14', '$2y$10$o.av025TNI6IRjBc/qj7ve5Kj5b8wMHww9luSwS1WGoUttFcfuE5q', 'City3', 'Address 98', '0912561845', 'user14@example.com', '1999-06-03', 'Female', '2024-06-03 06:36:57', '2024-06-03 00:36:57'),
+(19, '1', '張浩鑫', 'account15', '$2y$10$coQxluFwnJDkKAM3t.Q3kexFm82dlf53r2AOqoF.YWLwDqT7qxCGO', 'City3', 'Address 2', '0912582970', 'user15@example.com', '1986-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(20, '1', '鄒婷超', 'account16', '$2y$10$kDuzSU5MiqKyu/fV4q37LeLbBeo.OjNF5mCQHIl81xneTmcqqfpE2', 'City10', 'Address 1', '0912008458', 'user16@example.com', '1991-06-03', 'Male', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(21, '1', '章明靜', 'account17', '$2y$10$rVMVjpcPMH8yLNtbuWqhg.kn/D2wWXZu8Ig0AmXr.GulmgRXSM7cG', 'City7', 'Address 73', '0912763208', 'user17@example.com', '1993-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(22, '1', '王鵬丹', 'account18', '$2y$10$/91Te3U58.MN0FAcTohAyuSbLugArOxvoChRinrWEKCCyokUMoVl.', 'City7', 'Address 43', '0912149977', 'user18@example.com', '2004-06-03', 'Male', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(23, '1', '魏俊毅\n', 'account19', '$2y$10$ZFHCKmtfhTuNL9fyt5FclOgYbQTKFuU99EVdJZ4igOcSHVB4XuI0q', 'City4', 'Address 58', '0912115781', 'user19@example.com', '2004-06-03', 'Male', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(24, '1', '雲鑫琴', 'account20', '$2y$10$q6zi68F38hrvlz4cDeNSr.Jg9irnZrvS3N6Ec8ZPvJ/wmAUsjQcvC', 'City8', 'Address 99', '0912295623', 'user20@example.com', '1996-06-03', 'Male', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(25, '1', '水鵬璐', 'account21', '$2y$10$EtvVCoiMpCk0/JOuJSaJAu4akc897yYkC23ev.RO5BdIesNP3QK12', 'City1', 'Address 33', '0912565519', 'user21@example.com', '2003-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(26, '1', '許超鵬', 'account22', '$2y$10$Mlo/j5l8m1Wm0NTbZoNUI.KjWwKYg2hoM8gx.0KmmfXYwrVLOl0M6', 'City3', 'Address 74', '0912393561', 'user22@example.com', '1992-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(27, '1', '彭勇艷', 'account23', '$2y$10$Hv4C0x/yaXdrkuxc7CqSgeu//w3juFInjvtOYNJYhlK.Ui8q2LNiW', 'City6', '104 臺北市中山區崇實路35號', '0912081196', 'user23@example.com', '2001-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(28, '1', '郎鑫宇', 'account24', '$2y$10$3PEEcFDJDoBPSBoraDObFeLTGzKs4fMEspwrgoVsHzpoqvT/yn3Ue', 'City5', 'Address 13', '0912947735', 'user24@example.com', '1986-06-03', 'Male', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(29, '1', '張琳婷', 'account25', '$2y$10$lW/H8V9SV/VV724oai3wbunQb7/sJrmUkHpYb3/BcJLGaokL8dKN6', 'City2', 'Address 95', '0912498286', 'user25@example.com', '1984-06-03', 'Male', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(30, '1', '蔣鵬璐', 'account26', '$2y$10$p3PJn95xhbJai.J2e127S.mpMFFyFq53HYlmPLvV.0aQm32bCBOt2', 'City9', 'Address 73', '0912934811', 'user26@example.com', '1995-06-03', 'Male', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(31, '1', '範洋霞', 'account27', '$2y$10$4um92GIeK70jYptHMaJAb.SOwk1w49X.v0rFavRVYcrIfsYJs/6me', 'City3', 'Address 56', '0912183667', 'user27@example.com', '2003-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(32, '1', '彭娟鵬', 'account28', '$2y$10$fP5cZnfIfmWluu51UYwkue6XhVp5TF.HyeolhsIx9VMIxdblNKDBC', 'City6', 'Address 40', '0912919082', 'user28@example.com', '1986-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(33, '1', '週璐鵬', 'account29', '$2y$10$fhjOr/ZCS2wy3EXAx0WYEOqU6gf1UGkuOmQyCoOtML6zNCq/dW5N.', 'City7', 'Address 18', '0912600646', 'user29@example.com', '1998-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(34, '1', '蘇剛燕', 'account30', '$2y$10$zCd3xW65zl4UCqcVRAdsWOiY6/9H6BKQrX2UWeZe6DKHjZTqTTxU2', 'City4', 'Address 20', '0912362078', 'user30@example.com', '1996-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(35, '1', '魯宇萍', 'account31', '$2y$10$lBO4WnThLOu5Qh5aiQJ0X.oqdzi9gtZopG7MaVBmVvSR1j0SbYSoq', 'City7', 'Address 70', '0912605619', 'user31@example.com', '2003-06-03', 'Female', '2024-06-03 06:36:58', '2024-06-03 00:36:58'),
+(36, '1', '王新軍', 'account32', '$2y$10$7rIaGFPNW9Z7tTuDjfpKYOrm0JdmFsPs2/Vdw/IvVLZUepUkt3XVm', 'City3', 'Address 67', '0912036696', 'user32@example.com', '1984-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(37, '1', '陶燕傑', 'account33', '$2y$10$1Emc7Aqxirki58LoMkXE0.zCZ98XI4JOBEBM.OvDEwMIFGLld0n6O', 'City6', 'Address 75', '0912090791', 'user33@example.com', '2002-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(38, '1', '許傑明', 'account34', '$2y$10$g3ZDUpiIIAzQIdakfZikYeZAOkY8WuyGOWnBgHqksFBWwjZBF80ci', 'City8', 'Address 25', '0912009165', 'user34@example.com', '1997-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(39, '1', '吳宇亮', 'account35', '$2y$10$Q1ZImDkfaCdbKaHcHvJ.j.3kvqs/B01IWeT0j1OkxWJnbRXdBUPUG', 'City10', 'Address 64', '0912724982', 'user35@example.com', '1991-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(40, '1', '雲霞萍', 'account36', '$2y$10$6IyqIjcr65Lv.FmhS2EuyO8lYi2d1t8vDoumbOWAr1bY8tarOY6gq', 'City1', '103 臺北市大同區撫順街1號', '0912700416', 'user36@example.com', '1993-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(41, '1', '鄒琴浩', 'account37', '$2y$10$4jij.9bBE4uX.SS6QrmFMuOQRHsjFnV/sRZKcyuuBnym2MnEqeQAC', 'City8', 'Address 64', '0912093330', 'user37@example.com', '2000-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(42, '1', '郎婷健', 'account38', '$2y$10$D/kSc.6cfZ882vkmzuxXwedRYynxngygVPprH2cKWAf7ztbaR0rS.', 'City2', 'Address 14', '0912365518', 'user38@example.com', '1993-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(43, '1', '呂超欣', 'account39', '$2y$10$lAiihCz.GWDIHR6UTNOl/uVMmwlwdlsJk8Tp2Dk6tpo1zKqif6slm', 'City10', 'Address 66', '0912233312', 'user39@example.com', '1994-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(44, '1', '雲靜婷', 'account40', '$2y$10$gCUr3oOi/nqWVHmGN/BOBOaWQnIPa13v6432knOgvyR6hnGrAW.PK', 'City2', 'Address 8', '0912389695', 'user40@example.com', '1995-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(45, '1', '沈輝紅', 'account41', '$2y$10$5dKENfkyRoQIP2Zt.xAdm.95zTB48LqJRsV5VBuwgneaIR.CogzQG', 'City10', 'Address 99', '0912445060', 'user41@example.com', '1997-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(46, '1', '吳鵬艷', 'account42', '$2y$10$nbGtMS2.pJ9QpXaZQOhLn.X01emcQ6lhi.XTWQ96XEiKjEjxoR4UO', 'City4', 'Address 32', '0912774861', 'user42@example.com', '2005-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(47, '1', '水浩華\n', 'account43', '$2y$10$QrLSdVc32BY13Qn3FC7UKe4YDMbua6Omv5u7e2fuzLBXUWAREDiPi', 'City4', 'Address 94', '0912448635', 'user43@example.com', '1986-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(48, '1', '彭寧秀', 'account44', '$2y$10$1eoZU9etD5mA1PnKWmnLQeqbvwPzxRUcR6F1Q6qJIqlq7.y/Z9g2W', 'City3', 'Address 87', '0912446619', 'user44@example.com', '1994-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(49, '1', '柏艷敏', 'account45', '$2y$10$xCb8BLagLlAuB2LGI013COuuyBD6kT7X9N6X3/MoBEqcmwjuYGIhG', 'City7', 'Address 52', '0912551222', 'user45@example.com', '2003-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(50, '1', '彭新博', 'account46', '$2y$10$WdhYCwBBkKu.zcKzUG6f6.DJ0pR5UOC9ygacu3Aq6uX1W3RiN0EWy', 'City5', 'Address 10', '0912793321', 'user46@example.com', '2003-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(51, '1', '錢鑫傑', 'account47', '$2y$10$NKSjgDy7mKLimrpmmlKu..99jgJMpO8yeXW/13Hjs05T1uGziUOvm', 'City6', 'Address 90', '0912462048', 'user47@example.com', '1985-06-03', 'Female', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(52, '1', '秦靜芳', 'account48', '$2y$10$a.b6CeSlGnsoodJ6kRml3uYbgZS1PE039smc6pJByDelj0Os3fYGa', 'City9', 'Address 24', '0912865918', 'user48@example.com', '2003-06-03', 'Male', '2024-06-03 06:36:59', '2024-06-03 00:36:59'),
+(53, '1', '雲浩娟', 'account49', '$2y$10$iJCFZsq7SZ8JWoHPEoHA0.GDpD4vIHBca/MKjHqmMDKoPpPozgZfy', 'City8', 'Address 29', '0912026455', 'user49@example.com', '1985-06-03', 'Male', '2024-06-03 06:37:00', '2024-06-03 00:37:00'),
+(54, '', '劉雲強', 'account50', '$2y$10$RdqS0G8HyKFcEIWTWmKCX.EnAsb8bENdSX5PUJkmCYCL6r74SeK52', 'City9', 'Address 37', '0912724310', 'user50@example.com', '1994-06-03', 'Female', '2024-06-03 06:37:00', '2024-06-03 00:37:00'),
+(106, '', 'root', 'sun', '12345', '', '105台北市松山區興安街3號', '0911268666', 'sun@test.com', '1990-09-06', 'female', '2024-06-03 08:03:20', '2024-06-03 02:03:20'),
+(109, '', 'bear', 'bear', '$2y$10$FUtoXNPigxPGrema1j5YFOTG8Er8JNtCeigmvd70zxBhQBGma0ABO', 'taipei', '新北市鶯歌區', '0911222333', 'a8888@gmail.com', '2024-06-05', 'male', '2024-06-04 08:22:48', '2024-06-04 08:22:48');
 
 --
 -- 已傾印資料表的索引
@@ -413,6 +567,12 @@ ALTER TABLE `marjong_table`
   ADD KEY `room_id` (`room_id`);
 
 --
+-- 資料表索引 `owner`
+--
+ALTER TABLE `owner`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `rent_images`
 --
 ALTER TABLE `rent_images`
@@ -440,7 +600,8 @@ ALTER TABLE `rent_record`
 -- 資料表索引 `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
@@ -471,10 +632,16 @@ ALTER TABLE `marjong_table`
   MODIFY `table_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `owner`
+--
+ALTER TABLE `owner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `rent_images`
 --
 ALTER TABLE `rent_images`
-  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `rent_price_category`
@@ -486,19 +653,19 @@ ALTER TABLE `rent_price_category`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `rent_product`
 --
 ALTER TABLE `rent_product`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `rent_record`
 --
 ALTER TABLE `rent_record`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- 已傾印資料表的限制式
