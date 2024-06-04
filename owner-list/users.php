@@ -1,5 +1,6 @@
 <?php
 require_once("../db_connect_mahjong.php");
+session_start();
 
 
 $sqlAll = "SELECT * FROM owner WHERE valid = 1";
@@ -9,7 +10,7 @@ $allUserCount = $resultAll->num_rows;
 
 if (isset($_GET["search"])) {
   $search = $_GET["search"];
-  $sql = "SELECT id, company_name ,email, phone FROM owner WHERE account LIKE '%$search%' AND valid = 1 ";
+  $sql = "SELECT * FROM owner WHERE (account LIKE '%$search%' OR company_name LIKE '%$search%' OR company_address LIKE '%$search%') AND valid = 1 ";
   $pageTitle = "$search 的搜尋結果";
 } else if (isset($_GET["page"]) && isset($_GET["order"])) {
   $page = $_GET["page"];
@@ -41,7 +42,7 @@ if (isset($_GET["search"])) {
 
   $sql = "SELECT * FROM owner WHERE valid=1 $orderClause LIMIT $firstItem,$perPage";
 
-  $pageTitle = "使用者列表, 第 $page 頁";
+  $pageTitle = "企業會員列表, 第 $page 頁";
 } else {
   $sql = "SELECT id, company_name ,email, phone FROM owner WHERE valid = 1";
   $pageTitle = "使用者列表";
@@ -72,8 +73,9 @@ if (isset($_GET["page"])) {
 </head>
 
 <body>
-  <div class="container">
-    <h1 class="pt-3"><?= $pageTitle ?></h1>
+  <?php include("../nav.php") ?>
+  <div class="container main-content px-5">
+    <h1 class="text-center fw-semibold pt-3"><?= $pageTitle ?></h1>
     <div class="py-2 mb-3">
       <div class="d-flex justify-content-between">
         <div>
@@ -133,14 +135,14 @@ if (isset($_GET["page"])) {
         <thead>
           <tr>
             <th>id</th>
-            <th>responsible_person</th>
-            <th>account</th>
-            <th>company_name</th>
+            <th>負責人</th>
+            <th>帳號</th>
+            <th>公司名稱</th>
             <th>company_phone</th>
             <!-- <th>fax_phone</th> -->
-            <th>company_email</th>
-            <th>company_address</th>
-            <th>tax_ID_number</th>
+            <th>Email</th>
+            <th>公司地址</th>
+            <th>統一編號</th>
             <th>created_at</th>
             <th></th>
           </tr>

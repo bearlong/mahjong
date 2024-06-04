@@ -34,8 +34,8 @@
             <li>
                 <a data-group="會員管理" class="sub-sidebar-switch main-sidebar d-block px-4 py-2 mt-3  text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "active" ?>"><i class="fa-solid fa-users me-2"></i>會員管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "d-inline" ?>">></span></a>
                 <ul class="text-center text-black bg-dark bg-gradient sub-label-ul">
-                    <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">一般會員</a></li>
-                    <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">企業會員</a></li>
+                    <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="../user-list/users.php">一般會員</a></li>
+                    <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="../owner-list/users.php">企業會員</a></li>
                 </ul>
             </li>
             <li>

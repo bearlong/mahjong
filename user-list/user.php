@@ -6,6 +6,7 @@ if (!isset($_GET["id"])) {
 }
 
 require_once("../db_connect_mahjong.php");
+session_start();
 
 
 $sql = "SELECT * FROM users WHERE id = $id AND valid = 1";
@@ -57,8 +58,8 @@ if ($result->num_rows > 0) {
       </div>
     </div>
   </div>
-
-  <div class="container ">
+  <?php include("../nav.php") ?>
+  <div class="container main-content">
     <div class="py-2">
       <a class="btn btn-primary" href="users.php"><i class="fa-solid fa-arrow-left"></i> 回使用者列表
       </a>
@@ -73,27 +74,23 @@ if ($result->num_rows > 0) {
               <td><?= $row["id"] ?> </td>
             </tr>
             <tr>
-              <th>username</th>
+              <th>名稱</th>
               <td><?= $row["username"] ?></td>
             </tr>
             <tr>
-              <th>account</th>
+              <th>帳號</th>
               <td><?= $row["account"] ?></td>
             </tr>
             <tr>
-              <th>password</th>
-              <td><?= $row["password"] ?></td>
-            </tr>
-            <tr>
-              <th>Address</th>
+              <th>地址</th>
               <td><?= $row["Address"] ?></td>
             </tr>
             <tr>
-              <th>birth</th>
+              <th>生日</th>
               <td><?= $row["birth"] ?></td>
             </tr>
             <tr>
-              <th>gender</th>
+              <th>性別</th>
               <td><?= $row["gender"] ?></td>
             </tr>
             <tr>
@@ -101,7 +98,7 @@ if ($result->num_rows > 0) {
               <td><?= $row["email"] ?></td>
             </tr>
             <tr>
-              <th>phone</th>
+              <th>電話</th>
               <td><?= $row["phone"] ?></td>
             </tr>
             <tr>

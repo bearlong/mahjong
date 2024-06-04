@@ -59,7 +59,8 @@ $rowsRentPriceCategory = $resultRentPriceCategory->fetch_all(MYSQLI_ASSOC);
                         </tr>
                         <tr>
                             <th class="form-label">照片</th>
-                            <td><input class="form-control" type="file" name="image" id="uploadImage">
+                            <td>
+                                <input class="form-control" type="file" name="image" id="uploadImage">
                                 <img class="mt-2 object-fit-cover d-none" src="" alt="" id="image">
                             </td>
                         </tr>

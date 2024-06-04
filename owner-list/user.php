@@ -6,7 +6,7 @@ if (!isset($_GET["id"])) {
 }
 
 require_once("../db_connect_mahjong.php");
-
+session_start();
 
 $sql = "SELECT * FROM owner WHERE id = $id AND valid = 1";
 $result = $conn->query($sql);
@@ -57,8 +57,8 @@ if ($result->num_rows > 0) {
       </div>
     </div>
   </div>
-
-  <div class="container ">
+  <?php include("../nav.php") ?>
+  <div class="container main-content px-5">
     <div class="py-2">
       <a class="btn btn-primary" href="users.php"><i class="fa-solid fa-arrow-left"></i> 回使用者列表
       </a>
@@ -73,39 +73,31 @@ if ($result->num_rows > 0) {
               <td><?= $row["id"] ?> </td>
             </tr>
             <tr>
-              <th>responsible_person</th>
+              <th>負責人</th>
               <td><?= $row["responsible_person"] ?></td>
             </tr>
             <tr>
-              <th>account</th>
+              <th>帳號</th>
               <td><?= $row["account"] ?></td>
             </tr>
             <tr>
-              <th>password</th>
-              <td><?= $row["password"] ?></td>
-            </tr>
-            <tr>
-              <th>company_name</th>
+              <th>公司名稱</th>
               <td><?= $row["company_name"] ?></td>
             </tr>
             <tr>
-              <th>company_phone</th>
+              <th>公司電話</th>
               <td><?= $row["company_phone"] ?></td>
             </tr>
-            <!-- <tr>
-              <th>fax_phone</th>
-              <td><?= $row["fax_phone"] ?></td>
-            </tr> -->
             <tr>
-              <th>company_email</th>
+              <th>Email</th>
               <td><?= $row["company_email"] ?></td>
             </tr>
             <tr>
-              <th>company_address</th>
+              <th>公司地址</th>
               <td><?= $row["company_address"] ?></td>
             </tr>
             <tr>
-              <th>tax_ID_number</th>
+              <th>統一編號</th>
               <td><?= $row["tax_ID_number"] ?></td>
             </tr>
             <tr>

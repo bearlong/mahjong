@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -11,7 +14,8 @@
 </head>
 
 <body>
-  <div class="container">
+  <?php include("../nav.php") ?>
+  <div class="container main-content px-5">
     <div class="py-2">
       <a class="btn btn-primary" href="users.php"><i class="fa-solid fa-arrow-left"></i> 回使用者列表
       </a>

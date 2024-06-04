@@ -6,6 +6,7 @@ if (!isset($_GET["id"])) {
 }
 
 require_once("../db_connect_mahjong.php");
+session_start();
 
 
 $sql = "SELECT * FROM users WHERE id = $id AND valid = 1";
@@ -34,8 +35,8 @@ if ($result->num_rows > 0) {
 </head>
 
 <body>
-
-  <div class="container ">
+  <?php include("../nav.php") ?>
+  <div class="container main-content">
     <div class="py-2">
       <a class="btn btn-primary" href="user.php?id=<?= $id ?>""><i class=" fa-solid fa-arrow-left"></i> 回使用者
       </a>
@@ -53,35 +54,27 @@ if ($result->num_rows > 0) {
                   <?= $row["id"] ?></td>
               </tr>
               <tr>
-                <th>username</th>
+                <th>名稱</th>
                 <td><input type="text" class="form-control" name="username" value="<?= $row["username"] ?>"></td>
               </tr>
               <tr>
-                <th>account</th>
-                <td><input type="text" class="form-control" name="account" value="<?= $row["account"] ?>"></td>
+                <th>帳號</th>
+                <td><?= $row["account"] ?></td>
               </tr>
               <tr>
-                <th>password</th>
-                <td><input type="text" class="form-control" name="password" value="<?= $row["password"] ?>"></td>
-              </tr>
-              <tr>
-                <th>Address</th>
+                <th>地址</th>
                 <td><input type="text" class="form-control" name="Address" value="<?= $row["Address"] ?>"></td>
               </tr>
               <tr>
-                <th>birth</th>
+                <th>生日</th>
                 <td><input type="text" class="form-control" name="birth" value="<?= $row["birth"] ?>"></td>
-              </tr>
-              <tr>
-                <th>gender</th>
-                <td><input type="text" class="form-control" name="gender" value="<?= $row["gender"] ?>"></td>
               </tr>
               <tr>
                 <th>email</th>
                 <td><input type="email" class="form-control" name="email" value="<?= $row["email"] ?>"></td>
               </tr>
               <tr>
-                <th>phone</th>
+                <th>電話</th>
                 <td><input type="tel" class="form-control" name="phone" value="<?= $row["phone"] ?>"></td>
               </tr>
 

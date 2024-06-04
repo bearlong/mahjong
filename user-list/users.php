@@ -1,6 +1,6 @@
 <?php
 require_once("../db_connect_mahjong.php");
-
+session_start();
 
 $sqlAll = "SELECT * FROM users WHERE valid = 1";
 $resultAll = $conn->query($sqlAll);
@@ -9,7 +9,7 @@ $allUserCount = $resultAll->num_rows;
 
 if (isset($_GET["search"])) {
   $search = $_GET["search"];
-  $sql = "SELECT id, username ,email, phone FROM users WHERE account LIKE '%$search%' AND valid = 1 ";
+  $sql = "SELECT  * FROM users WHERE (account LIKE '%$search%' OR username LIKE '%$search%' OR address LIKE '%$search%') AND valid = 1 ";
   $pageTitle = "$search 的搜尋結果";
 } else if (isset($_GET["page"]) && isset($_GET["order"])) {
   $page = $_GET["page"];
@@ -18,23 +18,18 @@ if (isset($_GET["search"])) {
   $pageCount = ceil($allUserCount / $perPage);
 
   $order = $_GET["order"];
-  // if ($order == 1) { // id ASC
-  //   $sql = "SELECT * FROM users WHERE valid=1 ORDER BY id ASC LIMIT $firstItem,$perPage";
-  // }
+
   switch ($order) {
-    case 1: // id ASC
-      // $sql = "SELECT * FROM users WHERE valid=1 ORDER BY id ASC LIMIT $firstItem,$perPage";
+    case 1:
       $orderClause = "ORDER BY id ASC";
       break;
-    case 2: // id DESC
-      // $sql = "SELECT * FROM users WHERE valid=1 ORDER BY id DESC LIMIT $firstItem,$perPage";
+    case 2:
       $orderClause = "ORDER BY id DESC";
       break;
-    case 3: // name ASC
-      // $sql = "SELECT * FROM users WHERE valid=1 ORDER BY name DESC LIMIT $firstItem,$perPage";
+    case 3:
       $orderClause = "ORDER BY username ASC";
       break;
-    case 4: // name DESC
+    case 4:
       $orderClause = "ORDER BY username DESC";
       break;
   }
@@ -72,8 +67,9 @@ if (isset($_GET["page"])) {
 </head>
 
 <body>
-  <div class="container">
-    <h1 class="pt-3"><?= $pageTitle ?></h1>
+  <?php include("../nav.php") ?>
+  <div class="container main-content px-5">
+    <h1 class="text-center fw-semibold pt-3"><?= $pageTitle ?></h1>
     <div class="py-2 mb-3">
       <div class="d-flex justify-content-between">
         <div>
@@ -133,14 +129,14 @@ if (isset($_GET["page"])) {
         <thead>
           <tr>
             <th>id</th>
-            <th>username</th>
-            <th>account</th>
+            <th>名稱</th>
+            <th>帳號</th>
 
-            <th>Address</th>
-            <th>birth</th>
-            <th>gender</th>
+            <th>地址</th>
+            <th>生日</th>
+            <th>性別</th>
             <th>email</th>
-            <th>phone</th>
+            <th>電話</th>
             <th>created_at</th>
             <th></th>
           </tr>
@@ -183,8 +179,6 @@ if (isset($_GET["page"])) {
     <?php else : ?>
       <?php echo "沒有使用者"; ?>
     <?php endif; ?>
-
-
   </div>
   <?php include("../js-mahjong.php") ?>
 </body>
