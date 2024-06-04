@@ -148,11 +148,15 @@ session_start();
         <div class="d-flex flex-column justify-content-between">
             <ul class="list-unstyle">
                 <li>
-                    <a data-group="會員管理" href="sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "active" ?>"><i class="fa-solid fa-users me-2"></i>會員管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="會員管理" class="sub-sidebar-switch main-sidebar d-block px-4 py-2 mt-3  text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "active" ?>"><i class="fa-solid fa-users me-2"></i>會員管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "會員管理") echo "d-inline" ?>">></span></a>
+                    <ul class="text-center text-black bg-dark bg-gradient sub-label-ul">
+                        <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">一般會員</a></li>
+                        <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">企業會員</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a data-group="訂單管理" id="order-list" class="main-sidebar d-block px-4 py-2 mt-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "active" ?>"><i class="fa-solid fa-file-lines me-2"></i>訂單管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "d-inline" ?>">></span></a>
-                    <ul class="text-center text-black bg-dark bg-gradient sub-label-ul" id="sub-label-ul">
+                    <a data-group="訂單管理" class="sub-sidebar-switch main-sidebar d-block px-4 py-2 mt-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "active" ?>"><i class="fa-solid fa-file-lines me-2"></i>訂單管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "訂單管理") echo "d-inline" ?>">></span></a>
+                    <ul class="text-center text-black bg-dark bg-gradient sub-label-ul">
                         <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">一般訂單</a></li>
                         <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">線上課程訂單</a></li>
                         <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="./rent/rent-record-list.php">租借訂單</a></li>
@@ -191,8 +195,9 @@ session_start();
     <script>
         const asideLink = document.querySelectorAll(".sidebar ul .main-sidebar");
         const arrow = document.querySelectorAll(".arrow");
-        const orderList = document.querySelector("#order-list");
-        const subLabelUl = document.querySelector("#sub-label-ul");
+        const subSidebarSwitch = document.querySelectorAll(".sub-sidebar-switch");
+        const subLabelUl = document.querySelectorAll(".sub-label-ul");
+
 
         for (let i = 0; i < asideLink.length; i++) {
             asideLink[i].addEventListener("click", function() {
@@ -215,19 +220,19 @@ session_start();
             });
         }
 
+        for (let i = 0; i < subSidebarSwitch.length; i++) {
+            subSidebarSwitch[i].addEventListener("click", function() {
+                for (let j = 0; j < asideLink.length; j++) {
+                    arrow[j].classList.remove("d-inline");
+                    asideLink[j].classList.remove("active");
+                }
+                console.log("click");
+                arrow[i].classList.add("d-inline");
+                subSidebarSwitch[i].classList.add("active");
+                subLabelUl[i].classList.toggle("sub-label-ul-active");
+            });
 
-        orderList.addEventListener("click", function() {
-            for (let i = 0; i < asideLink.length; i++) {
-                arrow[i].classList.remove("d-inline");
-                asideLink[i].classList.remove("active");
-            }
-            let group = this.dataset.group;
-            console.log(group);
-            arrow[1].classList.add("d-inline");
-            orderList.classList.add("active");
-            subLabelUl.classList.toggle("sub-label-ul");
-            subLabelUl.classList.toggle("sub-label-ul-active");
-        });
+        }
     </script>
 </body>
 

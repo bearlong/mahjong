@@ -195,7 +195,7 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
             <thead>
                 <tr class="text-nowrap">
                     <th>
-                        <a href="?page=1&order=2<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (!isset($_GET["order"]) || (int)$_GET["order"] >= 3) echo "d-block" ?>">id<i class="fa-solid fa-sort-up ms-2"></i></a>
+                        <a href="?page=1&order=2<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (!isset($_GET["order"]) || (int)$_GET["order"] >= 3) echo "d-block" ?>">id<i class="fa-solid fa-sort ms-2"></i></a>
                         <a href="?page=1&order=2<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 1) echo "d-block" ?>">id<i class="fa-solid fa-sort-up ms-2"></i></a>
                         <a href="?page=1&order=1<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 2) echo "d-block" ?>">id<i class="fa-solid fa-sort-down ms-2"></i></a>
                     </th>
@@ -206,7 +206,7 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
                     <th>庫存數量</th>
                     <th>可出租數量</th>
                     <th>租金類別</th>
-                    <th><a href="?page=1&order=4<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (!isset($_GET["order"]) || (int)$_GET["order"] <= 2) echo "d-block" ?>">定價<i class="fa-solid fa-sort-up ms-2"></i></a>
+                    <th><a href="?page=1&order=4<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (!isset($_GET["order"]) || (int)$_GET["order"] <= 2) echo "d-block" ?>">定價<i class="fa-solid fa-sort ms-2"></i></a>
                         <a href="?page=1&order=4<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 3) echo "d-block" ?>">定價<i class="fa-solid fa-sort-up ms-2"></i></a>
                         <a href="?page=1&order=3<?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 4) echo "d-block" ?>">定價<i class="fa-solid fa-sort-down ms-2"></i></a>
                     </th>
@@ -222,7 +222,7 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
                         <?php else : ?>
                             <td class="text-body-tertiary fw-semibold"><?= $rent_product["name"] ?><span class="text-danger d-block">已下架</span></td>
                         <?php endif; ?>
-                        <td class="text-nowrap"><a href="rent-product-list.php?category=<?= $rent_product["category_id"] ?>" class="text-decoration-none"><?= $rent_product["category_name"] ?></a></td>
+                        <td class="text-nowrap"><a href="rent-product-list.php?page=1&category=<?= $rent_product["category_id"] ?><?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>" class="text-decoration-none"><?= $rent_product["category_name"] ?></a></td>
                         <td>
                             <div class="content">
                                 <?= $rent_product["content"] ?></div>

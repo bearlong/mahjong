@@ -5,10 +5,11 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
-    const asideLink = document.querySelectorAll(".sidebar ul .main-sidebar ");
+    const asideLink = document.querySelectorAll(".sidebar ul .main-sidebar");
     const arrow = document.querySelectorAll(".arrow");
-    const orderList = document.querySelector("#order-list");
-    const subLabelUl = document.querySelector("#sub-label-ul");
+    const subSidebarSwitch = document.querySelectorAll(".sub-sidebar-switch");
+    const subLabelUl = document.querySelectorAll(".sub-label-ul");
+
 
     for (let i = 0; i < asideLink.length; i++) {
         asideLink[i].addEventListener("click", function() {
@@ -31,17 +32,17 @@
         });
     }
 
+    for (let i = 0; i < subSidebarSwitch.length; i++) {
+        subSidebarSwitch[i].addEventListener("click", function() {
+            for (let j = 0; j < asideLink.length; j++) {
+                arrow[j].classList.remove("d-inline");
+                asideLink[j].classList.remove("active");
+            }
+            console.log("click");
+            arrow[i].classList.add("d-inline");
+            subSidebarSwitch[i].classList.add("active");
+            subLabelUl[i].classList.toggle("sub-label-ul-active");
+        });
 
-    orderList.addEventListener("click", function() {
-        for (let i = 0; i < asideLink.length; i++) {
-            arrow[i].classList.remove("d-inline");
-            asideLink[i].classList.remove("active");
-        }
-        let group = this.dataset.group;
-        console.log(group);
-        arrow[1].classList.add("d-inline");
-        orderList.classList.add("active");
-        subLabelUl.classList.toggle("sub-label-ul");
-        subLabelUl.classList.toggle("sub-label-ul-active");
-    });
+    }
 </script>

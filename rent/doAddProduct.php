@@ -83,10 +83,15 @@ if (isset($_FILES["image"]) && $_FILES["image"]["error"] === 0) {
             // echo "上傳成功";
             unset($_SESSION["errorMsg"]);
             $sqlImg = "UPDATE rent_product SET img = '$imageName' WHERE id = $last_id";
+            $sqlImgs = "INSERT INTO rent_images (rent_product_id, url) values ('$last_id', '$imageName')";
+            if ($conn->query($sqlImgs) === TRUE) {
+            } else {
+                echo "Error: " . $sqlImgs . "<br>" . $conn->error;
+            }
 
             if ($conn->query($sqlImg) === TRUE) {
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "Error: " . $sqlImg . "<br>" . $conn->error;
             }
         } else {
             echo "上傳失敗";

@@ -9,7 +9,7 @@ if (!isset($_GET["id"])) {
 
 
 $sql = "SELECT rent_record.*, 
-users.name AS user_name, 
+users.username AS user_name, 
 rent_product.name AS rent_product_name, 
 rent_product.price, 
 rent_product.rent_price_category_id, 

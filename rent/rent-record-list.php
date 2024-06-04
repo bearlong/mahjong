@@ -53,9 +53,27 @@ if (isset($_GET["product"])) {
     $filter .= "AND rent_record.product_id = '$product'";
 }
 
+if (isset($_GET["order"])) {
+    switch ($_GET["order"]) {
+        case 1:
+            $order = "ORDER BY rent_record.order_date DESC";
+            break;
+        case 2:
+            $order = "ORDER BY rent_record.order_date ASC";
+            break;
+        case 3:
+            $order = "ORDER BY rent_record.due_date DESC";
+            break;
+        case 4:
+            $order = "ORDER BY rent_record.due_date ASC";
+            break;
+    };
+}
+
+
 
 $sql = "SELECT rent_record.*, 
-users.name AS user_name, 
+users.username AS user_name, 
 rent_product.name AS rent_product_name, 
 rent_product.price, 
 rent_product.rent_price_category_id, 
@@ -95,6 +113,11 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
 
     <!-- Bootstrap CSS v5.2.1 -->
     <?php include("../css-mahjong.php") ?>
+    <style>
+        .order {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -114,28 +137,28 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
                         <input type="hidden" name="page" value="1">
                         <input type="text" class="form-control" placeholder="search..." aria-label="Example text with button addon" aria-describedby="button-addon1" name="search">
                     </div>
-                </form>
+
             </div>
         </div>
         <div class="py-2 d-flex justify-content-between">
             <div>
-                <form action="">
-                    <div class="row g-3 align-items-center">
-                        <input type="hidden" name="page" value="1">
-                        <div class="col-auto">
-                            訂單時間
-                        </div>
-                        <div class="col-auto">
-                            <input type="date" class="form-control" name="start" id="start_date">
-                        </div>
-                        <div class="col-auto">~</div>
-                        <div class="col-auto">
-                            <input type="date" class="form-control" name="end" id="end_date">
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
+
+                <div class="row g-3 align-items-center">
+                    <!-- <input type="hidden" name="page" value="1"> -->
+                    <div class="col-auto">
+                        訂單時間
                     </div>
+                    <div class="col-auto">
+                        <input type="date" class="form-control" name="start" id="start_date">
+                    </div>
+                    <div class="col-auto">~</div>
+                    <div class="col-auto">
+                        <input type="date" class="form-control" name="end" id="end_date">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
                 </form>
             </div>
             <div class="d-flex justify-content-center align-items-center">
@@ -159,9 +182,17 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
                     <th>id</th>
                     <th>租借人</th>
                     <th>商品</th>
-                    <th>訂單日期</th>
+                    <th>
+                        <a href="?page=1&order=2<?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>" class="order text-black text-decoration-none <?php if (!isset($_GET["order"]) || (int)$_GET["order"] >= 3) echo "d-block" ?>">訂單日期<i class="fa-solid fa-sort ms-2"></i></a>
+                        <a href="?page=1&order=2<?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 1) echo "d-block" ?>">訂單日期<i class="fa-solid fa-sort-up ms-2"></i></a>
+                        <a href="?page=1&order=1<?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 2) echo "d-block" ?>">訂單日期<i class="fa-solid fa-sort-down ms-2"></i></a>
+                    </th>
                     <th>租借日期</th>
-                    <th>預計歸還日</th>
+                    <th>
+                        <a href="?page=1&order=4<?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>" class="order text-black text-decoration-none <?php if (!isset($_GET["order"]) || (int)$_GET["order"] <= 2) echo "d-block" ?>">預計歸還日<i class="fa-solid fa-sort ms-2"></i></a>
+                        <a href="?page=1&order=4<?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 3) echo "d-block" ?>">預計歸還日<i class="fa-solid fa-sort-up ms-2"></i></a>
+                        <a href="?page=1&order=3<?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>" class="order text-black text-decoration-none <?php if (isset($_GET["order"]) && (int)$_GET["order"] === 4) echo "d-block" ?>">預計歸還日<i class="fa-solid fa-sort-down ms-2"></i></a>
+                    </th>
                     <th>實際歸還日</th>
                     <th>狀態</th>
                     <th>租金</th>
@@ -172,8 +203,8 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
                 <tbody>
                     <tr>
                         <td><?= $rent_order["id"] ?></td>
-                        <td><a class="text-decoration-none" href="?page=1&user=<?= $rent_order["user_id"] ?>"><?= $rent_order["user_name"] ?></a></td>
-                        <td><a class="text-decoration-none" href="?page=1&product=<?= $rent_order["rent_product_id"] ?>"><?= $rent_order["rent_product_name"] ?></a></td>
+                        <td><a class="text-decoration-none" href="?page=1&user=<?= $rent_order["user_id"] ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>"><?= $rent_order["user_name"] ?></a></td>
+                        <td><a class="text-decoration-none" href="?page=1&product=<?= $rent_order["rent_product_id"] ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>"><?= $rent_order["rent_product_name"] ?></a></td>
                         <td><?= $rent_order["order_date"] ?></td>
                         <td><?= $rent_order["rental_date"] ?></td>
                         <td><?= $rent_order["due_date"] ?></td>
@@ -222,7 +253,7 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
             <div class="btn-group" role="group" aria-label="First group">
                 <?php if (isset($_GET["page"])) : ?>
                     <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
-                        <a type="button" class="btn btn-outline-primary <?php if ((int)$page === $i) echo "active" ?>" href="?page=<?= $i ?><?= isset($_GET["order"]) ? "&order=" . $_GET["order"] : "" ?><?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>"><?= $i ?></a>
+                        <a type="button" class="btn btn-outline-primary <?php if ((int)$page === $i) echo "active" ?>" href="?page=<?= $i ?><?= isset($_GET["order"]) ? "&order=" . $_GET["order"] : "" ?><?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>"><?= $i ?></a>
                     <?php endfor; ?>
                 <?php endif; ?>
             </div>
