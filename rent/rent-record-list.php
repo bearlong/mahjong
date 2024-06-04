@@ -34,6 +34,7 @@ if (isset($_GET["search"])) {
 if (isset($_GET["start"]) && isset($_GET["end"])) {
     $dateStart = $_GET["start"];
     $dateEnd = $_GET["end"];
+    $dateEnd .= " 23:59:59";
     $filter .= "AND rent_record.order_date BETWEEN '$dateStart' AND '$dateEnd'";
 }
 
@@ -52,6 +53,7 @@ if (isset($_GET["product"])) {
     $filter .= "AND rent_record.product_id = '$product'";
 }
 
+
 $sql = "SELECT rent_record.*, 
 users.name AS user_name, 
 rent_product.name AS rent_product_name, 
@@ -63,7 +65,23 @@ users.id AS user_id,
 rent_product.id AS rent_product_id
 FROM rent_record JOIN users ON users.id = rent_record.user_id JOIN rent_product ON rent_record.product_id = rent_product.id JOIN rent_price_category ON rent_product.rent_price_category_id = rent_price_category.id WHERE 1 $filter $order";
 $result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
+$resultCount = $result->num_rows;
+
+
+if (isset($_GET["page"])) {
+    $page = $_GET["page"];
+    $prepage = 15;
+    $firstItem = ($page - 1) * $prepage;
+    $pageCount = ceil($resultCount / $prepage);
+    $sqlPage = $sql . " LIMIT $firstItem, $prepage";
+} else {
+    header("location: rent-record-list.php?page=1");
+    exit;
+}
+
+$resultPage = $conn->query($sqlPage);
+$rows = $resultPage->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <!doctype html>
@@ -82,7 +100,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 <body>
     <?php include("../nav.php"); ?>
     <div class="container main-content px-5">
-        <h1 class="py-2">租借紀錄表</h1>
+        <h1 class="text-center fw-semibold ">租借紀錄表</h1>
         <div class="d-flex g-3 justify-content-between py-2">
             <div>
                 <?php if (isset($_GET["search"]) || isset($_GET["start"]) || isset($_GET["end"]) || isset($_GET["status"]) || isset($_GET["user"]) || isset($_GET["product"])) : ?>
@@ -103,6 +121,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <div>
                 <form action="">
                     <div class="row g-3 align-items-center">
+                        <input type="hidden" name="page" value="1">
                         <div class="col-auto">
                             訂單時間
                         </div>
@@ -130,7 +149,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     </select>
                 </div>
                 <div class="mx-3">
-                    <p class="text-secondary m-0">共 筆訂單</p>
+                    <p class="text-secondary m-0">共 <?= $resultCount ?> 筆訂單</p>
                 </div>
             </div>
         </div>
@@ -199,6 +218,15 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 </tbody>
             <?php endforeach; ?>
         </table>
+        <div class="btn-toolbar justify-content-center pb-3 " role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group" role="group" aria-label="First group">
+                <?php if (isset($_GET["page"])) : ?>
+                    <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
+                        <a type="button" class="btn btn-outline-primary <?php if ((int)$page === $i) echo "active" ?>" href="?page=<?= $i ?><?= isset($_GET["order"]) ? "&order=" . $_GET["order"] : "" ?><?= isset($_GET["valid"]) ? "&valid=" . $_GET["valid"] : "" ?><?= isset($_GET["category"]) ? "&category=" . $_GET["category"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?>"><?= $i ?></a>
+                    <?php endfor; ?>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap JavaScript Libraries -->
@@ -221,7 +249,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             if (e.target.value == "") {
                 location.href = `rent-record-list.php?page=1`;
             } else {
-                location.href = `rent-record-list.php?page=1&status=${e.target.value}`;
+                location.href = `rent-record-list.php?page=1&status=${e.target.value}<?= isset($_GET["user"]) ? "&user=" . $_GET["user"] : "" ?><?= isset($_GET["product"]) ? "&product=" . $_GET["product"] : "" ?><?= isset($_GET["search"]) ? "&search=" . $_GET["search"] : "" ?><?= isset($_GET["start"]) ? "&start=" . $_GET["start"] : "" ?><?= isset($_GET["end"]) ? "&end=" . $_GET["end"] : "" ?>`;
             }
 
 

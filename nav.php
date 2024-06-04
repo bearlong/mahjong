@@ -39,7 +39,7 @@
                 <ul class="text-center text-black bg-dark bg-gradient sub-label-ul" id="sub-label-ul">
                     <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">一般訂單</a></li>
                     <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">線上課程訂單</a></li>
-                    <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="">租借訂單</a></li>
+                    <li class="border border-start-0 border-end-0 border-black"><a class="d-block sub-label text-decoration-none py-1" href="../rent/rent-record-list.php">租借訂單</a></li>
                 </ul>
             </li>
             <li>

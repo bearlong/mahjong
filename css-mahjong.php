@@ -49,6 +49,10 @@
         transition: .3s;
     }
 
+    .main-sidebar {
+        cursor: pointer;
+    }
+
     .sub-label-ul {
         max-height: 0px;
         overflow: hidden;
@@ -76,6 +80,7 @@
 
     .main-content {
         margin: 0 0 0 var(--aside-width);
+        padding-top: var(--header-nav-height);
     }
 
     .hamburger {
