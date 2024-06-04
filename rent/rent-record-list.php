@@ -29,7 +29,7 @@ $filter = "";
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $filter .= "AND (users.name LIKE '%$search%' OR rent_product.name LIKE '%$search%')";
+    $filter .= "AND (users.username  LIKE '%$search%' OR rent_product.name LIKE '%$search%')";
 }
 if (isset($_GET["start"]) && isset($_GET["end"])) {
     $dateStart = $_GET["start"];
