@@ -138,7 +138,7 @@ if (isset($_GET["page"])) {
             <th>負責人</th>
             <th>帳號</th>
             <th>公司名稱</th>
-            <th>company_phone</th>
+            <th>電話</th>
             <!-- <th>fax_phone</th> -->
             <th>Email</th>
             <th>公司地址</th>
