@@ -1,5 +1,6 @@
 <?php
-require_once("../db_connect.php");
+require_once("../db_connect_mahjong.php");
+session_start();
 $room_id = isset($_GET['room_id']) ? intval($_GET['room_id']) : 0;
 
 if ($room_id == 0) {
@@ -14,11 +15,13 @@ if ($room_id == 0) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>updateBasicInformation</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <?php include("../css-mahjong.php") ?>
 </head>
 
 <body>
-  <div class="container">
+  <?php include("../nav.php") ?>
+
+  <div class="container main-content px-5">
     <form action="doUpdateBasicInfomation.php" method="post">
       <div class="row justify-content-center align-items-center g-2">
         <input type="hidden" name="room_id" value="<?php echo $room_id; ?>">
@@ -34,6 +37,8 @@ if ($room_id == 0) {
       </div>
     </form>
   </div>
+  <?php include("../js-mahjong.php") ?>
+
 </body>
 
 </html>

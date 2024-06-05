@@ -1,5 +1,5 @@
 <?php
-require_once("../db_connect.php");
+require_once("../db_connect_mahjong.php");
 
 $room_id = isset($_POST['room_id']) ? intval($_POST['room_id']) : 0;
 $table_type = $_POST["table_type"];
@@ -7,7 +7,7 @@ $price = $_POST["price"];
 $name = $_POST["name"];
 $now = date('Y-m-d H:i:s');
 $status = 0;
-$is_deleted = 0 ;
+$is_deleted = 0;
 
 if (empty($table_type) || empty($price) || empty($name) || $room_id == 0) {
     echo "所有字段均為必填項。";
@@ -30,15 +30,15 @@ if ($row['count'] == 0) {
 $sql = "INSERT INTO mahjong_table (table_type, price, create_at, room_id, status, name,is_deleted)
 VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iisisss", $table_type, $price, $now, $room_id, $status, $name,$is_deleted);
+$stmt->bind_param("iisisss", $table_type, $price, $now, $room_id, $status, $name, $is_deleted);
 
 if ($stmt->execute()) {
     $last_id = $stmt->insert_id;
-    echo 
+    echo
 
     "<script>
             alert('新資料輸入成功, id 為 $last_id');
-            window.location.href = 'roomDetails.php?room_id=$room_id';
+            window.location.href = './roomDetails.php?room_id=$room_id';
           </script>";
 
     exit();
@@ -48,4 +48,3 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-?>

@@ -35,7 +35,7 @@ VALUES ('','$name', '$tele', '$address','$tax_number', '$now','$open_time','$clo
 if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
     echo "新資料輸入成功, id 為 $last_id";
-    header("location: ./mahjong-room-index.html");
+    header("location: ./roomsOverview.php");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

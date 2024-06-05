@@ -1,12 +1,12 @@
 <?php
-require_once("../db_connect.php");
+require_once("../db_connect_mahjong.php");
 
 // 获取URL中的room_id参数
 $room_id = isset($_POST['room_id']) ? intval($_POST['room_id']) : 0;
 
 // 验证room_id是否有效
 if ($room_id <= 0) {
-    die("<div class='container mt-5'><div class='alert alert-danger'>无效的房间ID</div></div>");
+    die("<div class='container mt-5'><div class='alert alert-danger'>無效的房间ID</div></div>");
 }
 
 $tele = $_POST["tele"];
@@ -28,7 +28,7 @@ if ($stmt->execute()) {
     echo
     "<script>
     alert('新資料輸入成功');
-    window.location.href = 'roomDetails.php?room_id=$room_id';
+    window.location.href = './roomDetails.php?room_id=$room_id';
   </script>";
     exit();
 } else {

@@ -1,7 +1,5 @@
 <?php
-require_once("../db_connect_mahjong.php");
-session_start();
-?>
+require_once("../db_connect_mahjong.php"); ?>
 
 
 <!DOCTYPE html>

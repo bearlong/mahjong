@@ -1,6 +1,14 @@
 <?php
 require_once("../db_connect_mahjong.php");
 session_start();
+
+
+// 查詢所有房間資料
+$sql = "SELECT * FROM mahjong_room";
+$result = $conn->query($sql);
+$rooms = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -26,41 +34,49 @@ session_start();
       flex-direction: column;
       justify-content: space-between;
     }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card-link:hover {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 </head>
 
 <body>
   <?php include("../nav.php") ?>
-  <div class="container pt-5 main-content">
-    <h1 class="text-center pt-3">房間總覽</h1>
-    <a href="list.php" class="btn btn-primary">返回首頁</a>
 
+  <div class="container main-content px-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="text-center">房間總覽</h1>
+      <a href="mahjong-room-index.php" class="btn btn-primary">返回首頁</a>
+    </div>
     <div class="row">
-      <?php
-      $sql = "SELECT * FROM mahjong_room";
-      $result = $conn->query($sql);
-
-      if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-          echo '<div class="col-md-4 mb-4 d-flex">';
-          echo '<div class="card w-100">';
-          echo '<div class="card-body">';
-          echo '<h5 class="card-title">' . $row["name"] . '</h5>';
-          echo '<p class="card-text"><strong>電話:</strong> ' . $row["tele"] . '</p>';
-          echo '<p class="card-text"><strong>地址:</strong> ' . $row["address"] . '</p>';
-          echo '<p class="card-text"><strong>營業時間:</strong> ' . $row["open_time"] . '</p>';
-          echo '<p class="card-text"><strong>休息時間:</strong> ' . $row["close_time"] . '</p>';
-          echo '</div>';
-          echo '</div>';
-          echo '</div>';
-        }
-      } else {
-        echo '<div class="col-12">';
-        echo '<p class="text-center">沒有找到任何房間</p>';
-        echo '</div>';
-      }
-      $conn->close();
-      ?>
+      <?php if (!empty($rooms)) : ?>
+        <?php foreach ($rooms as $room) : ?>
+          <div class="col-md-4 mb-4 d-flex">
+            <a href="roomDetails.php?room_id=<?= htmlspecialchars($room['room_id']) ?>" class="card-link w-100">
+              <div class="card w-100">
+                <div class="card-body">
+                  <h5 class="card-title"><?= htmlspecialchars($room["name"]) ?></h5>
+                  <p class="card-text"><strong>電話:</strong> <?= htmlspecialchars($room["tele"]) ?></p>
+                  <p class="card-text"><strong>地址:</strong> <?= htmlspecialchars($room["address"]) ?></p>
+                  <p class="card-text"><strong>營業時間:</strong> <?= htmlspecialchars($room["open_time"]) ?></p>
+                  <p class="card-text"><strong>休息時間:</strong> <?= htmlspecialchars($room["close_time"]) ?></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        <?php endforeach; ?>
+      <?php else : ?>
+        <div class="col-12">
+          <p class="text-center">沒有找到任何房間</p>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 

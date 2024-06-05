@@ -49,8 +49,8 @@ $status = isset($_GET['status']) ? intval($_GET['status']) : -1;
     <div class="container main-content px-5">
         <div class="btn-group my-2">
 
-            <a class="btn btn-primary" href="userRoomsOverview.php">回門店總覽</a>
-            <a href="./dash/sidebar-nav.php" class="btn btn-primary">返回後台</a>
+            <a class="btn btn-primary" href="roomsOverview.php">回門店總覽</a>
+            <a href="mahjong-room-index.php" class="btn btn-primary">返回後台</a>
         </div>
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
