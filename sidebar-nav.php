@@ -131,7 +131,7 @@ session_start();
                     <div class="list-group position-absolute z-1">
                         <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-house me-2"></i>首頁</a>
                         <a href="./sidebar-nav.php" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-list-check me-2"></i>後台管理</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-bars-progress me-2"></i>數據分析</a>
+                        <a href="./report/dashboard.php" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-bars-progress me-2"></i>數據分析</a>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-regular fa-comment me-2"></i>意見回饋</a>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-gear me-2"></i>設定</a>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-door-closed me-2"></i>Sign out</a>

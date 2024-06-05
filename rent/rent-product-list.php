@@ -63,7 +63,7 @@ $resultCount = $result->num_rows;
 
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
-    $prepage = 5;
+    $prepage = 6;
     $firstItem = ($page - 1) * $prepage;
     $pageCount = ceil($resultCount / $prepage);
     $sqlPage .= " LIMIT $firstItem, $prepage";
@@ -100,7 +100,7 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
     <?php include("../css-mahjong.php") ?>
     <style>
         .img-box {
-            width: 300px;
+            width: 120px;
         }
 
         .object-fit-conver {
@@ -109,9 +109,12 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
         }
 
         .content {
-            width: 260px;
-            height: 225px;
-            overflow: auto;
+            width: 200px;
+            /* height: 80px; */
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
         }
 
         .sell-out {
@@ -120,13 +123,19 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
             background: rgba(80, 80, 80, 0.8);
 
             .sell-out-info {
+                font-size: 10px;
                 border-radius: 50%;
                 background: rgba(120, 120, 120, 0.8);
-                width: 150px;
-                height: 150px;
+                width: 60px;
+                height: 60px;
                 position: absolute;
-                top: calc(50% - 75px);
-                left: calc(50% - 75px);
+                top: calc(50% - 30px);
+                left: calc(50% - 30px);
+
+                p {
+                    margin: 15px 0;
+                }
+
             }
         }
 
@@ -234,8 +243,8 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
                                                                                 echo "d-none";
                                                                             }
                                                                             ?>">
-                                    <div class="sell-out-info shadow text-body-tertiary d-flex justify-content-center align-items-center">
-                                        <h4 class="p-2"><?= $rent_product["valid"] ? "暫無庫存" : "已下架" ?></h4>
+                                    <div class="sell-out-info shadow text-body-tertiary text-center">
+                                        <p class="p-2"><?= $rent_product["valid"] ? "暫無庫存" : "已下架" ?></p>
                                     </div>
                                 </div>
                                 <img class="object-fit-cover position-absolute" src="../images/rent_product/<?= $rent_product["id"] ?>/<?= $rent_product["img"] ?>" alt="">
@@ -246,7 +255,7 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
                         <td class="text-nowrap"><?= number_format($rent_product["rent_price"]) ?>/<?= $rent_product["rent_day"] ?>天</td>
                         <td><?= number_format($rent_product["price"]) ?></td>
                         <td>
-                            <div class="d-flex align-items-center flex-column gap-3">
+                            <div class="d-flex align-items-center gap-1">
                                 <a href="rent-product.php?id=<?= $rent_product["id"] ?>" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a>
                                 <a href="editProduct.php?id=<?= $rent_product["id"] ?>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a href="addImg.php?id=<?= $rent_product["id"] ?>" class="btn btn-primary"><i class="fa-regular fa-image"></i></a>
