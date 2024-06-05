@@ -3,32 +3,12 @@ session_start();
 
 require_once("../db_connect_mahjong.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    $sql = "SELECT * FROM users WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row["password"])) {
-            $_SESSION["username"] = $username;
-            header("Location: index.html"); // 登入成功後重定向到首頁
-            exit;
-        } else {
-            echo "密碼錯誤";
-        }
-    } else {
-        echo "無此使用者";
-    }
-
-    $stmt->close();
-    $conn->close();
+if (isset($_SESSION["users"])) {
+    header("Location:dashboard.php");
+    exit;
 }
+
+
 ?>
 
 
@@ -48,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-image: url("../images/good.jpg");
+            background-size: cover;
         }
 
         .container {
@@ -119,12 +100,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <form action="welcome.php" id="loginForm" class="form active" method="post">
-            <input name="username" type="text" placeholder="帳號" required>
+            <input name="account" type="text" placeholder="帳號" required>
             <input name="password" type="password" placeholder="密碼" required>
             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
             <label class="form-check-label" for="flexCheckChecked">
                 Remember me
             </label>
+            <?php if (isset($_SESSION["errorMsg"])) : ?>
+                <div><?= $_SESSION["errorMsg"]   ?></div>
+
+                <?php unset($_SESSION["errorMsg"]) ?>
+            <?php endif; ?>
             <button type="submit">登入</button>
         </form>
 

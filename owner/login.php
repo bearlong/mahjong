@@ -3,33 +3,12 @@ session_start();
 
 require_once("../db_connect_mahjong.php");
 
+if (isset($_SESSION["owner"])) {
+    header("Location:dashboard.php");
+    exit;
+  }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
 
-    $sql = "SELECT * FROM owner WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row["password"])) {
-            $_SESSION["username"] = $username;
-            header("Location: index.html"); // 登入成功後重定向到首頁
-            exit;
-        } else {
-            echo "密碼錯誤";
-        }
-    } else {
-        echo "無此使用者";
-    }
-
-    $stmt->close();
-    $conn->close();
-}
 ?>
 
 <!DOCTYPE html>
@@ -129,6 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="form-check-label" for="flexCheckChecked">
                     Remember me
                 </label>
+                <?php if (isset($_SESSION["errorMsg"])): ?>
+                <div><?= $_SESSION["errorMsg"]   ?></div>      
+          
+            <?php unset($_SESSION["errorMsg"]) ?>
+            <?php endif; ?>
             </div>
             <button type="submit">登入</button>
         </form>

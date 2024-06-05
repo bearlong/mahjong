@@ -166,7 +166,7 @@ session_start();
                     <a data-group="商品管理" href="sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "active" ?>"><i class="fa-solid fa-store me-2"></i>商品管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="線上課程管理" href="sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "active" ?>"><i class="fa-solid fa-landmark me-2"></i>線上課程管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="線上課程管理" href="./mjphp/course-list.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "active" ?>"><i class="fa-solid fa-landmark me-2"></i>線上課程管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
                     <a data-group="租借管理" href="./rent/rent-product-list.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "租借管理") echo "active" ?>"><i class="fa-solid fa-retweet me-2"></i>租借管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "租借管理") echo "d-inline" ?>">></span></a>
@@ -175,7 +175,7 @@ session_start();
                     <a data-group="優惠券管理" href="./coupon/coupon-list.php?page=1&order=1" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "優惠券管理") echo "active" ?>"><i class="fa-solid fa-ticket me-2"></i>優惠券管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "優惠券管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
-                    <a data-group="棋牌室管理" href="./mahjong_room/roomsOverview.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "active" ?>"><i class="fa-solid fa-chess-board me-2"></i>棋牌室管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="棋牌室管理" href="./mahjong_room/allRooms.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "active" ?>"><i class="fa-solid fa-chess-board me-2"></i>棋牌室管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "棋牌室管理") echo "d-inline" ?>">></span></a>
                 </li>
             </ul>
             <div class="d-flex justify-content-start mt-5">
