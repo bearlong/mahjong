@@ -5,7 +5,7 @@ $coupon_id = isset($_GET["coupon_id"]) ? $_GET["coupon_id"] : 1;
 require_once("../db_connect_mahjong.php");
 session_start();
 
-// 查詢優惠卷資料
+// 查詢優惠劵資料
 $sql = "SELECT * FROM coupons WHERE coupon_id = $coupon_id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
   $title = $row["coupon_id"];
 } else {
   $coupon = false;
-  $title = "優惠卷不存在";
+  $title = "優惠劵不存在";
 }
 ?>
 
@@ -52,16 +52,16 @@ if ($result->num_rows > 0) {
 
   <div class="container main-content px-5">
     <div class="text-center">
-      <h1 class="py-2 fw-semibold">優惠卷詳細資料</h1>
+      <h1 class="py-2 fw-semibold">優惠劵詳細資料</h1>
     </div>
     <div class="row justify-content-center position-relative">
       <div class="return py-3 position-absolute">
-        <a class="btn btn-primary fw-semibold" href="coupon-list.php?page=1&order=1"><i class="fa-solid fa-arrow-left"></i> 回優惠卷列表</a>
+        <a class="btn btn-primary fw-semibold" href="coupon-list.php?p=1&o=1"><i class="fa-solid fa-arrow-left"></i> 回優惠劵列表</a>
       </div>
       <div class="col-6">
         <?php if ($coupon) : ?>
           <table class="table table-light table-bordered text-center">
-            <!-- 顯示優惠卷詳細資料 -->
+            <!-- 顯示優惠劵詳細資料 -->
             <thead class="table-primary">
               <tr>
                 <th class="col-3">項目</th>
@@ -70,19 +70,19 @@ if ($result->num_rows > 0) {
             </thead>
             <tbody>
               <tr>
-                <th class="col-3">優惠卷編號</th>
+                <th class="col-3">優惠劵編號</th>
                 <td class="col-9 fw-semibold"><?= $row["coupon_id"] ?></td>
               </tr>
               <tr>
-                <th>優惠卷名稱</th>
+                <th>優惠劵名稱</th>
                 <td class="fw-semibold"><?= $row["name"] ?></td>
               </tr>
               <tr>
-                <th>優惠卷折扣碼</th>
+                <th>優惠劵折扣碼</th>
                 <td class="fw-semibold"><?= $row["discount_code"] ?></td>
               </tr>
               <tr>
-                <th>優惠卷折扣類型</th>
+                <th>優惠劵折扣類型</th>
                 <td class="fw-semibold">
                   <?php if ($row['discount_type'] == 'cash') : ?>
                     <span class="text-primary fw-semibold">現金</span>
@@ -92,7 +92,7 @@ if ($result->num_rows > 0) {
                 </td>
               </tr>
               <tr class="fw-semibold">
-                <th>優惠卷折扣值</th>
+                <th>優惠劵折扣值</th>
                 <td>
                   <?php if ($row['discount_type'] == 'cash') : ?>
                     <span class="text-primary fw-semibold"><?= '$' . " " . $row['discount_value']; ?></span>
@@ -102,7 +102,7 @@ if ($result->num_rows > 0) {
                 </td>
               </tr>
               <tr class="fw-semibold">
-                <th>優惠卷有效期</th>
+                <th>優惠劵有效期</th>
                 <td><?= $row["valid_from"] ?> ~ <?= $row["valid_to"] ?></td>
               </tr>
               <tr class="fw-semibold">
@@ -135,17 +135,17 @@ if ($result->num_rows > 0) {
           </table>
       </div>
       <div class="d-flex justify-content-center gap-3">
-        <a href="edit-coupon.php?coupon_id=<?= $row["coupon_id"] ?>" title="編輯優惠卷" class="btn btn-primary fw-semibold">
-          <i class="fa-solid fa-pen-to-square"></i> 修改優惠卷
+        <a href="edit-coupon.php?coupon_id=<?= $row["coupon_id"] ?>" title="編輯優惠劵" class="btn btn-primary fw-semibold">
+          <i class="fa-solid fa-pen-to-square"></i> 修改優惠劵
         </a>
 
-        <button class="btn btn-danger btn-disable fw-semibold" title="停用優惠卷" data-id="<?= $row["coupon_id"] ?>" data-bs-toggle="modal" data-bs-target="#deleteModal">
-          <i class="fa-solid fa-trash-can"></i> 停用優惠卷
+        <button class="btn btn-danger btn-disable fw-semibold" title="停用優惠劵" data-id="<?= $row["coupon_id"] ?>" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          <i class="fa-solid fa-trash-can"></i> 停用優惠劵
         </button>
       </div>
     </div>
   <?php else : ?>
-    <h1>優惠卷不存在</h1>
+    <h1>優惠劵不存在</h1>
   <?php endif; ?>
   </div>
   </div>
@@ -158,7 +158,7 @@ if ($result->num_rows > 0) {
     btnDisable.forEach(btn => {
       btn.addEventListener('click', function() {
         const couponId = this.dataset.id;
-        confirm.href = "doDisableCoupon.php?coupon_id=" + couponId;
+        confirm.href = "detailDoDisableCoupon.php?coupon_id=" + couponId;
       });
     });
   </script>

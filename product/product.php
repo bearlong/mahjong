@@ -11,14 +11,14 @@ $sql = "SELECT product.*, product_category.name AS category_name, brand.name AS 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
-
+$title = $row['name'];
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title><?= $title ?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />

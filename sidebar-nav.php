@@ -110,6 +110,20 @@ session_start();
             overflow: hidden;
             transition: .5s;
         }
+
+        .bg {
+            height: 100vh;
+        }
+
+        .hidden {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            margin: 0;
+        }
+
+        .visible {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -185,6 +199,9 @@ session_start();
             </div>
         </div>
     </aside>
+    <div class=" main-content bg-black text-center">
+        <img id="delayedElement" class="object-fit-cover hidden" src="./images/6af7416b99844a6d7c2f34c7439e46e8.jpg" alt="">
+    </div>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
@@ -233,6 +250,19 @@ session_start();
             });
 
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // 設置延遲時間（毫秒）
+            const delay = 500; // 2秒
+
+            // 取得要延遲顯示的元素
+            const element = document.getElementById("delayedElement");
+
+            // 設置延遲顯示
+            setTimeout(() => {
+                element.classList.add("visible");
+            }, delay);
+        });
     </script>
 </body>
 

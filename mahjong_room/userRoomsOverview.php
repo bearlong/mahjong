@@ -26,7 +26,7 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>的棋牌室</title>
+  <title><?= $owner["company_name"] ?>的棋牌室</title>
   <?php include("../css-mahjong.php") ?>
 
   <style>
@@ -63,7 +63,7 @@ $conn->close();
   <div class="container main-content px-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="text-center"><?= $owner["company_name"] ?>的棋牌室</h1>
-      <a href="./dash/sidebar-nav.php" class="btn btn-primary">返回後台</a>
+      <a href="./dash/sidebar-nav.php" class="btn btn-primary">返回業主後台</a>
     </div>
     <div class="row">
       <?php if (!empty($rooms)) : ?>

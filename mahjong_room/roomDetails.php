@@ -31,7 +31,7 @@ $price_max = isset($_GET['price_max']) ? intval($_GET['price_max']) : 10000;
 $table_type = isset($_GET['table_type']) ? intval($_GET['table_type']) : -1;
 $status = isset($_GET['status']) ? intval($_GET['status']) : -1;
 
-$sqlOwner = "SELECT * FROM owner WHERE id=$room_id";
+$sqlOwner = "SELECT mahjong_room.*, owner.company_name FROM mahjong_room JOIN owner ON mahjong_room.owner_id = owner.id WHERE mahjong_room.room_id = $room_id ";
 $resultOwner = $conn->query($sqlOwner);
 $owner = $resultOwner->fetch_assoc();
 

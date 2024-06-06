@@ -22,7 +22,7 @@ foreach ($rowsReturn  as $return) {
         echo "Error: " . $sqlStatus . "<br>" . $conn->error;
     }
 }
-
+$title = "租借紀錄表";
 
 $order = "ORDER BY rent_record.order_date DESC";
 $filter = "";
@@ -41,6 +41,17 @@ if (isset($_GET["start"]) && isset($_GET["end"])) {
 if (isset($_GET["status"])) {
     $status = $_GET["status"];
     $filter .= "AND rent_record.status = '$status'";
+    switch ($status) {
+        case 0:
+            $title .= " 已結案";
+            break;
+        case 1:
+            $title .= " 出借中";
+            break;
+        case 2:
+            $title .= " 已逾期";
+            break;
+    }
 }
 
 if (isset($_GET["user"])) {
@@ -123,7 +134,7 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
 <body>
     <?php include("../nav.php"); ?>
     <div class="container main-content px-5">
-        <h1 class="text-center fw-semibold ">租借紀錄表</h1>
+        <h1 class="text-center fw-semibold "><?= $title ?></h1>
         <div class="d-flex g-3 justify-content-between py-2">
             <div>
                 <?php if (isset($_GET["search"]) || isset($_GET["start"]) || isset($_GET["end"]) || isset($_GET["status"]) || isset($_GET["user"]) || isset($_GET["product"]) || isset($_GET["order"])) : ?>

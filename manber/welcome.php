@@ -23,38 +23,51 @@ if (empty($password)) {
   header("location:login.php");
   exit;
 }
-$sql = "SELECT * FROM users WHERE account = '$account' AND password = '$password'AND valid=1";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // 獲取表單提交的電子郵件和密碼
+  $account = $_POST["account"];
+  $password = $_POST["password"];
 
+  // 查詢資料庫中的用戶
+  $sql = "SELECT id, email, password FROM users WHERE account = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("s", $account);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
+  if ($result->num_rows == 1) {
+    // 獲取用戶數據
+    $row = $result->fetch_assoc();
+    $hashedPassword = $row["password"];
 
-$result = $conn->query($sql);
-$userCount = $result->num_rows;
+    // 驗證密碼
+    if (password_verify($password, $hashedPassword)) {
+      // 密碼匹配，設置會話變量標記用戶為已登入
+      echo "登入成功";
+      // 重定向到其他頁面
+      header("Location: ../sidebar-nav.php");
+      exit();
+    } else {
+      // 密碼不匹配
+      echo "密碼錯誤";
+    }
+  } else {
+    // 用戶不存在
+    echo "用戶不存在";
+  }
 
-if ($userCount == 0) {
-  $errorMsg = "帳號或密碼錯誤";
-  $_SESSION["errorMsg"] = $errorMsg;
-
-  header("location:login.php");
-  exit;
+  // 關閉語句和連接
+  $stmt->close();
+  $conn->close();
 }
-header("location:../sidebar-nav.php");
 
-
-?>
-
-<!DOCTYPE html>
-<html lang="zh-Hant">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>歡迎頁面</title>
-</head>
-
-<body>
-  <h2>歡迎, <?php echo $account; ?>!</h2>
-  <a href="logout.php">登出</a>
-</body>
-
-</html>
+// if (password_verify($password, $hashedPassword)) {
+//   header("location:sidebar-nav.php");
+//   exit;
+// } else {
+//   $errorMsg = "帳號或密碼錯誤";
+//   $_SESSION["errorMsg"] = $errorMsg;
+//   header("location:login.php");
+//   exit;
+// }

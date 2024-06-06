@@ -89,8 +89,8 @@ $rowsImages  = $resultImages->fetch_all(MYSQLI_ASSOC);
                             <th>定價/租金</th>
                             <td>
                                 <div class="d-flex gap-3">
-                                    <p class="h5">定價: <?= number_format($row["price"]) ?></p>
-                                    <p class="h5">租金: <?= number_format($row["rent_price"]) ?>/<?= $row["rent_day"] ?>天</p>
+                                    <p>定價: <?= number_format($row["price"]) ?></p>
+                                    <p>租金: <?= number_format($row["rent_price"]) ?>/<?= $row["rent_day"] ?>天</p>
                                     <p class="text-secondary"><?php if ($row["rent_price_category_id"] == 1) {
                                                                     echo "最短租約半年";
                                                                 } ?></p>

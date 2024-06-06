@@ -68,7 +68,7 @@ $rowsRentPriceCategory = $resultRentPriceCategory->fetch_all(MYSQLI_ASSOC);
                             <td><input type="number" class="form-control" name="quantity"></td>
                         </tr>
                         <tr>
-                            <th class="form-label">租金</th>
+                            <th class="form-label">租金級距</th>
                             <td><select class="form-select" id="" name="rent_price">
                                     <?php foreach ($rowsRentPriceCategory as $rentPriceCategory) : ?>
                                         <option value="<?= $rentPriceCategory["id"] ?>"><?= $rentPriceCategory["range"] ?></option>

@@ -1,6 +1,6 @@
 <?php
 require_once("../db_connect_mahjong.php");
-
+session_start();
 
 $sqlAll = "SELECT * FROM course WHERE valid=1";
 $resultALL = $conn->query($sqlAll);

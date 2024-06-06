@@ -14,7 +14,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>品牌管理</title>
+    <title>類別管理</title>
     <?php include("../css-mahjong.php") ?>
     <style>
         .list-item {
