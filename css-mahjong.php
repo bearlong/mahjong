@@ -97,7 +97,7 @@
         max-height: 260px;
     }
 
-    .list-group {
+    .list-group-nav {
         top: var(--header-nav-height);
         right: -5px;
         max-height: 0;

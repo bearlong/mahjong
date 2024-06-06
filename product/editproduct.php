@@ -45,15 +45,14 @@ $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
 
 <body>
     <?php include("../nav.php") ?>
-    <div class="container main-content px-3">
+    <div class="container main-content px-5">
         <div class="row py-3">
             <div class="col-8">
-
                 <div class="d-flex align-items-start py-2 flex-column">
                     <a href="product.php?id=<?= $row["id"] ?>" class="btn btn-primary btn-sm mb-2"><i class="fa-solid fa-left-long me-2"></i>商品明細</a>
                     <h2>修改資料</h2>
                 </div>
-                <div class="row py-2">
+                <div class="row">
                     <form action="doEditProduct.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?= $row["id"] ?>">
                         <table class="table table-bordered">
@@ -85,7 +84,7 @@ $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
                             </tr>
                             <tr>
                                 <th>商品敘述</th>
-                                <td><textarea class="form-control" type="text" name="content" rows="6"><?= $row["content"] ?> </textarea></td>
+                                <td><textarea class="form-control" type="text" name="content" rows="4"><?= $row["content"] ?> </textarea></td>
                             </tr>
                             <tr>
                                 <th>庫存數量</th>

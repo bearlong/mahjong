@@ -63,7 +63,7 @@ $resultCount = $result->num_rows;
 
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
-    $prepage = 6;
+    $prepage = 15;
     $firstItem = ($page - 1) * $prepage;
     $pageCount = ceil($resultCount / $prepage);
     $sqlPage .= " LIMIT $firstItem, $prepage";
@@ -274,23 +274,24 @@ if (!isset($_GET["order"]) && !isset($_GET["valid"]) && !isset($_GET["category"]
                 <?php endif; ?>
             </div>
         </div>
-        <!-- Bootstrap JavaScript Libraries -->
-        <?php include("../js-mahjong.php") ?>
+    </div>
+    <!-- Bootstrap JavaScript Libraries -->
+    <?php include("../js-mahjong.php") ?>
 
-        <script>
-            const categroy = document.querySelector("#category");
-            const idOrder = document.querySelector("#id-order");
-            categroy.addEventListener("change", (e) => {
+    <script>
+        const categroy = document.querySelector("#category");
+        const idOrder = document.querySelector("#id-order");
+        categroy.addEventListener("change", (e) => {
 
-                if (e.target.value == 0) {
-                    location.href = `rent-product-list.php?page=1`;
-                } else {
-                    location.href = `rent-product-list.php?page=1&category=${e.target.value}`;
-                }
+            if (e.target.value == 0) {
+                location.href = `rent-product-list.php?page=1`;
+            } else {
+                location.href = `rent-product-list.php?page=1&category=${e.target.value}`;
+            }
 
 
-            });
-        </script>
+        });
+    </script>
 </body>
 
 </html>

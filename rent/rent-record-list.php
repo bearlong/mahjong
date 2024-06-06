@@ -126,7 +126,7 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
         <h1 class="text-center fw-semibold ">租借紀錄表</h1>
         <div class="d-flex g-3 justify-content-between py-2">
             <div>
-                <?php if (isset($_GET["search"]) || isset($_GET["start"]) || isset($_GET["end"]) || isset($_GET["status"]) || isset($_GET["user"]) || isset($_GET["product"])) : ?>
+                <?php if (isset($_GET["search"]) || isset($_GET["start"]) || isset($_GET["end"]) || isset($_GET["status"]) || isset($_GET["user"]) || isset($_GET["product"]) || isset($_GET["order"])) : ?>
                     <a href="rent-record-list.php" class="btn btn-primary btn-sm my-2"><i class="fa-solid fa-left-long me-2"></i>租借紀錄列表</a>
                 <?php endif; ?>
             </div>

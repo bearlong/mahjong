@@ -32,7 +32,7 @@ $rowsRentPriceCategory = $resultRentPriceCategory->fetch_all(MYSQLI_ASSOC);
 
 <body>
     <?php include("../nav.php") ?>
-    <div class="container main-content">
+    <div class="container main-content px-5">
         <div class="d-flex align-items-start py-2 flex-column">
             <a href="rent-product-list.php" class="btn btn-primary btn-sm mb-2"><i class="fa-solid fa-left-long me-2"></i>租借產品列表</a>
             <h1 class="m-0">新增商品</h1>
@@ -61,7 +61,6 @@ $rowsRentPriceCategory = $resultRentPriceCategory->fetch_all(MYSQLI_ASSOC);
                             <th class="form-label">照片</th>
                             <td>
                                 <input class="form-control" type="file" name="image" id="uploadImage">
-                                <img class="mt-2 object-fit-cover d-none" src="" alt="" id="image">
                             </td>
                         </tr>
                         <tr>
@@ -86,6 +85,10 @@ $rowsRentPriceCategory = $resultRentPriceCategory->fetch_all(MYSQLI_ASSOC);
                     <?php endif; ?>
                     <button class="btn btn-primary">送出</button>
                 </form>
+            </div>
+            <div class="col-3">
+                <h3>預覽圖:</h3>
+                <img class="mt-2 img-fluid d-none" src="" alt="" id="image">
             </div>
         </div>
     </div>

@@ -88,7 +88,7 @@ if (isset($_GET["page"])) {
 
         <div class="d-flex gap-3">
           <form action="">
-            <div class="input-group">
+            <div class="input-group  position-relative z-0">
               <input type="text" class="form-control" placeholder="Search..." name="search">
               <button class="btn btn-primary" type="submit">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -109,7 +109,7 @@ if (isset($_GET["page"])) {
       </div>
       <?php if (isset($_GET["page"])) : ?>
         <div>
-          排序: <div class="btn-group">
+          排序: <div class="btn-group  position-relative z-0">
             <a href="?page=<?= $page ?>&order=1" class="btn btn-primary 
             <?php if ($order == 1) echo "active" ?>">
               id <i class=" fa-solid fa-arrow-down-short-wide"></i>

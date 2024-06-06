@@ -7,7 +7,7 @@ if (!isset($_GET["id"])) {
 }
 
 require_once("../db_connect_mahjong.php");
-session_start();
+
 
 $sql = "SELECT * FROM course WHERE id = $id AND valid = 1";
 
@@ -32,13 +32,12 @@ if ($result->num_rows > 0) {
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <?php include("../css-mahjong.php") ?>
+    <?php include("../css-mahjong.php"); ?>
 
 </head>
 
 <body>
-    <?php include("../nav.php") ?>
-
+    <?php include("../nav.php"); ?>
     <div class="container main-content px-5">
         <h1 class="my-4">編輯課程</h1>
         <div class="py-2">
@@ -92,8 +91,7 @@ if ($result->num_rows > 0) {
         </div>
 
     </div>
-
-    <?php include("../js-mahjong.php") ?>
+    <?php include("../js-mahjong.php"); ?>
 
 
 </body>

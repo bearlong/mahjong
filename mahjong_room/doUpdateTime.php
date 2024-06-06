@@ -6,7 +6,7 @@ $room_id = isset($_POST['room_id']) ? intval($_POST['room_id']) : 0;
 
 // 验证room_id是否有效
 if ($room_id <= 0) {
-    die("<div class='container mt-5'><div class='alert alert-danger'>無效的房间ID_time</div></div>");
+    die("<div class='container mt-5'><div class='alert alert-danger'>无效的房间ID_time</div></div>");
 }
 
 $open_time = $_POST["open_time"];
@@ -22,13 +22,9 @@ $stmt->bind_param("ssi", $close_time, $open_time, $room_id);
 
 // 執行SQL查詢
 if ($stmt->execute()) {
-    echo "<script>
-            alert('新資料輸入成功');
-            window.location.href = './roomDetails.php?room_id=$room_id';
-          </script>";
-    exit();
+    header("Location: roomDetails.php?room_id=$room_id&status=success");
 } else {
-    echo "更新資料錯誤: " . $stmt->error;
+    header("Location: roomDetails.php?room_id=$room_id&status=error");
 }
 
 // 关闭预处理语句和数据库连接

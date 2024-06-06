@@ -12,7 +12,7 @@
             <div class="d-flex justify-content-start mx-3">
                 <label for="switch"><i class="hamburger fa-solid fa-bars"></i></label>
                 <input type="checkbox" id="switch">
-                <div class="list-group position-absolute z-1">
+                <div class="list-group list-group-nav position-absolute z-1">
                     <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-house me-2"></i>首頁</a>
                     <a href="../sidebar-nav.php" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-list-check me-2"></i>後台管理</a>
                     <a href="../report/dashboard.php" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-bars-progress me-2"></i>數據分析</a>
@@ -47,7 +47,7 @@
                 </ul>
             </li>
             <li>
-                <a data-group="商品管理" href="../sidebar-nav.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "active" ?>"><i class="fa-solid fa-store me-2"></i>商品管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "d-inline" ?>">></span></a>
+                <a data-group="商品管理" href="../product/product-list.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "active" ?>"><i class="fa-solid fa-store me-2"></i>商品管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "d-inline" ?>">></span></a>
             </li>
             <li>
                 <a data-group="線上課程管理" href="../mjphp/course-list.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "active" ?>"><i class="fa-solid fa-landmark me-2"></i>線上課程管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "d-inline" ?>">></span></a>

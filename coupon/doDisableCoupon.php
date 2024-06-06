@@ -1,20 +1,16 @@
 <?php
 require_once("../db_connect_mahjong.php");
 
-if (!isset($_GET["coupon_id"])) {
-  echo "請循正常管道進入此頁";
-  exit;
-}
 
-$coupon_id = $_GET["coupon_id"];
+$couponId = intval($_GET['coupon_id']); // 防止 SQL 注入
+$updateSql = "UPDATE coupons SET status = 'inactive' WHERE coupon_id = $couponId";
 
-$sql = "UPDATE coupons SET status='inactive' WHERE coupon_id = $coupon_id";
-
-if ($conn->query($sql) === TRUE) {
-  echo "刪除成功";
+$response = [];
+if ($conn->query($updateSql) === TRUE) {
+  $response['operation_result'] = "success";
 } else {
-  echo "刪除失敗: " . $conn->error;
+  $response['operation_result'] = "error";
+  $response['error'] = $conn->error; // 返回錯誤信息
 }
 
-header("Location:coupon-list.php?page=1&order=1");
-$conn->close();
+echo json_encode($response);

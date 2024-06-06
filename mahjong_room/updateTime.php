@@ -38,7 +38,9 @@ $conn->close();
   <?php include("../nav.php") ?>
 
   <div class="container main-content px-5">
+    <a href="roomDetails.php?room_id=<?php echo htmlspecialchars($room_id); ?>" class="btn btn-primary my-2">返回上一頁</a>
     <div class="row justify-content-center align-items-center g-2">
+
       <form action="doUpdateTime.php" method="post">
         <input type="hidden" name="room_id" value="<?php echo $room_id; ?>">
 
@@ -55,7 +57,9 @@ $conn->close();
       </form>
 
     </div>
+
   </div>
+
   <?php include("../js-mahjong.php") ?>
 
 </body>

@@ -2,10 +2,20 @@
 require_once("../db_connect_mahjong.php");
 session_start();
 
+if (!isset($_GET["id"])) {
+  $id = 1;
+} else {
+  $id = $_GET["id"];
+}
+
 // 查詢所有房間資料
-$sql = "SELECT * FROM mahjong_room WHERE id=1";
+$sql = "SELECT mahjong_room.*, owner.company_name FROM mahjong_room JOIN owner ON mahjong_room.owner_id = owner.id WHERE owner_id=$id";
 $result = $conn->query($sql);
 $rooms = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+
+$sqlOwner = "SELECT * FROM owner WHERE id=$id";
+$resultOwner = $conn->query($sqlOwner);
+$owner = $resultOwner->fetch_assoc();
 
 $conn->close();
 ?>
@@ -52,7 +62,7 @@ $conn->close();
 
   <div class="container main-content px-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="text-center">user＿name的棋牌室</h1>
+      <h1 class="text-center"><?= $owner["company_name"] ?>的棋牌室</h1>
       <a href="./dash/sidebar-nav.php" class="btn btn-primary">返回後台</a>
     </div>
     <div class="row">

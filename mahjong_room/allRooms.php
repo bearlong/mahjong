@@ -3,7 +3,7 @@ session_start();
 require_once("../db_connect_mahjong.php");
 
 // 每頁顯示的資料數量
-$records_per_page = 10;
+$records_per_page = 15;
 
 // 獲取當前頁數，默認為第1頁
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -12,8 +12,15 @@ if ($page < 1) $page = 1;
 // 搜尋功能
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 
+$owner = "";
+
+if (isset($_GET["owner"])) {
+  $owner_id = $_GET["owner"];
+  $owner = "AND mahjong_room.owner_id=" . $owner_id;
+}
+
 // 計算總記錄數，忽略已刪除的資料
-$sql_total = "SELECT COUNT(*) AS total FROM mahjong_room WHERE is_deleted = 0 AND name LIKE ?";
+$sql_total = "SELECT COUNT(*) AS total FROM mahjong_room WHERE is_deleted = 0 $owner AND name LIKE ?";
 $stmt_total = $conn->prepare($sql_total);
 $search_param = "%" . $search . "%";
 $stmt_total->bind_param("s", $search_param);
@@ -29,7 +36,7 @@ $total_pages = ceil($total_records / $records_per_page);
 $start_from = ($page - 1) * $records_per_page;
 
 // 查詢當前頁的記錄
-$sql = "SELECT mahjong_room.*, owner.company_name FROM mahjong_room JOIN owner ON mahjong_room.owner_id = owner.id WHERE is_deleted = 0 AND name LIKE ? LIMIT ?, ?";
+$sql = "SELECT mahjong_room.*, owner.company_name FROM mahjong_room JOIN owner ON mahjong_room.owner_id = owner.id WHERE is_deleted = 0 $owner AND name LIKE ? LIMIT ?, ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sii", $search_param, $start_from, $records_per_page);
 $stmt->execute();
@@ -65,9 +72,11 @@ $conn->close();
   <div class="container main-content px-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="text-center">房間總覽</h1>
-      <div>
-        <a href="allRooms.php" class="btn btn-primary">返回首頁</a>
-      </div>
+      <?php if (isset($_GET["search"]) || isset($_GET["owner"])) : ?>
+        <div>
+          <a href="allRooms.php" class="btn btn-primary">返回首頁</a>
+        </div>
+      <?php endif; ?>
     </div>
     <?php if (isset($_SESSION['message'])) : ?>
       <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
@@ -88,6 +97,7 @@ $conn->close();
       <table class="table table-hover">
         <thead>
           <tr>
+            <th>id</th>
             <th>名稱</th>
             <!-- <th>地址</th> -->
             <th>所屬公司</th>
@@ -99,8 +109,9 @@ $conn->close();
           <?php if (!empty($rooms)) : ?>
             <?php foreach ($rooms as $room) : ?>
               <tr>
+                <td><?= htmlspecialchars($room["room_id"]) ?></td>
                 <td><?= htmlspecialchars($room["name"]) ?></td>
-                <td><?= htmlspecialchars($room["company_name"]) ?></td>
+                <td><a class="text-decoration-none" href="?page=1&owner=<?= $room["owner_id"] ?>"><?= htmlspecialchars($room["company_name"]) ?></a></td>
                 <!-- <td><?= htmlspecialchars($room["close_time"]) ?></td> -->
                 <td><a href="deleteRoom.php?room_id=<?= htmlspecialchars($room['room_id']) ?>" class="btn btn-danger">刪除</a></td>
                 <td><a href="roomDetails.php?room_id=<?= htmlspecialchars($room['room_id']) ?>" class="btn btn-primary">查看詳情</a></td>
