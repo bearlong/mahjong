@@ -7,9 +7,14 @@ $allUserCount = $resultAll->num_rows;
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT id, username ,email, phone FROM users WHERE account LIKE '%$search%' AND valid = 1 ";
+    $sql = "SELECT * FROM users WHERE account LIKE '%$search%' AND valid = 1 ";
     $pageTitle = "$search 的搜尋結果";
-} else if (isset($_GET["page"]) && isset($_GET["order"])) {
+} else {
+    $sql = "SELECT * FROM users WHERE valid = 1";
+    $pageTitle = "會員列表";
+}
+
+if (isset($_GET["page"]) && isset($_GET["order"])) {
     $page = $_GET["page"];
     $perPage = 15;
     $firstItem = ($page - 1) * $perPage;
@@ -31,12 +36,8 @@ if (isset($_GET["search"])) {
             break;
     }
 
-    $sql = "SELECT * FROM users WHERE valid=1 $orderClause LIMIT $firstItem,$perPage";
+    $sql .= " $orderClause LIMIT $firstItem,$perPage";
     $pageTitle = "會員列表 第 $page 頁";
-} else {
-    $sql = "SELECT id, username ,email, phone FROM users WHERE valid = 1";
-    $pageTitle = "會員列表";
-    header("location:users.php?page=1&order=1&type=asc");
 }
 
 $result = $conn->query($sql);
@@ -196,13 +197,15 @@ if (isset($_POST['update_status'])) {
     <div class="container main-content px-5">
         <div class="header py-3">
             <div>
-                <label for="control-level">Control Level</label>
-                <select id="control-level">
-                    <option value="client-list">Client List</option>
-                </select>
+                <h1>會員列表</h1>
+                <?php if (isset($_GET["search"])) : ?>
+                    <a href="users.php?page=1&order=1" class="btn btn-primary my-2"><i class="fa-solid fa-left-long me-2"></i>回列表</a>
+                <?php endif; ?>
             </div>
             <div>
                 <form action="" method="get" class="d-inline">
+                    <input type="hidden" name="page" value="1">
+                    <input type="hidden" name="order" value="1">
                     <div class="input-group position-relative z-0">
                         <input type="text" class="form-control" placeholder="Search..." name="search">
                         <button class="btn btn-primary" type="submit">Search</button>
@@ -272,7 +275,7 @@ if (isset($_POST['update_status'])) {
                 <div class="footer">
                     <button type="submit" name="delete" class="btn btn-danger" onclick="return confirmDelete()">刪除選中項目</button>
                     <div class="pagination">
-                        <?php if ($pageCount > 1) : ?>
+                        <?php if ($pageCount >= 1) : ?>
                             <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
                                 <a href="?page=<?= $i ?>&order=<?= $order ?>&type=<?= $orderType ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
                             <?php endfor; ?>

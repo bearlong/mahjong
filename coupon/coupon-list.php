@@ -323,9 +323,15 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
               <a href="coupon-detail.php?coupon_id=<?= $coupon['coupon_id'] ?>" class="btn btn-primary" title="優惠劵詳細資料">
                 <i class="fa-solid fa-square-poll-horizontal"></i>
               </a>
-              <button class="btn btn-danger btn-disable" title="停用優惠劵" data-id="<?= $coupon['coupon_id'] ?>" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
+              <?php if ($coupon['status'] == 'inactive') : ?>
+                <button class="btn btn btn-secondary" disabled title="停用優惠劵" data-id="<?= $coupon['coupon_id'] ?>" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              <?php else : ?>
+                <button class="btn btn-danger btn-disable" title="停用優惠劵" data-id="<?= $coupon['coupon_id'] ?>" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              <?php endif; ?>
             </td>
           </tr>
         <?php endforeach ?>
