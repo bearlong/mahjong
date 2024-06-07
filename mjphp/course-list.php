@@ -249,11 +249,11 @@ $pageCount = ceil($allCourseCount / $perPage);
                     <tbody>
                         <?php foreach ($rows as $course) : ?>
                             <tr>
-                            <td class="text-end"><?= isset($course["id"]) ? $course["id"] : '' ?></td>
+                                <td class="text-end"><?= isset($course["id"]) ? $course["id"] : '' ?></td>
                                 <td><?= isset($course["course_name"]) ? $course["course_name"] : '' ?></td>
                                 <td><?= isset($course["category_name"]) ? $course["category_name"] : '' ?></td>
                                 <td>
-                                    <img src="/mjphp/images/<?= isset($course["category_name"]) ? $course["category_name"] : '' ?>/<?= isset($course["images"]) ? $course["images"] : '' ?>" alt="images" class="img-thumbnail" style="max-width: 100px;">
+                                    <img src="./images/<?= isset($course["category_name"]) ? $course["category_name"] : '' ?>/<?= isset($course["images"]) ? $course["images"] : '' ?>" alt="images" class="img-thumbnail" style="max-width: 100px;">
                                 </td>
                                 <td class="text-end"><?= isset($course["price"]) ? $course["price"] : '' ?></td>
                                 <td class="text-end"><?= isset($course["on_datetime"]) ? $course["on_datetime"] : '' ?></td>

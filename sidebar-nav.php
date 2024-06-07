@@ -177,7 +177,7 @@ session_start();
                     </ul>
                 </li>
                 <li>
-                    <a data-group="商品管理" href="./product/product-list.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "active" ?>"><i class="fa-solid fa-store me-2"></i>商品管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "d-inline" ?>">></span></a>
+                    <a data-group="商品管理" href="./product01/background.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "active" ?>"><i class="fa-solid fa-store me-2"></i>商品管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "商品管理") echo "d-inline" ?>">></span></a>
                 </li>
                 <li>
                     <a data-group="線上課程管理" href="./mjphp/course-list.php" class="main-sidebar d-block px-4 py-2 my-3 text-decoration-none <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "active" ?>"><i class="fa-solid fa-landmark me-2"></i>線上課程管理<span class="arrow <?php if (isset($_SESSION["group"]) && $_SESSION["group"] === "線上課程管理") echo "d-inline" ?>">></span></a>
