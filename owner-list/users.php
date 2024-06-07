@@ -189,6 +189,22 @@ if (isset($_GET["page"])) {
 
   </div>
   <?php include("../js-mahjong.php") ?>
+  <script>
+    function filterCoupons(filter) {
+      let url = new URL(window.location.href);
+      url.searchParams.set("f", filter);
+      url.searchParams.set("p", 1);
+      url.searchParams.set("o", <?= $order ?>);
+      url.searchParams.set("s", "<?= $search ?>");
+      url.searchParams.set("s_d", "<?= $startDate ?>");
+      url.searchParams.set("e_d", "<?= $endDate ?>");
+      url.searchParams.set("mC", "<?= $minCash ?>");
+      url.searchParams.set("MxC", "<?= $maxCash ?>");
+      url.searchParams.set("mP", "<?= $minPercent ?>");
+      url.searchParams.set("MxP", "<?= $maxPercent ?>");
+      window.location.href = url.toString();
+    }
+  </script>
 </body>
 
 </html>

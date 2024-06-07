@@ -10,7 +10,7 @@ if (!isset($_POST["username"])) {
 $username = $_POST["username"];
 $account = $_POST["account"];
 $password = $_POST["password"];
-$Address = $_POST["Address"];
+$address = $_POST["address"];
 $birth = $_POST["birth"];
 $gender = $_POST["gender"];
 
@@ -19,6 +19,7 @@ $phone = $_POST["phone"];
 
 if (empty($phone) || empty($email) || empty($phone)) {
   echo "請填入必要欄位";
+  header("location: create-user.php");
   exit;
 }
 
