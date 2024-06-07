@@ -37,7 +37,7 @@ if ($resultCheck->num_rows > 0) {
 // 驗證表單數據
 $validationErrors = [];
 if (empty($name)) {
-  $validationErrors["name_error"] = "請輸入優惠卷名稱。";
+  $validationErrors["name_error"] = "請輸入優惠劵名稱。";
   $_SESSION["name_class"] = "is-invalid";
   $_SESSION["name"] = "";
 } else {
@@ -46,7 +46,7 @@ if (empty($name)) {
 }
 
 if (empty($discountCode)) {
-  $validationErrors["discountCode_error"] = "請輸入優惠卷代碼。";
+  $validationErrors["discountCode_error"] = "請輸入優惠劵代碼。";
   $_SESSION["discountCode_class"] = "is-invalid";
   $_SESSION["discountCode"] = "";
 } else {
@@ -58,7 +58,7 @@ $_SESSION["discountType_text_color"] = "text-success";
 
 if ($discountType == "percent") {
   if (empty($percentDiscountValue)) {
-    $validationErrors["percentDiscountValue_error"] = "請輸入優惠卷折扣值。";
+    $validationErrors["percentDiscountValue_error"] = "請輸入優惠劵折扣值。";
     $_SESSION["percentDiscountValue_class"] = "is-invalid";
     $_SESSION["percentDiscountValue"] = "";
   } else {
@@ -67,7 +67,7 @@ if ($discountType == "percent") {
   }
 } else if ($discountType == "cash") {
   if (empty($cashDiscountValue)) {
-    $validationErrors["cashDiscountValue_error"] = "請輸入優惠卷折扣值。";
+    $validationErrors["cashDiscountValue_error"] = "請輸入優惠劵折扣值。";
     $_SESSION["cashDiscountValue_class"] = "is-invalid";
     $_SESSION["cashDiscountValue"] = "";
   } else {
@@ -77,7 +77,7 @@ if ($discountType == "percent") {
 }
 
 if (empty($validFrom)) {
-  $validationErrors["validFrom_error"] = "請選擇優惠卷有效起始日。";
+  $validationErrors["validFrom_error"] = "請選擇優惠劵有效起始日。";
   $_SESSION["validFrom_class"] = "is-invalid";
   $_SESSION["validFrom"] = "";
 } else {
@@ -86,7 +86,7 @@ if (empty($validFrom)) {
 }
 
 if (empty($validTo)) {
-  $validationErrors["validTo_error"] = "請選擇優惠卷有效截止日。";
+  $validationErrors["validTo_error"] = "請選擇優惠劵有效截止日。";
   $_SESSION["validTo_class"] = "is-invalid";
   $_SESSION["validTo"] = "";
 } else {
@@ -95,7 +95,7 @@ if (empty($validTo)) {
 }
 
 if (empty($limitValue)) {
-  $validationErrors["limitValue_error"] = "請輸入使度優惠卷限制金額。";
+  $validationErrors["limitValue_error"] = "請輸入使度優惠劵限制金額。";
   $_SESSION["limitValue_class"] = "is-invalid";
   $_SESSION["limitValue"] = "";
 } else {
@@ -104,7 +104,7 @@ if (empty($limitValue)) {
 }
 
 if (empty($usageLimit)) {
-  $validationErrors["usageLimit_error"] = "請輸入優惠卷可使用次數。";
+  $validationErrors["usageLimit_error"] = "請輸入優惠劵可使用次數。";
   $_SESSION["usageLimit_class"] = "is-invalid";
   $_SESSION["usageLimit"] = "";
 } else {
@@ -127,11 +127,11 @@ $sql = "INSERT INTO coupons (name, discount_code, discount_type, discount_value,
 
 if ($conn->query($sql) === TRUE) {
   $newCouponId = $conn->insert_id; // 獲取新增記錄的ID
-  $_SESSION["successMsg"] = "# " . $newCouponId . " " . "優惠卷新增成功";
+  $_SESSION["successMsg"] = "# " . $newCouponId . " " . "優惠劵新增成功";
   header("location:coupon-list.php?page=1&order=1");
   exit();
 } else {
-  $_SESSION["errorMsg"] = "優惠卷新增失敗: " . $conn->error;
+  $_SESSION["errorMsg"] = "優惠劵新增失敗: " . $conn->error;
   header("location:add-Coupon.php");
   exit();
 }

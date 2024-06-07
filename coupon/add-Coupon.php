@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 
 <head>
-  <title>新增優惠卷</title>
+  <title>新增優惠劵</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <?php include("coupon-css.php") ?>
@@ -18,18 +18,18 @@ session_start();
 
   <div class="container main-content px-5">
     <div class="text-center">
-      <h1 class="py-2 fw-semibold">新增優惠卷</h1>
+      <h1 class="py-2 fw-semibold">新增優惠劵</h1>
     </div>
     <div class="row justify-content-center position-relative mb-4">
       <div class="return py-3 position-absolute">
-        <a class="btn btn-primary fw-semibold" href="coupon-list.php?page=1&order=1"><i class="fa-solid fa-arrow-left"></i> 回優惠卷列表</a>
+        <a class="btn btn-primary fw-semibold" href="coupon-list.php?page=1&order=1"><i class="fa-solid fa-arrow-left"></i> 回優惠劵列表</a>
       </div>
 
       <div class="col-6 border border-2 border-primary-subtle rounded bg-light">
         <form action="doAddCoupon.php" method="post">
-          <!-- 優惠卷名稱 -->
+          <!-- 優惠劵名稱 -->
           <div class="py-3">
-            <label for="name" class="form-label fw-semibold">優惠卷名稱：</label>
+            <label for="name" class="form-label fw-semibold">優惠劵名稱：</label>
             <input type="text" class="form-control <?= $_SESSION["name_class"] ?? '' ?>" id="name" name="name" value="<?= $_SESSION["name"] ?? '' ?>" />
             <?php if (isset($_SESSION["name_error"])) : ?>
               <div class="text-danger text-error pt-2"><?= $_SESSION["name_error"]; ?></div>
@@ -37,9 +37,9 @@ session_start();
             <?php endif; ?>
           </div>
 
-          <!-- 優惠卷折扣碼 -->
+          <!-- 優惠劵折扣碼 -->
           <div class="mb-3">
-            <label for="discountCode" class="form-label fw-semibold">優惠卷折扣碼：</label>
+            <label for="discountCode" class="form-label fw-semibold">優惠劵折扣碼：</label>
             <div class="input-group position-relative z-0">
               <input type="text" class="form-control <?= $_SESSION["discountCode_class"] ?? '' ?>" id="discountCode" name="discountCode" value="<?= $_SESSION["discountCode"] ?? '' ?>" />
               <button type="button" class="btn btn-primary fw-semibold" id="randomCode">生成隨機代碼</button>
@@ -50,9 +50,9 @@ session_start();
             <?php endif; ?>
           </div>
 
-          <!-- 優惠卷折扣類型 -->
+          <!-- 優惠劵折扣類型 -->
           <div class="mb-3">
-            <label class="form-label fw-semibold">優惠卷折扣類型：</label>
+            <label class="form-label fw-semibold">優惠劵折扣類型：</label>
             <div class="row">
               <div class="col-6">
                 <div class="form-check">
@@ -69,9 +69,9 @@ session_start();
             </div>
           </div>
 
-          <!-- 優惠卷折扣金額 -->
+          <!-- 優惠劵折扣金額 -->
           <div class="mb-3" id="cashDiscountValueDiv">
-            <label for="cashDiscountValue" class="form-label fw-semibold">優惠卷折扣金額：</label>
+            <label for="cashDiscountValue" class="form-label fw-semibold">優惠劵折扣金額：</label>
             <div class="input-group">
               <div class="input-group-text">$</div>
               <input type="number" class="form-control <?= $_SESSION["cashDiscountValue_class"] ?? ''; ?>" id="cashDiscountValue" name="cashDiscountValue" value="<?= $_SESSION["cashDiscountValue"] ?? ''; ?>">
@@ -82,9 +82,9 @@ session_start();
             <?php endif; ?>
           </div>
 
-          <!-- 優惠卷折扣百分比 -->
+          <!-- 優惠劵折扣百分比 -->
           <div class="mb-3" id="percentDiscountValueDiv" style="display:none;">
-            <label for="percentDiscountValue" class="form-label fw-semibold">優惠卷折扣百分比：</label>
+            <label for="percentDiscountValue" class="form-label fw-semibold">優惠劵折扣百分比：</label>
             <div class="input-group">
               <input type="number" min="0" max="100" class="form-control <?= $_SESSION["percentDiscountValue_class"] ?? ''; ?>" id="percentDiscountValue" name="percentDiscountValue" value="<?= $_SESSION["percentDiscountValue"] ?? ''; ?>">
               <div class="input-group-text">%</div>
