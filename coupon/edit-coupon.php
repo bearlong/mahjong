@@ -11,13 +11,13 @@ if (!isset($_GET["coupon_id"])) {
 
 $coupon_id = $_GET["coupon_id"];
 
-// 查詢優惠卷資料
+// 查詢優惠劵資料
 $sql = "SELECT * FROM coupons WHERE coupon_id = $coupon_id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
 // 設定頁面標題
-$title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
+$title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠劵不存在";
 ?>
 
 <!doctype html>
@@ -36,12 +36,12 @@ $title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
 
   <div class="container main-content px-5">
     <div class="text-center">
-      <h1 class="py-2 fw-semibold">編輯優惠卷</h1>
+      <h1 class="py-2 fw-semibold">編輯優惠劵</h1>
     </div>
     <div class="row justify-content-center position-relative">
       <div class="return py-3 position-absolute">
         <a class="btn btn-primary fw-semibold" href="coupon-list.php?page=1&order=1">
-          <i class="fa-solid fa-arrow-left"></i> 回優惠卷列表
+          <i class="fa-solid fa-arrow-left"></i> 回優惠劵列表
         </a>
       </div>
       <div class="row justify-content-center align-items-center">
@@ -58,11 +58,11 @@ $title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
                 <tbody>
                   <tr>
                     <input type="hidden" name="coupon_id" value="<?= $row["coupon_id"] ?>">
-                    <th class="text-center">優惠卷編號</th>
+                    <th class="text-center">優惠劵編號</th>
                     <td class="fw-semibold text-center"><?= $row["coupon_id"] ?></td>
                   </tr>
                   <tr>
-                    <th class="py-3 text-center">優惠卷名稱</th>
+                    <th class="py-3 text-center">優惠劵名稱</th>
                     <td>
                       <input type="text" class="form-control <?= $_SESSION["name_class"] ?? '' ?>" id="name" name="name" value="<?= $row["name"] ?>">
                       <?php if (isset($_SESSION["name_error"])) : ?>
@@ -72,7 +72,7 @@ $title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
                     </td>
                   </tr>
                   <tr>
-                    <th class="py-3 text-center">優惠卷折扣碼</th>
+                    <th class="py-3 text-center">優惠劵折扣碼</th>
                     <td>
                       <div class="input-group">
                         <input type="text" class="form-control <?= $_SESSION["discountCode_class"] ?? '' ?>" name="discountCode" value="<?= $row["discount_code"] ?>" id="discountCode">
@@ -85,7 +85,7 @@ $title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
                     </td>
                   </tr>
                   <tr>
-                    <th class="py-2 text-center">優惠卷折扣類型</th>
+                    <th class="py-2 text-center">優惠劵折扣類型</th>
                     <td>
                       <div class="row">
                         <div class="col-6">
@@ -108,7 +108,7 @@ $title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
                     </td>
                   </tr>
                   <tr>
-                    <th class="col-3 py-3 text-center">優惠卷折扣值</th>
+                    <th class="col-3 py-3 text-center">優惠劵折扣值</th>
                     <td class="col-9">
                       <div id="cashDiscountValueDiv" <?= $row["discount_type"] !== 'cash' ? 'style="display: none;"' : '' ?>>
                         <div class="input-group">
@@ -133,7 +133,7 @@ $title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
                     </td>
                   </tr>
                   <tr>
-                    <th class="py-4 text-center">優惠卷有效期</th>
+                    <th class="py-4 text-center">優惠劵有效期</th>
                     <td>
                       <div class="row">
                         <div class="col-6">
@@ -209,7 +209,7 @@ $title = $result->num_rows > 0 ? $row["coupon_id"] : "優惠卷不存在";
               </div>
             </form>
           <?php else : ?>
-            <h1>優惠卷不存在</h1>
+            <h1>優惠劵不存在</h1>
           <?php endif; ?>
         </div>
       </div>

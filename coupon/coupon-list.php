@@ -163,7 +163,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5 fw-semibold" id="deleteModalLabel">確認停用優惠卷?</h1>
+          <h1 class="modal-title fs-5 fw-semibold" id="deleteModalLabel">確認停用優惠劵?</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">
@@ -366,7 +366,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
       btn.addEventListener('click', function() {
         currentCouponId = this.dataset.id;
         confirm.removeAttribute('disabled');
-        modalTitle.textContent = '確認停用優惠卷 ' + '#' + currentCouponId + ' ?';
+        modalTitle.textContent = '確認停用優惠劵 ' + '#' + currentCouponId + ' ?';
       });
     });
 
