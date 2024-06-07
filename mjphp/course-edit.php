@@ -7,6 +7,7 @@ if (!isset($_GET["id"])) {
 }
 
 require_once("../db_connect_mahjong.php");
+session_start();
 
 
 $sql = "SELECT * FROM course WHERE id = $id AND valid = 1";

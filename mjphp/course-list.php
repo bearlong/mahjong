@@ -185,7 +185,7 @@ $pageCount = ceil($allCourseCount / $perPage);
                 <form action="" method="get" class="row g-3">
                     <div class="col-md-12">
                         <label for="search" class="form-label">搜尋課程</label>
-                        <div class="input-group">
+                        <div class="input-group position-relative z-0">
                             <input type="text" class="form-control" placeholder="請輸入要查詢的課程名稱。" name="search" value="<?= $search ?>">
                             <input type="hidden" name="off_datetime" value="<?= $off_datetime ?>">
                             <input type="hidden" name="on_datetime" value="<?= $on_datetime ?>">

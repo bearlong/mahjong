@@ -86,7 +86,7 @@ $rowsImg = $resultImg->fetch_all(MYSQLI_ASSOC);
                     <td><input class="form-control uploadImage" type="file" name="images[]" multiple></td>
                     <td>
                         <div class="img-prevbox">
-                            預覽圖: <img class="mt-2 object-fit-cover d-none image" src="" alt="">
+                            預覽圖: <img class="mt-2 img-fluid d-none image" src="" alt="">
                         </div>
                     </td>
                 </tr>

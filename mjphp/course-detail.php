@@ -7,6 +7,7 @@ if (!isset($_GET["id"])) {
 }
 
 require_once("../db_connect_mahjong.php");
+session_start();
 
 $sql = "SELECT * FROM course WHERE id = $id AND valid=1";
 // echo $sql;
@@ -77,7 +78,7 @@ $categoryCount = $resultCategory->num_rows;
             <div class="col-lg-4">
                 <?php if ($courseExit) : ?>
                     <table class="table table-bordered">
-                        
+
                         <tr>
                             <th>id</th>
                             <td><?= $row["id"] ?></td>
@@ -87,8 +88,8 @@ $categoryCount = $resultCategory->num_rows;
                             <td><?= $row["course_name"] ?></td>
                         </tr>
                         <tr>
-                        <th>category_name</th>
-                        <td><?= $rowsCategory[0]["category_name"] ?></td>
+                            <th>category_name</th>
+                            <td><?= $rowsCategory[0]["category_name"] ?></td>
                         </tr>
                         <tr>
                             <th>images</th>

@@ -1,5 +1,6 @@
 <?php
 require_once("../db_connect_mahjong.php");
+session_start();
 
 $sqlAll = "SELECT * FROM users WHERE valid = 1";
 $resultAll = $conn->query($sqlAll);
@@ -43,8 +44,9 @@ if (isset($_GET["page"]) && isset($_GET["order"])) {
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 $userCount = $result->num_rows;
-if (isset($_GET["page"])) {
+if (isset($_GET["search"])) {
     $userCount = $allUserCount;
+    $pageCount = ceil($allUserCount / $perPage);
 }
 
 // 處理刪除請求
@@ -244,7 +246,6 @@ if (isset($_POST['update_status'])) {
                             <th>email</th>
                             <th>phone</th>
                             <th>created_at</th>
-                            <th>Status</th>
                             <th>More</th>
                         </tr>
                     </thead>
@@ -261,10 +262,6 @@ if (isset($_POST['update_status'])) {
                                 <td><?= $user["email"] ?></td>
                                 <td><?= $user["phone"] ?></td>
                                 <td><?= $user["created_at"] ?></td>
-                                <td>
-                                    <!-- <span><?= $user["status"] ? 'Active' : 'Inactive' ?></span>
-                                    <input type="hidden" name="status[<?= $user["id"] ?>]" value="<?= $user["status"] ? 'true' : 'false' ?>"> -->
-                                </td>
                                 <td>
                                     <a href="user.php?id=<?= $user["id"] ?>" class="btn color btn-primary"><i class="fa-solid fa-circle-info"></i></a>
                                 </td>

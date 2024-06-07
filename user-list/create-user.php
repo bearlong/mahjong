@@ -98,7 +98,7 @@ session_start();
   <div class="container main-content px-5">
     <div class="form-container">
       <div class="py-2">
-        <a class="btn btn-primary" href="users.php"><i class="fa-solid fa-arrow-left"></i> 回使用者列表
+        <a class="btn btn-primary" href="users.php?page=1&order=1"><i class="fa-solid fa-arrow-left"></i> 回使用者列表
         </a>
       </div>
       <h1>建立使用者</h1>

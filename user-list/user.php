@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
   <?php include("../nav.php") ?>
   <div class="container main-content">
     <div class="py-2">
-      <a class="btn btn-primary" href="users.php"><i class="fa-solid fa-arrow-left"></i> 回使用者列表
+      <a class="btn btn-primary" href="users.php?page=1&order=1"><i class="fa-solid fa-arrow-left"></i> 回使用者列表
       </a>
     </div>
 

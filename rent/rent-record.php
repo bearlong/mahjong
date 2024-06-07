@@ -37,7 +37,8 @@ $title = $row["user_name"] . " 訂單內容";
 </head>
 
 <body>
-    <div class="container px-5">
+    <?php include("../nav.php") ?>
+    <div class="container main-content px-5">
         <h1 class="fw-semibord py-3"><?= $title ?></h1>
         <a href="rent-record-list.php" class="btn btn-primary btn-sm my-2"><i class="fa-solid fa-left-long me-2"></i>租借紀錄列表</a>
         <div class="row justify-content-center">
