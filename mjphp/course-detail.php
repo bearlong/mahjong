@@ -68,6 +68,7 @@ if ($result->num_rows > 0) {
             <div class="col-lg-4">
                 <?php if ($courseExit) : ?>
                     <table class="table table-bordered">
+                        
                         <tr>
                             <th>id</th>
                             <td><?= $row["id"] ?></td>
@@ -75,6 +76,18 @@ if ($result->num_rows > 0) {
                         <tr>
                             <th>course_name</th>
                             <td><?= $row["course_name"] ?></td>
+                        </tr>
+                        <tr>
+                            <th>course_category_id</th>
+                            <td><?= $row["course_category_id"] ?></td>
+                        </tr>
+                        <tr>
+                            <th>images</th>
+                            <td><?= $row["images"] ?></td>
+                        </tr>
+                        <tr>
+                            <th>file</th>
+                            <td><?= $row["file"] ?></td>
                         </tr>
                         <tr>
                             <th>price</th>
