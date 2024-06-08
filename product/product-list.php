@@ -93,7 +93,7 @@ $rows = $resultPage->fetch_all(MYSQLI_ASSOC);
 $sqlMaxMin = "SELECT MAX(price) as max_price, MIN(price) as min_price FROM product";
 $resultMaxMin = $conn->query($sqlMaxMin);
 
-if ($result->num_rows > 0) {
+if ($resultMaxMin->num_rows > 0) {
     // 取出結果
     $rowMaxMin = $resultMaxMin->fetch_assoc();
     $max_price = $rowMaxMin["max_price"];

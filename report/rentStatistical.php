@@ -20,7 +20,7 @@ for ($i = 1; $i <= 12; $i++) {
 
 
 
-$sqlCategoryCount = "SELECT rent_product.category_id, category.name AS category_name, COUNT(rent_record.id) AS count FROM rent_record JOIN rent_product ON rent_record.product_id = rent_product.id JOIN category ON rent_product.category_id = category.id GROUP BY rent_product.category_id, category.name";
+$sqlCategoryCount = "SELECT rent_product.category_id, rent_category.name AS category_name, COUNT(rent_record.id) AS count FROM rent_record JOIN rent_product ON rent_record.product_id = rent_product.id JOIN rent_category ON rent_product.category_id = rent_category.id GROUP BY rent_product.category_id, rent_category.name";
 
 $resultCategoryCount = $conn->query($sqlCategoryCount);
 

@@ -7,7 +7,7 @@ if (!isset($_GET["id"])) {
     $id = $_GET["id"];
 }
 
-$sql = "SELECT rent_product.*, category.name AS category_name, rent_price_category.rent_price, rent_price_category.rent_day, rent_price_category.range  FROM rent_product JOIN category ON rent_product.category_id = category.id JOIN rent_price_category ON rent_product.rent_price_category_id = rent_price_category.id WHERE rent_product.id = $id";
+$sql = "SELECT rent_product.*, rent_category.name AS category_name, rent_price_category.rent_price, rent_price_category.rent_day, rent_price_category.range  FROM rent_product JOIN rent_category ON rent_product.category_id = rent_category.id JOIN rent_price_category ON rent_product.rent_price_category_id = rent_price_category.id WHERE rent_product.id = $id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 

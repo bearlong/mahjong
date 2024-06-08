@@ -1,7 +1,7 @@
 <?php
 require_once("../db_connect_mahjong.php");
 session_start();
-$sqlCategory = "SELECT * FROM category";
+$sqlCategory = "SELECT * FROM rent_category";
 $resultCategory = $conn->query($sqlCategory);
 $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
 

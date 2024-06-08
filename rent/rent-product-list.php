@@ -4,14 +4,14 @@ session_start();
 unset($_SESSION["errorMsg"]);
 unset($_SESSION["imgId"]);
 
-$sql = "SELECT rent_product.*, category.name AS category_name, rent_price_category.rent_price, rent_price_category.rent_day  FROM rent_product JOIN category ON rent_product.category_id = category.id JOIN rent_price_category ON rent_product.rent_price_category_id = rent_price_category.id WHERE 1";
+$sql = "SELECT rent_product.*, rent_category.name AS category_name, rent_price_category.rent_price, rent_price_category.rent_day  FROM rent_product JOIN rent_category ON rent_product.category_id = rent_category.id JOIN rent_price_category ON rent_product.rent_price_category_id = rent_price_category.id WHERE 1";
 $pageTitle = "租借產品管理列表";
 
 $splAll = "SELECT * FROM rent_product";
 $resultAll = $conn->query($splAll);
 $allCount = $resultAll->num_rows;
 
-$sqlCategory = "SELECT * FROM category";
+$sqlCategory = "SELECT * FROM rent_category";
 $resultCategory = $conn->query($sqlCategory);
 $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
 
