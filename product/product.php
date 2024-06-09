@@ -12,6 +12,10 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
 $title = $row['name'];
+
+$sqlImages = "SELECT * FROM product_images WHERE product_id = $id";
+$resultImages = $conn->query($sqlImages);
+$rowsImages  = $resultImages->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!doctype html>
@@ -26,7 +30,19 @@ $title = $row['name'];
     <!-- Bootstrap CSS v5.2.1 -->
     <?php include("../css-mahjong.php") ?>
     <style>
+        .img-box {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
 
+        .small-pic {
+            border: 4px solid transparent;
+
+            &:hover {
+                border: 4px solid #0D6EFD;
+            }
+        }
     </style>
 
 </head>
@@ -77,15 +93,36 @@ $title = $row['name'];
                         <a href="editProduct.php?id=<?= $row["id"] ?>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                     </div>
                 </div>
+                <div class="d-flex gap-3 py-3">
+                    <?php foreach ($rowsImages as $image) : ?>
+                        <div class="img-box ratio ratio-1x1 position-relative">
+                            <img class="object-fit-cover small-pic" src="../images/product/<?= $image["img"] ?>" alt="">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
             <div class="col-4">
-                <img class="img-fluid" src="../images/product/<?= $row["img"] ?>" alt="">
+                <img class="img-fluid main-pic" src="../images/product/<?= $row["img"] ?>" alt="">
             </div>
         </div>
     </div>
 
     <!-- Bootstrap JavaScript Libraries -->
     <?php include("../js-mahjong.php") ?>
+    <script>
+        const mainPic = document.querySelector(".main-pic");
+        const smallPics = document.querySelectorAll(".small-pic");
+
+        for (let i = 0; i < smallPics.length; i++) {
+            smallPics[i].addEventListener("click", function() {
+                for (let j = 0; j < smallPics.length; j++) {
+                    smallPics[j].classList.remove("pic-active");
+                }
+                mainPic.src = this.src;
+                this.classList.add("pic-active");
+            });
+        }
+    </script>
 </body>
 
 </html>

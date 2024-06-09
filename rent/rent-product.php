@@ -98,13 +98,6 @@ $rowsImages  = $resultImages->fetch_all(MYSQLI_ASSOC);
                             </td>
                         </tr>
                     </table>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="d-flex flex-column">
-                    <div>
-                        <img class="img-fluid main-pic" src="../images/rent_product/<?= $row["id"] ?>/<?= $row["img"] ?>" alt="<?= $row["name"] ?>">
-                    </div>
                     <div class="d-flex gap-3 py-3">
                         <?php foreach ($rowsImages as $image) : ?>
                             <div class="img-box ratio ratio-1x1 position-relative">
@@ -112,6 +105,14 @@ $rowsImages  = $resultImages->fetch_all(MYSQLI_ASSOC);
                             </div>
                         <?php endforeach; ?>
                     </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="d-flex flex-column">
+                    <div>
+                        <img class="img-fluid main-pic" src="../images/rent_product/<?= $row["id"] ?>/<?= $row["img"] ?>" alt="<?= $row["name"] ?>">
+                    </div>
+
                 </div>
             </div>
         </div>
