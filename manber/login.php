@@ -19,7 +19,7 @@ if (isset($_SESSION["users"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登入及註冊畫面</title>
+    <title>只欠東風</title>
     <?php include("../css-mahjong.php") ?>
     <style>
         body {
@@ -34,34 +34,15 @@ if (isset($_SESSION["users"])) {
         }
 
         .container {
-            width: 300px;
+            width: 400px;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             text-align: center;
+            opacity: .9;
         }
 
-        .toggle-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .toggle-buttons button {
-            flex: 1;
-            padding: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-        }
-
-        .toggle-buttons button:not(:last-child) {
-            margin-right: 10px;
-        }
 
         .form {
             display: none;
@@ -71,6 +52,10 @@ if (isset($_SESSION["users"])) {
             display: block;
         }
 
+        .changeBtn {
+            cursor: pointer;
+        }
+
         /* .form input {
             width: calc(100% - 22px);
             padding: 10px;
@@ -78,36 +63,23 @@ if (isset($_SESSION["users"])) {
             border: 1px solid #ccc;
             border-radius: 4px;
         } */
-
-        .form button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
     </style>
 </head>
 
 <body>
 
     <div class="container">
-        <div class="toggle-buttons">
-            <button id="loginBtn">登入</button>
-            <button id="registerBtn">註冊</button>
-        </div>
-
         <form action="welcome.php" id="loginForm" class="form active" method="post">
-            <div class="pb-2">
-                <input class="form-control" name="account" type="text" placeholder="帳號" required>
+            <h1 class="h3 fw-semibold">登入</h1>
+            <div class="form-floating mb-3">
+                <input type="email" name="account" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">帳號</label>
             </div>
-            <div class="pb-2">
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">密碼</label>
+            </div>
 
-                <input class="form-control" name="password" type="password" placeholder="密碼" required>
-            </div>
             <div class="pb-2">
 
                 <label class="form-check-label" for="flexCheckChecked">
@@ -121,7 +93,8 @@ if (isset($_SESSION["users"])) {
 
                 <?php unset($_SESSION["errorMsg"]) ?>
             <?php endif; ?>
-            <button type="submit">登入</button>
+            <div class="pb-2 text-secondary">還沒有加入會員嗎? <a class="changeBtn btn btn-light" id="registerBtn">立即註冊</a></div>
+            <button class="btn btn-dark" type="submit">登入</button>
         </form>
 
         <form id="registerForm" class="form" method="post" action="register.php">
@@ -140,15 +113,26 @@ if (isset($_SESSION["users"])) {
             <div class="pb-2">
                 <input class="form-control" type="text" name="username" placeholder="用戶名" required>
             </div>
+            <div class="changeBtn pb-2" id="loginBtn">已經是會員了嗎?</div>
+            <button class="btn btn-dark" type="submit">註冊</button>
+        </form>
+        <form action="" id="detailForm" class="form">
             <div class="pb-2">
                 <input class="form-control" type="phone" name="phone" placeholder="電話" required>
             </div>
             <div class="pb-2">
-                <select class="form-select" name="gender" aria-label="Default select example">
-                    <option selected>性別</option>
-                    <option value="male">男</option>
-                    <option value="female">女</option>
-                </select>
+                <div class="form-check">
+                    <input class="form-check-input" value="male" type="radio" name="gender" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        男
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" value="female" type="radio" name="gender" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        女
+                    </label>
+                </div>
             </div>
             <div class="pb-2">
                 <select class="form-select" name="city" aria-label="Default select example">
@@ -158,21 +142,14 @@ if (isset($_SESSION["users"])) {
                     <option value="Kaohsiung">高雄</option>
                 </select>
             </div>
-
             <input class="form-control" type="Address" name="Address" placeholder="完整地址" required>
             <div class="pb-2">
-
                 <label>
                     Enter your birthday: </label>
                 <input class="form-control" type="date" name="birth" required pattern="\d{4}-\d{2}-\d{2}" />
                 <span class="validity"></span>
-
             </div>
-
-
-
-
-            <button type="submit">註冊</button>
+            <button class="btn btn-dark" type="submit">註冊</button>
         </form>
     </div>
 
