@@ -18,7 +18,7 @@
                     <a href="../report/dashboard.php" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-bars-progress me-2"></i>數據分析</a>
                     <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-regular fa-comment me-2"></i>意見回饋</a>
                     <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-gear me-2"></i>設定</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-door-closed me-2"></i>Sign out</a>
+                    <a href="../manber/doLogout.php" class="list-group-item list-group-item-action list-group-item-dark"><i class="fa-solid fa-door-closed me-2"></i>Log out</a>
                 </div>
             </div>
         </nav>
@@ -63,8 +63,8 @@
             </li>
         </ul>
         <div class="d-flex justify-content-start mt-5">
-            <a class="d-block mx-4 py-2 text-decoration-none btn btn-outline-light" href="">
-                <i class="fa-solid fa-door-closed me-2"></i>Sign out
+            <a class="d-block mx-4 py-2 text-decoration-none btn btn-outline-light" href="../manber/doLogout.php">
+                <i class="fa-solid fa-door-closed me-2"></i>Log out
             </a>
         </div>
     </div>

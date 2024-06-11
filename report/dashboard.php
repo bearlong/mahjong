@@ -96,7 +96,7 @@ unset($_SESSION["group"]);
       <div class="no-print border-5 rounded-circle switch-button-day" id="switchButton"></div>
     </div>
     <div class="no-print text-white me-3">
-      <a href="" class="btn btn-dark">
+      <a href="../manber/doLogout.php" class="btn btn-dark">
         <i class="bi bi-door-closed me-2"></i>Sign out
       </a>
     </div>
@@ -135,7 +135,7 @@ unset($_SESSION["group"]);
         </a>
       </li>
       <li>
-        <a class="d-block px-3 py-2 text-decoration-none" href="">
+        <a class="d-block px-3 py-2 text-decoration-none" href="../manber/doLogout.php">
           <i class="bi bi-door-closed me-2"></i>Sign out
         </a>
       </li>
