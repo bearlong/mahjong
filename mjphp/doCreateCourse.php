@@ -1,5 +1,6 @@
     <?php
     require_once("../db_connect_mahjong.php");
+    session_start();
 
     // 檢查是否從正常管道進入此頁
     if (!isset($_POST["course_name"])) {
@@ -12,6 +13,7 @@
     $course_category_id = $_POST["course_category_id"];
     $on_datetime = $_POST["on_datetime"];
     $off_datetime = $_POST["off_datetime"];
+    $content = $_POST["content"];
     $file = $_FILES["file"];
     $image = $_FILES["image"];
     $now = date('Y-m-d H:i:s');
@@ -29,7 +31,7 @@
     $stmtCheck->close();
 
     // 使用預處理語句準備 SQL，防止 SQL 注入
-    $sql = "INSERT INTO course (course_name, price, course_category_id, on_datetime, off_datetime, file, images, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO course (course_name, price, content, course_category_id, on_datetime, off_datetime, file, images, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
@@ -38,7 +40,7 @@
     }
 
     // 綁定參數
-    $stmt->bind_param("ssssssss", $course_name, $price, $course_category_id, $on_datetime, $off_datetime, $file['name'], $image['name'], $now);
+    $stmt->bind_param("sssssssss", $course_name, $price, $content, $course_category_id, $on_datetime, $off_datetime, $file['name'], $image['name'], $now);
 
     // 執行語句
     if ($stmt->execute()) {
@@ -66,7 +68,7 @@
 
         if (move_uploaded_file($file["tmp_name"], $uploaded_file) && move_uploaded_file($image["tmp_name"], $uploaded_image)) {
             echo "檔案和圖片上傳成功，新資料輸入成功，id 為 $last_id";
-            header("location: course-list.php");
+            header("location: course-chapter.php?id=" . $last_id);
         } else {
             echo "檔案或圖片上傳失敗";
         }

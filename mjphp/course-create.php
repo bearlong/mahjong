@@ -1,5 +1,11 @@
 <?php
 session_start();
+require_once("../db_connect_mahjong.php");
+$sql = "SELECT * FROM course_category";
+
+$result = $conn->query($sql);
+
+$rows = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -53,11 +59,9 @@ session_start();
                     <div class="mb-3">
                         <label for="course_category_id" class="form-label">*類別</label>
                         <select id="course_category_id" name="course_category_id" class="form-select" required>
-                            <option value="1">1: Gomoku</option>
-                            <option value="2">2: Mahjong</option>
-                            <option value="3">3: Go</option>
-                            <option value="4">4: Chess</option>
-                            <option value="5">5: Shogi</option>
+                            <?php foreach ($rows as $row) : ?>
+                                <option value="<?= $row["id"] ?>"><?= $row["name"] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -71,7 +75,11 @@ session_start();
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="file" class="form-label">*上傳影片</label>
+                    <label for="content" class="form-label">*課程介紹</label>
+                    <textarea name="content" id="content" rows="4" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="file" class="form-label">*上傳預告影片</label>
                     <input type="file" class="form-control" id="file" name="file" accept="video/*" required>
                 </div>
                 <div class="mb-3">
