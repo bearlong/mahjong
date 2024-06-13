@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
             <a class="btn btn-primary" href="course-list.php?id=<?= $id ?>"><i class="fa-solid fa-arrow-left"></i>回課程列表</a>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <?php if ($courseExit) : ?>
                     <form action="doUpdateCourse.php" method="post">
                         <table class="table table-bordered">
@@ -85,11 +85,21 @@ if ($result->num_rows > 0) {
                     <?php else : ?>
                         <h1>課程不存在</h1>
                     <?php endif; ?>
-                    <button class="btn btn-primary" type="submit">送出</button>
-                    <a class="btn btn-secondary" href="course-detail.php">back <i class="fa-solid fa-arrow-left"></i></a>
-                    </form>
+            </div>
+            <div class="col-lg-3">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>課程敘述</th>
+                        <td><textarea name="content" id="" rows="6"><?= $row["content"] ?></textarea></td>
+                    </tr>
+                </table>
             </div>
         </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">送出</button>
+            <a class="btn btn-secondary" href="course-detail.php">back <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+        </form>
 
     </div>
     <?php include("../js-mahjong.php"); ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-06-13 10:57:21
+-- 產生時間： 2024-06-13 14:37:24
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -47,28 +47,6 @@ INSERT INTO `brand` (`id`, `name`, `valid`) VALUES
 (14, '輝葉良品', 1),
 (15, '桌遊', 1),
 (16, '馬丘machill', 1);
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `category`
---
-
-CREATE TABLE `category` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `category`
---
-
-INSERT INTO `category` (`id`, `name`) VALUES
-(1, '麻將桌'),
-(2, '桌游-策略'),
-(3, '桌遊-派對'),
-(4, '桌遊-RPG'),
-(5, '桌遊-台灣元素');
 
 -- --------------------------------------------------------
 
@@ -207,7 +185,7 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id`, `course_name`, `course_category_id`, `content`, `price`, `images`, `file`, `created_at`, `updated_at`, `on_datetime`, `off_datetime`, `valid`) VALUES
-(1, '麻將大師之路：掌握技巧、精通策略', 2, '', 1000, 'mj1.jpg', 'v1.mp4', '2024-05-28 15:09:26', '2024-05-28 15:09:26', '2024-05-05', '2024-06-06', 1),
+(1, '麻將大師之路：掌握技巧、精通策略', 2, '酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷酷', 1000, 'mj1.jpg', 'v1.mp4', '2024-05-28 15:09:26', '2024-05-28 15:09:26', '2024-05-05', '2024-06-06', 1),
 (2, '麻將魔法學堂：從入門到高手，魔法一步步展開', 2, '', 4000, 'mj2.jpg', 'v2.mp4', '2024-05-28 15:09:26', '2024-05-28 15:09:26', '2024-05-30', '2024-06-08', 1),
 (3, '麻將心理戰：揭秘對手心理，勝利在指間', 2, '', 3000, 'mj3.jpg', 'v3.mp4', '2024-05-28 15:09:26', '2024-05-28 15:09:26', '2024-06-01', '2024-06-27', 1),
 (4, '麻將策略工坊：戰術、布局，學會讓牌在你手中說話', 2, '', 10000, 'mj4.jpg', 'v4.mp4', '2024-05-28 15:09:26', '2024-05-28 15:09:26', '2024-06-02', '2024-06-21', 1),
@@ -299,7 +277,8 @@ INSERT INTO `course` (`id`, `course_name`, `course_category_id`, `content`, `pri
 (90, '課程優', 4, '', 4433, 'go8.jpg', 'go8.mp4', '2024-06-07 11:07:24', '0000-00-00 00:00:00', '2024-05-28', '2024-06-28', 0),
 (91, '圍棋課', 3, '', 1320, '000001_1678342976.webp', '【課程資訊】手氣是可以藉由牌技去做改變的！｜20201012 吳老師麻將心法.mp4', '2024-06-07 12:26:08', '0000-00-00 00:00:00', '2024-05-26', '2024-06-08', 0),
 (92, 'as12', 3, '', 2233, '002.webp', '【課程資訊】有緣牌與無緣牌｜吳老師心法試聽章2｜20211103 吳老師麻將心法.mp4', '2024-06-07 13:36:32', '0000-00-00 00:00:00', '2024-06-03', '2024-07-11', 0),
-(93, 'dvdv', 3, '', 3334, '600x400精選_圖騰師.jpg', '【課程資訊】有緣牌與無緣牌｜吳老師心法試聽章2｜20211103 吳老師麻將心法.mp4', '2024-06-07 13:45:57', '0000-00-00 00:00:00', '2024-05-27', '2024-07-03', 0);
+(93, 'dvdv', 3, '', 3334, '600x400精選_圖騰師.jpg', '【課程資訊】有緣牌與無緣牌｜吳老師心法試聽章2｜20211103 吳老師麻將心法.mp4', '2024-06-07 13:45:57', '0000-00-00 00:00:00', '2024-05-27', '2024-07-03', 0),
+(94, 'aaaaaaaa', 2, 'asdasdasd', 5555, '002.webp', '【課程資訊】手氣是可以藉由牌技去做改變的！｜20201012 吳老師麻將心法.mp4', '2024-06-13 14:23:00', '0000-00-00 00:00:00', '2024-05-26', '2024-06-27', 1);
 
 -- --------------------------------------------------------
 
@@ -341,6 +320,16 @@ CREATE TABLE `course_chapter` (
   `on-datetime` datetime NOT NULL,
   `off-datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `course_chapter`
+--
+
+INSERT INTO `course_chapter` (`id`, `course_id`, `chapter_name`, `content`, `images`, `created_at`, `updated_at`, `video_url`, `on-datetime`, `off-datetime`) VALUES
+(1, 1, '666', '222', '2121', '2024-06-13 12:28:26', '2024-06-13 12:28:26', '1212', '2024-06-13 12:28:26', '2024-06-13 12:28:26'),
+(2, 1, '888', '999', 'sss', '2024-06-13 12:28:44', '2024-06-13 12:28:44', 'sdf', '2024-06-13 12:28:44', '2024-06-13 12:28:44'),
+(3, 1, 'aaa', 'www', '【課程資訊】手氣是可以藉由牌技去做改變的！｜20201012 吳老師麻將心法.mp4', '2024-06-13 13:51:36', '0000-00-00 00:00:00', '【課程資訊】手氣是可以藉由牌技去做改變的！｜20201012 吳老師麻將心法.mp4', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 1, 'www', 'sss', '【課程資訊】麻將的勝敗絕對不是靠手氣，靠的是牌技加心法｜20190902 吳老.mp4', '2024-06-13 13:51:36', '0000-00-00 00:00:00', '【課程資訊】麻將的勝敗絕對不是靠手氣，靠的是牌技加心法｜20190902 吳老.mp4', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1107,6 +1096,28 @@ INSERT INTO `product_images` (`id`, `product_id`, `img`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `rent_category`
+--
+
+CREATE TABLE `rent_category` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `rent_category`
+--
+
+INSERT INTO `rent_category` (`id`, `name`) VALUES
+(1, '麻將桌'),
+(2, '桌游-策略'),
+(3, '桌遊-派對'),
+(4, '桌遊-RPG'),
+(5, '桌遊-台灣元素');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `rent_images`
 --
 
@@ -1427,7 +1438,8 @@ INSERT INTO `users` (`id`, `valid`, `username`, `account`, `password`, `city`, `
 (110, '1', 'sdf', 'dddd', '$2y$10$8UYGMqDTVphJaP1zPnxt0.Co76eTl6lfLHJBXVgVu2lSjzqJyKh.G', 'taipei', '新北市鶯歌區', '0912562333', 'sdf9@gmail.com', '2024-05-22', 'male', '2024-06-07 05:20:10', '2024-06-07 05:20:10'),
 (111, '1', 'aaaaa', '12345', '12345', '', '', '0955661277', 'ds@gmail.com', '2003-06-02', 'male', '2024-06-07 05:23:49', '2024-06-07 05:23:49'),
 (112, '1', 'aaaa', 'eeee', '$2y$10$uaiMPNMOVqvf1.34gBdH9u8BV/tiYXOVJcBqHcS.JetHY9076oXSy', 'taipei', '新北市鶯歌區', '0911229633', 'aaa@gmail.com', '2024-05-01', 'male', '2024-06-07 05:39:24', '2024-06-07 05:39:24'),
-(113, '1', 'admin', 'admin', '$2y$10$vPcasRSVJzgyV2ilDH34hO9ww0RTry/cAOHIH5ccvfsv44D9G4k9u', 'taipei', '桃園中壢', '0911222333', 'admin@test.com', '2024-04-10', 'male', '2024-06-13 02:51:41', '2024-06-13 02:51:41');
+(113, '1', 'admin', 'admin', '$2y$10$vPcasRSVJzgyV2ilDH34hO9ww0RTry/cAOHIH5ccvfsv44D9G4k9u', 'taipei', '桃園中壢', '0911222333', 'admin@test.com', '2024-04-10', 'male', '2024-06-13 02:51:41', '2024-06-13 02:51:41'),
+(114, '1', 'wwwww', 'wwwww', '$2y$10$s0DSpK2rx9F15t3fsxeIBeJc.G4L2YCAIkteifga9wlpHrO4rxNP.', 'Taichung', 'asdfasdf', '0955666777', 'jack5269@gmail.com', '2024-06-05', 'male', '2024-06-13 06:21:07', '2024-06-13 06:21:07');
 
 --
 -- 已傾印資料表的索引
@@ -1437,12 +1449,6 @@ INSERT INTO `users` (`id`, `valid`, `username`, `account`, `password`, `city`, `
 -- 資料表索引 `brand`
 --
 ALTER TABLE `brand`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `category`
---
-ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1526,6 +1532,12 @@ ALTER TABLE `product_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `rent_category`
+--
+ALTER TABLE `rent_category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `rent_images`
 --
 ALTER TABLE `rent_images`
@@ -1567,12 +1579,6 @@ ALTER TABLE `brand`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'AUTO_INCREMENT', AUTO_INCREMENT=17;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- 使用資料表自動遞增(AUTO_INCREMENT) `chapter_progress`
 --
 ALTER TABLE `chapter_progress`
@@ -1588,7 +1594,7 @@ ALTER TABLE `coupons`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `course_category`
@@ -1600,7 +1606,7 @@ ALTER TABLE `course_category`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `course_chapter`
 --
 ALTER TABLE `course_chapter`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `course_order`
@@ -1651,6 +1657,12 @@ ALTER TABLE `product_images`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `rent_category`
+--
+ALTER TABLE `rent_category`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `rent_images`
 --
 ALTER TABLE `rent_images`
@@ -1678,7 +1690,7 @@ ALTER TABLE `rent_record`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- 已傾印資料表的限制式

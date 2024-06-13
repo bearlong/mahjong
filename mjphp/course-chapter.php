@@ -68,7 +68,47 @@ $rowCourse = $resultCourse->fetch_assoc();
     </div>
     <div class="container">
         <h1>章節編輯</h1>
+        <div class="py-2">
+            <a class="btn btn-primary" href="course-detail.php?id=<?= $id ?>"><i class="fa-solid fa-arrow-left"></i> 回課程</a>
+        </div>
         <button class="btn btn-primary my-2" id="plus"><i class="fa-solid fa-plus"></i></button>
+        <table class="table table-bordered">
+            <?php if ($resultChap->num_rows != 0) : ?>
+                <tr>
+                    <th>章節名稱</th>
+                    <th>章節簡述</th>
+                    <th>上傳影片</th>
+                    <th>章節圖</th>
+                </tr>
+                <?php foreach ($rows as $chapter) : ?>
+                    <form action="doEditChapter.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" class="form-control" value="<?= $chapter["id"] ?>">
+                        <tr>
+                            <td>
+                                <input type="text" name="name" class="form-control" value="<?= $chapter["chapter_name"] ?>">
+                            </td>
+                            <td>
+                                <textarea name="content" class="form-control" rows="3"><?= $chapter["content"] ?></textarea>
+                            </td>
+                            <td>
+                                <input type="file" name="video" class="form-control">
+                            </td>
+                            <td>
+                                <input type="file" name="image" class="form-control uploadImage">
+                            </td>
+                            <td>
+                                預覽圖:
+                                <img class="img-thumbnail image" src="./images/Mahjong/<?= $chapter["images"] ?>" alt="">
+                            </td>
+                            <td>
+                                <button class="btn btn-primary my-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </td>
+                        </tr>
+                    </form>
+                <?php endforeach; ?>
+        </table>
+    <?php endif; ?>
+    <form action="doAddChapter.php" method="post" enctype="multipart/form-data">
         <table class="table table-bordered" id="form-td">
             <tr>
                 <th>章節名稱</th>
@@ -76,59 +116,30 @@ $rowCourse = $resultCourse->fetch_assoc();
                 <th>上傳影片</th>
                 <th>章節圖</th>
             </tr>
-            <?php if ($resultChap->num_rows == 0) : ?>
-                <form action="doAddChapter.php" method="post" enctype="multipart/form-data">
-                    <tr>
-                        <td>
-                            <input type="text" name="name" class="form-control">
-                        </td>
-                        <td>
-                            <textarea name="content" class="form-control" rows="3"></textarea>
-                        </td>
-                        <td>
-                            <input type="file" name="video" class="form-control">
-                        </td>
-                        <td>
-                            <input type="file" name="image" class="form-control uploadImage">
-                        </td>
-                        <td>
-                            預覽圖:
-                            <img class="img-thumbnail image d-none" src="" alt="">
-                        </td>
-                    </tr>
-                <?php else : ?>
-                    <?php foreach ($rows as $chapter) : ?>
-                        <form action="doEditChapter.php" method="post" enctype="multipart/form-data">
-                            <tr>
-                                <td>
-                                    <input type="text" name="name" class="form-control" value="<?= $chapter["chapter_name"] ?>">
-                                </td>
-                                <td>
-                                    <textarea name="content" class="form-control" rows="3"><?= $chapter["content"] ?></textarea>
-                                </td>
-                                <td>
-                                    <input type="file" name="video" class="form-control">
-                                </td>
-                                <td>
-                                    <input type="file" name="image" class="form-control uploadImage">
-                                </td>
-                                <td>
-                                    預覽圖:
-                                    <img class="img-thumbnail image" src="./images/Mahjong/<?= $chapter["images"] ?>" alt="">
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary my-3"><i class="fa-solid fa-pen-to-square"></i></button>
-                                </td>
-                            </tr>
-                        </form>
-                    <?php endforeach; ?>
-                    <form action="doAddChapter.php" method="post" enctype="multipart/form-data">
-
-                    <?php endif; ?>
-
+            <input type="hidden" name="id" class="form-control" value="<?= $id ?>">
+            <tr>
+                <td>
+                    <input type="text" name="name[]" class="form-control">
+                </td>
+                <td>
+                    <textarea name="content[]" class="form-control" rows="3"></textarea>
+                </td>
+                <td>
+                    <input type="file" name="video[]" class="form-control">
+                </td>
+                <td>
+                    <input type="file" name="image[]" class="form-control uploadImage">
+                </td>
+                <td>
+                    預覽圖:
+                    <img class="img-thumbnail image d-none" src="" alt="">
+                </td>
+            </tr>
         </table>
         <button class="btn btn-primary my-3">送出</button>
-        </form>
+    </form>
+
+
     </div>
     <!-- Bootstrap JavaScript Libraries -->
     <?php include("../js-mahjong.php") ?>
@@ -137,7 +148,7 @@ $rowCourse = $resultCourse->fetch_assoc();
         const plus = document.querySelector("#plus");
         const formTd = document.querySelector("#form-td");
         plus.addEventListener("click", function() {
-            formTd.insertAdjacentHTML('beforeend', '<tr><td><input type="text" name="name" class="form-control"></td><td><textarea name="content" class="form-control" rows="3"></textarea> </td><td><input type="file" name="video" class="form-control"></td><td><input type="file" name="image" class="form-control uploadImage"></td><td>預覽圖:<img  class="img-thumbnail d-none image" src="" alt=""></td></tr>');
+            formTd.insertAdjacentHTML('beforeend', '<tr><td><input type="text" name="name[]" class="form-control"></td><td><textarea name="content[]" class="form-control" rows="3"></textarea> </td><td><input type="file" name="video[]" class="form-control"></td><td><input type="file" name="image[]" class="form-control uploadImage"></td><td>預覽圖:<img  class="img-thumbnail d-none image" src="" alt=""></td></tr>');
         });
 
         formTd.addEventListener("change", (e) => {

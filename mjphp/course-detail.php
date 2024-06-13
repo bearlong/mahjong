@@ -31,9 +31,16 @@ $resultCategory = $conn->query($sqlCategory);
 $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
 $categoryCount = $resultCategory->num_rows;
 
-// $courseExit=true;
-// if($result->num_rows==0){$courseExit=false;}
-// var_dump($row);
+$sqlChapter = "SELECT * FROM course_chapter WHERE course_id = $id";
+
+$resultChapter = $conn->query($sqlChapter);
+
+if ($resultChapter->num_rows)
+
+
+    // $courseExit=true;
+    // if($result->num_rows==0){$courseExit=false;}
+    // var_dump($row);
 ?>
 <!doctype html>
 <html lang="en">
@@ -75,7 +82,7 @@ $categoryCount = $resultCategory->num_rows;
             <a class="btn btn-primary" href="course-list.php"><i class="fa-solid fa-arrow-left"></i> 回課程列表</a>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <?php if ($courseExit) : ?>
                     <table class="table table-bordered">
 
@@ -84,31 +91,46 @@ $categoryCount = $resultCategory->num_rows;
                             <td><?= $row["id"] ?></td>
                         </tr>
                         <tr>
-                            <th>course_name</th>
+                            <th>課程名稱</th>
                             <td><?= $row["course_name"] ?></td>
                         </tr>
                         <tr>
-                            <th>category_name</th>
+                            <th>類別</th>
                             <td><?= $rowsCategory[0]["category_name"] ?></td>
                         </tr>
                         <tr>
-                            <th>images</th>
+                            <th>預覽圖</th>
                             <td><?= $row["images"] ?></td>
                         </tr>
                         <tr>
-                            <th>file</th>
+                            <th>影片</th>
                             <td><?= $row["file"] ?></td>
                         </tr>
                         <tr>
-                            <th>price</th>
+                            <th>價錢</th>
                             <td><?= $row["price"] ?></td>
                         </tr>
                         <tr>
-                            <th>on_datetime</th>
+                            <th class="py-3">
+                                章節數量
+                            </th>
+                            <td>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <?= $resultChapter->num_rows ?>
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-primary" href="course-chapter.php?id=<?= $row["id"] ?>" title="編輯章節"> <i class="fa-solid fa-pen-to-square"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>上架日期</th>
                             <td><?= $row["on_datetime"] ?></td>
                         </tr>
                         <tr>
-                            <th>off_datetime</th>
+                            <th>下架日期</th>
                             <td><?= $row["off_datetime"] ?></td>
                         </tr>
                     </table>
@@ -120,6 +142,14 @@ $categoryCount = $resultCategory->num_rows;
                 <?php else : ?>
                     <h1>課程不存在</h1>
                 <?php endif; ?>
+            </div>
+            <div class="col-lg-3">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>課程敘述</th>
+                        <td><?= $row["content"] ?></td>
+                    </tr>
+                </table>
             </div>
         </div>
 
