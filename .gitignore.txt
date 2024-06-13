@@ -1,1 +1,3 @@
 images/
+mjphp/images
+mjphp/video
