@@ -73,7 +73,7 @@ $rowsImages  = $resultImages->fetch_all(MYSQLI_ASSOC);
                         <tr>
                             <th>商品敘述</th>
                             <td>
-                                <p><?= $row["content"] ?></p>
+                                <p><?= nl2br($row["content"]) ?></p>
                             </td>
                         </tr>
                         <tr>

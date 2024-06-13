@@ -27,7 +27,6 @@ for ($i = 0; $i < count($name); $i++) {
 
     $pathImg = "./images/" . $rowCourse["category_name"];
     $pathVideo = "./video/" . $rowCourse["category_name"];
-    print_r($files);
 
     if (!file_exists($pathImg)) {
         mkdir($pathImg, true);
@@ -86,7 +85,7 @@ for ($i = 0; $i < count($name); $i++) {
     if (move_uploaded_file($tmpFileVideo, $targetfilesVideo)) {
         echo "上傳成功";
     } else {
-        $_SESSION["errorMsg"] = $name . " 圖片上傳失敗";
+        $_SESSION["errorMsg"] = $name . " 影片上傳失敗";
         header("location: course-chapter.php?id=$id");
         exit;
     }

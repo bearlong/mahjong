@@ -15,7 +15,8 @@ $resultChap = $conn->query($sqlChap);
 
 $rows = $resultChap->fetch_all(MYSQLI_ASSOC);
 
-$sqlCourse = "SELECT * FROM course WHERE id = $id";
+
+$sqlCourse = "SELECT course.*, course_category.name AS category_name FROM course JOIN course_category ON course_category.id = course.course_category_id WHERE course.id = '$id'";
 
 $resultCourse = $conn->query($sqlCourse);
 
@@ -27,7 +28,7 @@ $rowCourse = $resultCourse->fetch_assoc();
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title><?= $rowCourse["course_name"] ?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -72,7 +73,7 @@ $rowCourse = $resultCourse->fetch_assoc();
             <a class="btn btn-primary" href="course-detail.php?id=<?= $id ?>"><i class="fa-solid fa-arrow-left"></i> 回課程</a>
         </div>
         <button class="btn btn-primary my-2" id="plus"><i class="fa-solid fa-plus"></i></button>
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="form-chapter">
             <?php if ($resultChap->num_rows != 0) : ?>
                 <tr>
                     <th>章節名稱</th>
@@ -98,7 +99,7 @@ $rowCourse = $resultCourse->fetch_assoc();
                             </td>
                             <td>
                                 預覽圖:
-                                <img class="img-thumbnail image" src="./images/Mahjong/<?= $chapter["images"] ?>" alt="">
+                                <img class="img-thumbnail image" src="./images/<?= $rowCourse["category_name"] ?>/<?= $chapter["images"] ?>" alt="">
                             </td>
                             <td>
                                 <button class="btn btn-primary my-3"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -136,6 +137,11 @@ $rowCourse = $resultCourse->fetch_assoc();
                 </td>
             </tr>
         </table>
+        <?php if (isset($_SESSION["errorMsg"])) : ?>
+            <div class="text-danger">
+                <?= $_SESSION["errorMsg"] ?>
+            </div>
+        <?php endif; ?>
         <button class="btn btn-primary my-3">送出</button>
     </form>
 
@@ -146,9 +152,24 @@ $rowCourse = $resultCourse->fetch_assoc();
 
     <script>
         const plus = document.querySelector("#plus");
+        const formChapter = document.querySelector("#form-chapter");
         const formTd = document.querySelector("#form-td");
         plus.addEventListener("click", function() {
             formTd.insertAdjacentHTML('beforeend', '<tr><td><input type="text" name="name[]" class="form-control"></td><td><textarea name="content[]" class="form-control" rows="3"></textarea> </td><td><input type="file" name="video[]" class="form-control"></td><td><input type="file" name="image[]" class="form-control uploadImage"></td><td>預覽圖:<img  class="img-thumbnail d-none image" src="" alt=""></td></tr>');
+        });
+
+        formChapter.addEventListener("change", (e) => {
+            if (e.target.classList.contains("uploadImage")) {
+                const fileInput = e.target;
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                const img = fileInput.closest("tr").querySelector(".image");
+
+                reader.readAsDataURL(file);
+                reader.addEventListener("load", () => {
+                    img.src = reader.result;
+                });
+            }
         });
 
         formTd.addEventListener("change", (e) => {
