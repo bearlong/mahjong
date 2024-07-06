@@ -35,6 +35,51 @@ $sqlOwner = "SELECT mahjong_room.*, owner.company_name FROM mahjong_room JOIN ow
 $resultOwner = $conn->query($sqlOwner);
 $owner = $resultOwner->fetch_assoc();
 
+$sqlTable = "SELECT * FROM mahjong_table WHERE room_id = $room_id AND is_deleted = FALSE";
+$resultTable = $conn->query($sqlTable);
+$rowsTable = $resultTable->fetch_all(MYSQLI_ASSOC);
+
+
+$sqlOrder = "SELECT mahjong_table.*, history.date, history.start_time, history.end_time FROM mahjong_table JOIN history ON mahjong_table.id = history.table_id";
+$resultOrder = $conn->query($sqlOrder);
+$rowsOrder = $resultOrder->fetch_all(MYSQLI_ASSOC);
+$bookingStatus = [];
+
+$openTime = strtotime($owner['open_time']);
+$closeTime = strtotime($owner['close_time']);
+
+$currentTime = $openTime;
+foreach ($rowsTable as $row) {
+    $tableId = $row['id'];
+    while ($currentTime < $closeTime) {
+        $startTime = date("H:i:s", $currentTime);
+        $endTime = date("H:i:s", strtotime('+1 hour', $currentTime));
+        foreach ($rowsOrder as $rowOrder) {
+            if ($tableId == $rowOrder['id'] && $rowOrder['start_time'] == $startTime) {
+                $bookingStatus[$tableId][$startTime] = '已預定';
+            } else {
+                $bookingStatus[$tableId][$startTime] = '空閒';
+            }
+        }
+
+        $currentTime = strtotime('+1 hour', $currentTime);
+    }
+    $currentTime = $openTime;
+}
+
+
+// $roomID = $rowOrder['room_id'];
+// $startTime = $rowOrder['start_time'];
+// $endTime = $rowOrder['end_time'];
+// $date = $rowOrder['date'];
+
+//     // 將訂單時間段標記為已預訂
+//     while ($startTime < $endTime) {
+//         $bookingStatus[$roomID][$startTime] = '已預訂';
+
+//         $startTime = date("H:i:s", strtotime('+1 hour', strtotime($startTime)));
+//     }
+print_r($bookingStatus)
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +125,7 @@ $owner = $resultOwner->fetch_assoc();
 </head>
 
 <body>
-    <?php include("../nav.php") ?>
+    <!-- <?php include("../nav.php") ?> -->
 
     <div class="container main-content px-5">
         <div class="btn-group my-2">
@@ -193,7 +238,8 @@ $owner = $resultOwner->fetch_assoc();
                         echo "<td>" . htmlspecialchars($row2["price"]) . "</td>";
                         echo "<td>" . ($row2["table_type"] == 1 ? "大廳" : "包廂") . "</td>";
                         echo "<td>" . ($row2["status"] == 0 ? "空閒中" : "不可用") . "</td>";
-                        echo "<td><a href='deleteTable.php?table_id=" . $row2["table_id"] . "&room_id=" . $room_id . "' class='btn btn-danger btn-sm' onclick='return confirm(\"確認刪除這個桌子嗎？\");'>刪除</a></td>";
+                        echo "<td>" . "<a href=" . 'checkOrder.php?id=' .  $row2["id"]  . ">訂位狀況</a>" . "</td>";
+                        echo "<td><a href='deleteTable.php?id=" . $row2["id"] . "&room_id=" . $room_id . "' class='btn btn-danger btn-sm' onclick='return confirm(\"確認刪除這個桌子嗎？\");'>刪除</a></td>";
                         echo "</tr>";
                     }
                     echo "</tbody></table>";
